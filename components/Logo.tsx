@@ -1,31 +1,60 @@
-import Link from 'next/link';
+'use client';
 
-export function Logo({ className = '' }: { className?: string }) {
-  return (
-    <Link
-      href="/"
-      className={`group inline-flex items-center gap-2.5 ${className}`}
-      aria-label="Aurora Editions"
+import Link from 'next/link';
+import { SwashMark } from './SwashMark';
+import { cn } from '@/lib/utils';
+
+export function Logo({
+  className,
+  size = 'sm',
+  asLink = true,
+  variant = 'default',
+}: {
+  className?: string;
+  size?: 'sm' | 'md' | 'lg' | 'hero';
+  asLink?: boolean;
+  variant?: 'default' | 'ink';
+}) {
+  const dim =
+    size === 'sm' ? 38 :
+    size === 'md' ? 60 :
+    size === 'lg' ? 96 : 240;
+
+  const wordSize =
+    size === 'sm' ? 'text-[19px]' :
+    size === 'md' ? 'text-[24px]' :
+    size === 'lg' ? 'text-[36px]' : 'text-display-md';
+
+  const wordColor = variant === 'ink' ? 'text-paper-50' : 'text-ink-700';
+
+  const content = (
+    <span
+      className={cn(
+        'group inline-flex items-center gap-2.5',
+        wordColor,
+        className,
+      )}
+      aria-label="Swash"
+      data-cursor="link"
     >
-      <span className="relative grid h-7 w-7 place-items-center rounded-md bg-bone-50 text-ink-950 transition-transform duration-500 ease-silk group-hover:rotate-[8deg]">
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7 1.2C4.5 4 1.5 6 1.5 7s3 3 5.5 5.8C9.5 10 12.5 8 12.5 7s-3-3-5.5-5.8Z"
-            stroke="currentColor"
-            strokeWidth="1.4"
-            strokeLinejoin="round"
-          />
-        </svg>
+      <span className="relative grid place-items-center transition-transform duration-700 ease-silk group-hover:-rotate-[6deg]">
+        <SwashMark
+          size={dim}
+          animate={size !== 'sm'}
+          variant={variant === 'ink' ? 'ink' : 'default'}
+        />
       </span>
-      <span className="font-display text-[15px] font-medium tracking-tight text-bone-50">
-        Aurora<span className="text-bone-400"> / Editions</span>
+      <span
+        className={cn(
+          'font-display italic tracking-tight leading-none',
+          wordSize,
+        )}
+      >
+        Swash
       </span>
-    </Link>
+    </span>
   );
+
+  if (!asLink) return content;
+  return <Link href="/">{content}</Link>;
 }

@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, type Variants } from 'framer-motion';
-import { ReactNode } from 'react';
+import { motion, type Variants, useInView } from 'framer-motion';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
 const baseVariants: Variants = {
   hidden: { opacity: 0, y: 32 },
@@ -21,7 +21,7 @@ export function Reveal({
   delay = 0,
   className = '',
   as: As = 'div',
-  amount = 0.2,
+  amount = 0.05,
 }: {
   children: ReactNode;
   delay?: number;
@@ -29,13 +29,29 @@ export function Reveal({
   as?: 'div' | 'p' | 'section' | 'article' | 'span' | 'li';
   amount?: number;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, {
+    once: true,
+    amount,
+    margin: '0px 0px -5% 0px',
+  });
+  const [forced, setForced] = useState(false);
+
+  // Fallback: if the observer hasn't fired within 1.4s of mount (e.g. user
+  // deep-linked into a section and the IntersectionObserver didn't trigger),
+  // reveal anyway so content is never stuck at opacity 0.
+  useEffect(() => {
+    const t = window.setTimeout(() => setForced(true), 1400);
+    return () => window.clearTimeout(t);
+  }, []);
+
   const MotionComp = motion[As as 'div'];
   return (
     <MotionComp
+      ref={ref as never}
       variants={baseVariants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount }}
+      animate={inView || forced ? 'visible' : 'hidden'}
       custom={delay}
       className={className}
     >

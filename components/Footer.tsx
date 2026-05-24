@@ -1,53 +1,64 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Logo } from './Logo';
 
 const COLS: { title: string; links: { label: string; href: string }[] }[] = [
   {
-    title: 'Edition',
+    title: 'Studio',
     links: [
-      { label: 'Overview', href: '/' },
-      { label: 'All features', href: '/features' },
-      { label: 'Changelog', href: '/changelog' },
+      { label: 'Work', href: '/work' },
+      { label: 'Services', href: '/services' },
+      { label: 'Process', href: '/process' },
       { label: 'About', href: '/about' },
+      { label: 'FAQ', href: '/faq' },
     ],
   },
   {
-    title: 'Categories',
+    title: 'Built for',
     links: [
-      { label: 'Storefront', href: '/features?cat=storefront' },
-      { label: 'Checkout', href: '/features?cat=checkout' },
-      { label: 'Marketing', href: '/features?cat=marketing' },
-      { label: 'Analytics', href: '/features?cat=analytics' },
-      { label: 'Developer', href: '/features?cat=developer' },
+      { label: 'Home services', href: '/brief?industry=home-services' },
+      { label: 'Ecommerce', href: '/brief?industry=ecommerce' },
+      { label: 'Dropshipping', href: '/brief?industry=dropshipping' },
+      { label: 'Restaurants', href: '/brief?industry=restaurant' },
+      { label: 'SaaS', href: '/brief?industry=saas' },
+      { label: 'Anything else', href: '/brief' },
     ],
   },
   {
-    title: 'Resources',
+    title: 'Reach us',
     links: [
-      { label: 'Documentation', href: '#' },
-      { label: 'Migration guide', href: '#' },
+      { label: 'hello@swash.studio', href: 'mailto:hello@swash.studio' },
+      { label: 'Schedule a call', href: '/brief' },
       { label: 'Press kit', href: '#' },
-      { label: 'Status', href: '#' },
+      { label: 'For agencies', href: '#' },
     ],
   },
 ];
 
 export function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith('/preview/')) return null;
+
   return (
-    <footer className="relative mt-24 border-t border-ink-700 bg-ink-900">
+    <footer className="relative mt-24 border-t border-hairline bg-paper-200/40">
       <div className="container-wide pb-12 pt-20">
         <div className="grid gap-14 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div className="space-y-6">
-            <Logo />
-            <p className="max-w-sm text-sm leading-relaxed text-bone-400">
-              A seasonal showcase template — bundled, branded, and ready to drop your own edition into.
+            <Logo size="sm" />
+            <p className="max-w-sm text-sm leading-relaxed text-ash-500">
+              A boutique studio that builds websites, brands, and the
+              motion that ties them together. From one-person shops to
+              Series-A teams. We meet your budget. We sharpen the work.
             </p>
             <div className="flex gap-2">
-              {['X', 'IG', 'YT', 'LI'].map((s) => (
+              {['IG', 'X', 'IN', 'BE'].map((s) => (
                 <a
                   key={s}
                   href="#"
-                  className="grid h-9 w-9 place-items-center rounded-pill border border-ink-700 text-[11px] tracking-wider text-bone-300 transition-colors hover:border-bone-50 hover:text-bone-50"
+                  data-cursor="link"
+                  className="grid h-9 w-9 place-items-center rounded-pill border border-hairline text-[11px] tracking-wider text-ash-500 transition-colors hover:border-ink-700 hover:bg-ink-700 hover:text-paper-50"
                   aria-label={s}
                 >
                   {s}
@@ -64,7 +75,8 @@ export function Footer() {
                   <li key={l.label}>
                     <Link
                       href={l.href}
-                      className="text-sm text-bone-200 transition-colors hover:text-glow-lime"
+                      data-cursor="link"
+                      className="text-sm text-ink-400 transition-colors hover:text-ink-700"
                     >
                       {l.label}
                     </Link>
@@ -79,18 +91,18 @@ export function Footer() {
           aria-hidden
           className="pointer-events-none relative mt-16 select-none overflow-hidden"
         >
-          <p className="font-display text-[18vw] font-semibold leading-[0.85] tracking-tighter text-ink-800">
-            AURORA — WINTER 26
+          <p className="font-display italic text-[24vw] font-light leading-[0.82] tracking-tighter text-ink-700/[0.05]">
+            Swash.
           </p>
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-ink-700 pt-6 text-xs text-bone-400 md:flex-row md:items-center">
-          <p>© 2026 Aurora Editions Template. Built for resale by independent designers.</p>
+        <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-hairline pt-6 text-xs text-ash-500 md:flex-row md:items-center">
+          <p>© 2026 Swash Studio. Add a swash to everything.</p>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <Link href="#" className="hover:text-bone-100">Privacy</Link>
-            <Link href="#" className="hover:text-bone-100">Terms</Link>
-            <Link href="#" className="hover:text-bone-100">License</Link>
-            <Link href="#" className="hover:text-bone-100">Cookies</Link>
+            <Link href="#" className="hover:text-ink-700" data-cursor="link">Privacy</Link>
+            <Link href="#" className="hover:text-ink-700" data-cursor="link">Terms</Link>
+            <Link href="#" className="hover:text-ink-700" data-cursor="link">Cookies</Link>
+            <Link href="#" className="hover:text-ink-700" data-cursor="link">Press</Link>
           </div>
         </div>
       </div>

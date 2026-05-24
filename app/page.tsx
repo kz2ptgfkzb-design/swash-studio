@@ -1,32 +1,31 @@
 import { Hero } from '@/components/Hero';
-import { Marquee } from '@/components/Marquee';
-import { IntroSection } from '@/components/IntroSection';
-import { CategoryShowcase } from '@/components/CategoryShowcase';
-import { SpotlightSection } from '@/components/SpotlightSection';
-import { PrinciplesSection } from '@/components/PrinciplesSection';
-import { CtaSection } from '@/components/CtaSection';
-import { SideNav } from '@/components/SideNav';
-
-const SECTIONS = [
-  { id: 'overview', label: '00 / Overview' },
-  { id: 'introduction', label: '01 / The Drop' },
-  { id: 'categories', label: '02 / Map' },
-  { id: 'spotlight', label: '03 / Headliner' },
-  { id: 'principles', label: '04 / Notes' },
-  { id: 'ship', label: '05 / Ship' },
-];
+import { VelocityMarquee } from '@/components/VelocityMarquee';
+import { ValueProps } from '@/components/ValueProps';
+import { ServicesOverview } from '@/components/ServicesOverview';
+import { WorkPreview } from '@/components/WorkPreview';
+import { HowItWorks } from '@/components/HowItWorks';
+import { ProofMetrics } from '@/components/ProofMetrics';
+import { IndustriesGrid } from '@/components/IndustriesGrid';
+import { PricingPhilosophy } from '@/components/PricingPhilosophy';
+import { Testimonials } from '@/components/Testimonials';
+import { FaqTeaser } from '@/components/FaqTeaser';
+import { BriefCtaSection } from '@/components/BriefCtaSection';
 
 export default function HomePage() {
   return (
     <>
-      <SideNav sections={SECTIONS} />
       <Hero />
-      <Marquee />
-      <IntroSection />
-      <CategoryShowcase />
-      <SpotlightSection />
-      <PrinciplesSection />
-      <CtaSection />
+      <VelocityMarquee />
+      <ValueProps />
+      <ServicesOverview />
+      <WorkPreview />
+      <HowItWorks />
+      <ProofMetrics />
+      <IndustriesGrid />
+      <PricingPhilosophy />
+      <Testimonials />
+      <FaqTeaser />
+      <BriefCtaSection />
     </>
   );
 }
