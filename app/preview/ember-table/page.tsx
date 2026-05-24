@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { PHOTOS } from '@/data/photos';
 
 export default function EmberTablePreview() {
   return (
@@ -13,6 +14,7 @@ export default function EmberTablePreview() {
       <EmberNav />
       <EmberHero />
       <EmberPhilosophy />
+      <EmberGallery />
       <EmberMenu />
       <EmberStory />
       <EmberHours />
@@ -120,34 +122,14 @@ function EmberHero() {
           style={{ y }}
           className="md:col-span-5 relative"
         >
-          <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-[#1A0F08]/10 bg-[#E0D0B1]">
-            <svg viewBox="0 0 400 500" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <radialGradient id="ember-glow" cx="50%" cy="78%" r="40%">
-                  <stop offset="0%" stopColor="#C8462C" stopOpacity="1" />
-                  <stop offset="40%" stopColor="#C8462C" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#5A3F2C" stopOpacity="0" />
-                </radialGradient>
-              </defs>
-              <rect width="400" height="500" fill="#3A2618" />
-              <circle cx="200" cy="390" r="180" fill="url(#ember-glow)" />
-              {/* Stylized boule loaf */}
-              <ellipse cx="200" cy="290" rx="125" ry="70" fill="#E8C682" />
-              <ellipse cx="200" cy="280" rx="120" ry="60" fill="#D8A85C" />
-              {/* Scoring lines */}
-              <path d="M 130 270 Q 200 235, 270 280" stroke="#7A4A20" strokeWidth="3" fill="none" strokeLinecap="round" />
-              <path d="M 145 290 Q 200 260, 255 295" stroke="#7A4A20" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-              <path d="M 160 305 Q 200 285, 240 310" stroke="#7A4A20" strokeWidth="2" fill="none" strokeLinecap="round" />
-              {/* Steam */}
-              <motion.g
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 0.6, 0], y: [-10, -40, -60] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                <path d="M 180 220 Q 175 200, 185 180 Q 195 160, 185 140" stroke="#F5ECD7" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.4" />
-                <path d="M 220 220 Q 215 200, 225 180 Q 235 160, 225 140" stroke="#F5ECD7" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.35" />
-              </motion.g>
-            </svg>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-[#1A0F08]/10 bg-[#3A2618]">
+            <img
+              src={PHOTOS.ember.hero}
+              alt="Today's bake"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1A0F08] via-[#1A0F08]/30 to-transparent" />
+            <div className="absolute inset-0 bg-[radial-gradient(at_50%_85%,rgba(200,70,44,0.35),transparent_55%)]" />
             <div className="absolute inset-x-0 bottom-0 p-6">
               <p
                 style={{ fontFamily: 'var(--font-mono)' }}
@@ -191,6 +173,69 @@ function EmberPhilosophy() {
         >
           Hana &amp; Theo, chef-proprietors
         </p>
+      </div>
+    </section>
+  );
+}
+
+function EmberGallery() {
+  const photos = [
+    { src: PHOTOS.ember.breadStudio, label: 'Country loaf',     time: '6:00 a.m.' },
+    { src: PHOTOS.ember.fire,        label: 'The oven',         time: 'always on' },
+    { src: PHOTOS.ember.pasta,       label: 'Pasta of the day', time: '4:00 p.m.' },
+    { src: PHOTOS.ember.plate,       label: 'Tonight’s plate', time: '18:30' },
+    { src: PHOTOS.ember.chef,        label: 'Hana, in the kitchen', time: 'Wed – Sun' },
+    { src: PHOTOS.ember.interior,    label: 'The counter',      time: 'six seats' },
+  ];
+
+  return (
+    <section className="px-6 py-24 lg:px-10 md:py-32">
+      <div className="mx-auto max-w-[1320px]">
+        <div className="mb-14 grid items-end gap-8 md:grid-cols-12">
+          <div className="md:col-span-7">
+            <p style={{ fontFamily: 'var(--font-mono)' }} className="text-[11px] uppercase tracking-[0.32em] text-[#C8462C]">
+              From the kitchen
+            </p>
+            <h2
+              style={{ fontFamily: 'var(--font-editorial)' }}
+              className="mt-6 text-balance text-[clamp(2.25rem,5vw,4rem)] leading-[0.98] tracking-tight"
+            >
+              A day at
+              <br />
+              <span className="italic">the bakehouse.</span>
+            </h2>
+          </div>
+          <p className="md:col-span-4 md:col-start-9 text-pretty leading-relaxed text-[#1A0F08]/65">
+            Shot last Saturday between the morning bake and the
+            evening service. The bread is real. So is the fire.
+          </p>
+        </div>
+
+        <ul className="grid gap-3 md:grid-cols-12 md:gap-4">
+          {photos.map((p, i) => {
+            const span = i === 0 ? 'md:col-span-6 md:row-span-2 aspect-[4/5]'
+                       : i === 1 ? 'md:col-span-3 aspect-[4/5]'
+                       : i === 2 ? 'md:col-span-3 aspect-[4/5]'
+                       : 'md:col-span-4 aspect-[4/3]';
+            return (
+              <li
+                key={p.label}
+                className={`group relative overflow-hidden rounded-sm border border-[#1A0F08]/10 ${span}`}
+              >
+                <img src={p.src} alt={p.label} className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1A0F08]/85 via-[#1A0F08]/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <p style={{ fontFamily: 'var(--font-editorial)' }} className="text-lg italic text-[#F5ECD7]">
+                    {p.label}
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-mono)' }} className="mt-1 text-[10px] uppercase tracking-[0.22em] text-[#F5ECD7]/65">
+                    {p.time}
+                  </p>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

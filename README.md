@@ -198,23 +198,32 @@ status) lives in `data/work.ts`. Edit there, the form picks it up.
 `data/work.ts` `WORK` array. Each entry includes the full case-study
 content (challenge, approach, outcome, testimonial, team, metrics).
 
-### Wire the brief form to a real backend
+### Brief form → email (wired to Resend)
 
-`components/BriefIntakeForm.tsx` → `handleSubmit`. Currently saves to
-sessionStorage and routes to `/brief/thanks`. Replace with a `fetch`
-to your endpoint:
+The intake form posts to **`app/api/brief/route.ts`**, which sends a
+formatted HTML email to your studio inbox via [Resend](https://resend.com).
 
-```ts
-await fetch('/api/brief', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(data),
-});
-router.push('/brief/thanks');
+**Setup (5 minutes):**
+
+1. Create a free Resend account → https://resend.com
+2. Add + verify your sending domain (or use Resend's onboarding domain for testing)
+3. Generate an API key from the Resend dashboard
+4. Set three env vars in Vercel (Project → Settings → Environment Variables) or in a local `.env.local`:
+
+```bash
+RESEND_API_KEY=re_XXXXXXXXXXXXXXXXXXXX        # required in prod
+BRIEF_TO_EMAIL=hello@swash.studio              # who receives briefs
+BRIEF_FROM_EMAIL=Swash <briefs@swash.studio>   # verified send-from
 ```
 
-Add an API route at `app/api/brief/route.ts` to send the email (via
-Resend, Postmark, or SendGrid).
+**No setup needed for local dev** — if `RESEND_API_KEY` is unset, the
+API route logs the payload to the console and the form still routes
+the user to `/brief/thanks`. Useful for building/demoing the form
+before hooking up email.
+
+**Swap providers** (Postmark, SendGrid, AWS SES) by editing the
+`POST` handler in `app/api/brief/route.ts`. The HTML email template
+lives in the same file — change the styling without touching the form.
 
 ### Customize the demos
 

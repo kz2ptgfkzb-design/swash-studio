@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { WorkItem } from '@/data/work';
+import { PHOTOS } from '@/data/photos';
 import { TiltCard } from './TiltCard';
 import { cn } from '@/lib/utils';
 
@@ -22,7 +23,17 @@ const ACCENT_TEXT: Record<WorkItem['accent'], string> = {
   sage: 'text-ink-700',
 };
 
+const ACCENT_TINT: Record<WorkItem['accent'], string> = {
+  ink:     'rgba(10,10,10,0.55)',
+  saffron: 'rgba(232,165,61,0.45)',
+  olive:   'rgba(92,107,71,0.55)',
+  rust:    'rgba(182,85,63,0.55)',
+  sage:    'rgba(124,143,119,0.50)',
+};
+
 export function WorkCard({ item }: { item: WorkItem }) {
+  const photo = PHOTOS.workCovers[item.slug];
+
   return (
     <TiltCard intensity={6} scale={1.015} glare className="relative">
       <Link
@@ -33,19 +44,36 @@ export function WorkCard({ item }: { item: WorkItem }) {
         <div
           className={cn(
             'relative aspect-[5/4] overflow-hidden border-b border-hairline',
-            ACCENT_BG[item.accent],
-            ACCENT_TEXT[item.accent],
+            !photo && ACCENT_BG[item.accent],
+            'text-paper-50',
           )}
         >
-          <div className="absolute inset-0 bg-noise opacity-[0.07] mix-blend-overlay" />
+          {photo ? (
+            <>
+              <motion.img
+                src={photo}
+                alt={item.client}
+                className="absolute inset-0 h-full w-full object-cover"
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <div
+                className="absolute inset-0 mix-blend-multiply"
+                style={{ background: ACCENT_TINT[item.accent] }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-50/85 via-ink-50/15 to-transparent" />
+            </>
+          ) : (
+            <motion.div
+              className={cn('absolute inset-0', ACCENT_TEXT[item.accent])}
+              whileHover={{ scale: 1.04 }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <WorkVisual variant={item.slug} accent={item.accent} />
+            </motion.div>
+          )}
 
-          <motion.div
-            className="absolute inset-0"
-            whileHover={{ scale: 1.04 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <WorkVisual variant={item.slug} accent={item.accent} />
-          </motion.div>
+          <div className="absolute inset-0 bg-noise opacity-[0.05] mix-blend-overlay pointer-events-none" />
 
           <div className="absolute left-6 top-6 flex items-center gap-2">
             <span className="rounded-pill bg-paper-100/15 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] backdrop-blur-sm">
@@ -53,7 +81,7 @@ export function WorkCard({ item }: { item: WorkItem }) {
             </span>
           </div>
           <div className="absolute right-6 top-6">
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] opacity-70">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-paper-50/75">
               {item.year}
             </span>
           </div>
@@ -63,7 +91,7 @@ export function WorkCard({ item }: { item: WorkItem }) {
               <p className="font-display text-4xl leading-none tracking-tight md:text-5xl">
                 {item.metric.value}
               </p>
-              <p className="max-w-[50%] text-right font-mono text-[10px] uppercase tracking-[0.16em] opacity-80">
+              <p className="max-w-[50%] text-right font-mono text-[10px] uppercase tracking-[0.16em] text-paper-50/85">
                 {item.metric.label}
               </p>
             </div>

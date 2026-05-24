@@ -11,6 +11,7 @@ const COLS: { title: string; links: { label: string; href: string }[] }[] = [
       { label: 'Work', href: '/work' },
       { label: 'Services', href: '/services' },
       { label: 'Process', href: '/process' },
+      { label: 'Journal', href: '/journal' },
       { label: 'About', href: '/about' },
       { label: 'FAQ', href: '/faq' },
     ],

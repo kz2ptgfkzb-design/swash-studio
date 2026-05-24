@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { PHOTOS } from '@/data/photos';
 
 export default function PipelinePreview() {
   return (
@@ -11,6 +12,7 @@ export default function PipelinePreview() {
       <PipelineHero />
       <PipelineMarquee />
       <PipelineServices />
+      <PipelineOnTheJob />
       <PipelineTrust />
       <PipelineAreas />
       <PipelineReviews />
@@ -70,26 +72,25 @@ function PipelineHero() {
 
   return (
     <section ref={ref} className="relative overflow-hidden px-6 pt-20 pb-32 lg:px-10">
+      {/* Hero photo, far right */}
       <motion.div
         aria-hidden
         style={{ y }}
-        className="pointer-events-none absolute -right-20 top-20 hidden md:block"
+        className="pointer-events-none absolute right-0 top-0 hidden h-full md:block md:w-[42%]"
       >
-        <svg width="640" height="640" viewBox="0 0 640 640" fill="none">
-          <circle cx="320" cy="320" r="240" stroke="#FFD93D" strokeOpacity="0.15" strokeWidth="2" />
-          <circle cx="320" cy="320" r="160" stroke="#FFD93D" strokeOpacity="0.25" strokeWidth="2" />
-          <path
-            d="M 80 320 H 200 a 80 80 0 0 1 0 160 H 440 a 80 80 0 0 0 0 -160 H 560"
-            stroke="#FFD93D"
-            strokeWidth="22"
-            strokeLinecap="square"
-            fill="none"
-            strokeOpacity="0.6"
+        <div className="relative h-full w-full overflow-hidden">
+          <img
+            src={PHOTOS.pipeline.hero}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
           />
-        </svg>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0E2236] via-[#0E2236]/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0E2236]/40 via-transparent to-[#0E2236]/60" />
+          <div className="absolute inset-0 bg-noise opacity-[0.05] mix-blend-overlay" />
+        </div>
       </motion.div>
 
-      <div className="relative mx-auto max-w-[1320px]">
+      <div className="relative mx-auto max-w-[1320px] md:max-w-[63%] md:ml-0">
         <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFD93D]">
           Est. 2008 · Licensed · Bonded · Insured
         </p>
@@ -247,6 +248,65 @@ function PipelineServices() {
             </article>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function PipelineOnTheJob() {
+  const items = [
+    { src: PHOTOS.pipeline.plumberWork, label: 'Same-day · burst pipe', loc: 'San Mateo' },
+    { src: PHOTOS.pipeline.pipes,       label: 'Repipe · multi-family',  loc: 'Daly City' },
+    { src: PHOTOS.pipeline.tools,       label: 'Sewer line · trenchless', loc: 'Burlingame' },
+    { src: PHOTOS.pipeline.truck,       label: 'Backflow · annual test', loc: 'San Bruno' },
+  ];
+  return (
+    <section className="border-t-2 border-white/10 px-6 py-24 lg:px-10 md:py-32">
+      <div className="mx-auto max-w-[1320px]">
+        <div className="grid items-end gap-8 md:grid-cols-12">
+          <div className="md:col-span-7">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFD93D]">
+              On the job
+            </p>
+            <h2
+              style={{ fontFamily: 'var(--font-display)' }}
+              className="mt-6 text-balance text-[clamp(2.25rem,5vw,4rem)] font-bold leading-[0.96] tracking-tight"
+            >
+              Last week alone.
+            </h2>
+          </div>
+          <p className="md:col-span-5 text-pretty leading-relaxed text-white/70">
+            A snapshot of recent calls — the routine and the chaos. No two
+            weeks look the same; we&rsquo;re built for both.
+          </p>
+        </div>
+
+        <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {items.map((it, i) => (
+            <li
+              key={i}
+              className="group relative aspect-[4/5] overflow-hidden rounded-lg border-2 border-white/10"
+            >
+              <motion.img
+                src={it.src}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0E2236] via-[#0E2236]/30 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <p style={{ fontFamily: 'var(--font-display)' }} className="text-lg font-semibold text-[#F4EFE3]">
+                  {it.label}
+                </p>
+                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-[#FFD93D]">
+                  {it.loc}
+                </p>
+              </div>
+              <div className="absolute right-4 top-4 rounded-full bg-[#FFD93D] px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-[#0E2236]">
+                {String(i + 1).padStart(2, '0')} · done
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

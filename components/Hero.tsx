@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { SwashMark } from './SwashMark';
 import { Magnetic } from './Magnetic';
 import { HeroSpotlight } from './HeroSpotlight';
+import { HeroMesh } from './HeroMesh';
 import { RevealText, RevealBlock } from './RevealText';
 
 export function Hero() {
@@ -27,6 +28,7 @@ export function Hero() {
       id="overview"
       className="relative isolate min-h-[100svh] overflow-hidden bg-paper-100 grain"
     >
+      <HeroMesh />
       <HeroSpotlight />
 
       <div className="container-wide relative z-10 flex min-h-[100svh] flex-col justify-between pb-12 pt-32">

@@ -58,6 +58,18 @@ const DEMOS: Demo[] = [
     text: '#0A0A0A',
     swatch: ['#F8F6F2', '#2447FF', '#0A0A0A', '#F0EDE7'],
   },
+  {
+    slug: 'holm',
+    brand: 'Holm',
+    kind: 'Real estate · Boutique brokerage',
+    tagline: 'A boutique for the city’s quieter listings.',
+    body:
+      'Editorial brokerage. Cream + deep navy + soft coral. Photographic hero, four-property grid, neighborhoods we know, four-agent lineup, written process, viewing-request form. Real photography throughout.',
+    accent: '#E58669',
+    bg: '#F0EAD9',
+    text: '#0B1830',
+    swatch: ['#F0EAD9', '#E58669', '#0B1830', '#E5DCC2'],
+  },
 ];
 
 export default function PreviewIndex() {
@@ -71,7 +83,7 @@ export default function PreviewIndex() {
               <h1 className="mt-6 font-display text-display-xl text-balance text-ink-700">
                 Same studio.
                 <br />
-                <span className="italic text-ash-500">Three different brands.</span>
+                <span className="italic text-ash-500">Four different brands.</span>
               </h1>
             </div>
             <div className="md:col-span-5">
@@ -277,41 +289,80 @@ function PreviewMockup({ demo }: { demo: Demo }) {
     );
   }
 
-  // overlay
-  return (
-    <div className="absolute inset-0 p-10 flex flex-col justify-between">
-      <div className="flex items-center gap-2">
-        <span
-          className="rounded-full px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em]"
-          style={{ background: `${demo.accent}18`, color: demo.accent }}
-        >
-          v4.2 · Session Replay (beta)
-        </span>
-      </div>
-      <div>
-        <p
-          style={{ color: demo.text }}
-          className="text-[clamp(2.25rem,5vw,4.5rem)] font-semibold leading-[0.95] tracking-tight"
-        >
-          See what your users
-          <br />
-          <span style={{ color: `${demo.text}55` }}>actually do.</span>
-        </p>
-        <div className="mt-6 flex gap-2">
+  if (demo.slug === 'overlay') {
+    return (
+      <div className="absolute inset-0 p-10 flex flex-col justify-between">
+        <div className="flex items-center gap-2">
           <span
-            className="inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-medium"
-            style={{ background: demo.accent, color: 'white' }}
+            className="rounded-full px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em]"
+            style={{ background: `${demo.accent}18`, color: demo.accent }}
           >
-            Start free →
-          </span>
-          <span
-            className="inline-flex items-center gap-1.5 rounded-md border px-3 py-2 text-xs font-medium"
-            style={{ borderColor: `${demo.text}30`, color: demo.text }}
-          >
-            Docs
+            v4.2 · Session Replay (beta)
           </span>
         </div>
+        <div>
+          <p
+            style={{ color: demo.text }}
+            className="text-[clamp(2.25rem,5vw,4.5rem)] font-semibold leading-[0.95] tracking-tight"
+          >
+            See what your users
+            <br />
+            <span style={{ color: `${demo.text}55` }}>actually do.</span>
+          </p>
+          <div className="mt-6 flex gap-2">
+            <span
+              className="inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-medium"
+              style={{ background: demo.accent, color: 'white' }}
+            >
+              Start free →
+            </span>
+            <span
+              className="inline-flex items-center gap-1.5 rounded-md border px-3 py-2 text-xs font-medium"
+              style={{ borderColor: `${demo.text}30`, color: demo.text }}
+            >
+              Docs
+            </span>
+          </div>
+        </div>
       </div>
-    </div>
+    );
+  }
+
+  // holm — uses a real photo as the preview, since the demo is photo-driven
+  return (
+    <>
+      <img
+        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=900&fit=crop&q=80&auto=format"
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0B1830]/85 via-[#0B1830]/25 to-[#0B1830]/40" />
+      <div className="absolute inset-0 p-10 flex flex-col justify-between">
+        <div className="flex items-center gap-2">
+          <span
+            className="rounded-none px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.22em]"
+            style={{ background: demo.accent, color: demo.bg }}
+          >
+            New · Open Sunday
+          </span>
+        </div>
+        <div>
+          <p
+            style={{ fontFamily: 'var(--font-editorial)', color: '#F0EAD9' }}
+            className="text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.96] tracking-tight"
+          >
+            A boutique for the
+            <br />
+            <span className="italic">city&rsquo;s quieter listings.</span>
+          </p>
+          <p
+            style={{ fontFamily: 'var(--font-mono)', color: '#F0EAD9' }}
+            className="mt-5 text-[11px] uppercase tracking-[0.32em] opacity-80"
+          >
+            4 listings · 4 neighborhoods · 4 agents
+          </p>
+        </div>
+      </div>
+    </>
   );
 }

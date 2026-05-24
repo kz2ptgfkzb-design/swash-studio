@@ -122,13 +122,33 @@ export function BriefIntakeForm() {
     setStep((s) => s - 1);
   };
 
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   const handleSubmit = async () => {
+    if (submitting) return;
+    setSubmitting(true);
+    setSubmitError(null);
+
     if (typeof window !== 'undefined') {
-      try {
-        sessionStorage.setItem('swash:lastBrief', JSON.stringify(data));
-      } catch {}
+      try { sessionStorage.setItem('swash:lastBrief', JSON.stringify(data)); } catch {}
     }
-    router.push('/brief/thanks');
+
+    try {
+      const res = await fetch('/api/brief', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        throw new Error(j.error ?? 'Submission failed');
+      }
+      router.push('/brief/thanks');
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Submission failed');
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -203,15 +223,26 @@ export function BriefIntakeForm() {
             ← Back
           </button>
 
-          <button
-            type="button"
-            onClick={next}
-            className="btn-primary"
-          >
-            {step === STEPS.length ? 'Send the brief' : 'Continue'}
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+          <div className="flex flex-col items-end gap-2">
+            {submitError && (
+              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#FF5C44]">
+                {submitError} — try again or email hello@swash.studio
+              </p>
+            )}
+            <button
+              type="button"
+              onClick={next}
+              disabled={submitting}
+              className={cn('btn-primary', submitting && 'opacity-60 cursor-wait')}
+            >
+              {submitting
+                ? 'Sending...'
+                : step === STEPS.length
+                  ? 'Send the brief'
+                  : 'Continue'}
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
           </button>
         </div>
       </div>

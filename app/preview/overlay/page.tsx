@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { PHOTOS } from '@/data/photos';
 
 export default function OverlayPreview() {
   return (
@@ -488,20 +489,47 @@ function OverlayPricing() {
 function OverlayQuote() {
   return (
     <section id="customers" className="border-y border-[#0A0A0A]/8 bg-[#F0EDE7] px-6 py-24 lg:px-10 md:py-32">
-      <div className="mx-auto max-w-[1100px] text-center">
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#2447FF]" style={{ fontFamily: 'var(--font-mono)' }}>
-          Customer story
-        </p>
-        <p className="mx-auto mt-10 max-w-[24ch] text-balance text-[clamp(1.75rem,3.6vw,3rem)] leading-[1.18] tracking-tight">
-          &ldquo;We replaced three tools with Overlay in a weekend. Our
-          engineers stopped asking the data team for funnels — they
-          just answer the questions themselves now.&rdquo;
-        </p>
-        <div className="mt-8">
-          <p className="font-semibold">David Anand</p>
-          <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.22em] text-[#0A0A0A]/55" style={{ fontFamily: 'var(--font-mono)' }}>
-            CEO, Stripeline
-          </p>
+      <div className="mx-auto max-w-[1100px]">
+        <div className="grid items-center gap-12 md:grid-cols-12">
+          <div className="md:col-span-4">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+              <img
+                src={PHOTOS.overlay.team}
+                alt="The Overlay engineering team in a working session"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/60 via-transparent to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/85" style={{ fontFamily: 'var(--font-mono)' }}>
+                  Stripeline · 41 engineers · SF
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="md:col-span-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#2447FF]" style={{ fontFamily: 'var(--font-mono)' }}>
+              Customer story
+            </p>
+            <p className="mt-8 max-w-[28ch] text-balance text-[clamp(1.75rem,3.6vw,3rem)] leading-[1.16] tracking-tight">
+              &ldquo;We replaced three tools with Overlay in a weekend. Our
+              engineers stopped asking the data team for funnels — they
+              just answer the questions themselves now.&rdquo;
+            </p>
+            <div className="mt-8 flex items-center gap-4">
+              <img
+                src={PHOTOS.overlay.headshot}
+                alt=""
+                className="h-12 w-12 rounded-full object-cover ring-1 ring-[#0A0A0A]/15"
+              />
+              <div>
+                <p className="font-semibold">David Anand</p>
+                <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#0A0A0A]/55" style={{ fontFamily: 'var(--font-mono)' }}>
+                  CEO, Stripeline
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
