@@ -195,12 +195,14 @@ export function ProcessScrubber() {
                   <StageMockup index={active} accent={stage.accent} />
                 </div>
 
-                <div className="absolute left-5 top-5 z-20 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-ash-500">
+                {/* Decorative chrome overlays - desktop only.
+                    On mobile the card is too tight; the overlays collide with the mockup content. */}
+                <div className="absolute left-5 top-5 z-20 hidden items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-ash-500 sm:flex">
                   <span className="h-1.5 w-1.5 rounded-full" style={{ background: stage.accent }} />
                   STAGE {stage.n}
                 </div>
 
-                <div className="absolute bottom-5 left-5 right-5 z-20 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.22em] text-ash-500">
+                <div className="absolute bottom-5 left-5 right-5 z-20 hidden items-center justify-between font-mono text-[10px] uppercase tracking-[0.22em] text-ash-500 sm:flex">
                   <span>swash · field notes</span>
                   <span>{stage.title.toLowerCase()}.md</span>
                 </div>
