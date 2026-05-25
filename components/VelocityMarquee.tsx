@@ -28,7 +28,7 @@ const ITEMS = [
   'Yoga studios',
 ];
 
-const BASE_SPEED = 60; // px / second
+const BASE_SPEED = 60;
 
 function wrap(value: number, min: number, max: number) {
   const range = max - min;
@@ -39,16 +39,10 @@ export function VelocityMarquee() {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 380,
-  });
-  const velocityFactor = useTransform(smoothVelocity, [-1200, 0, 1200], [-3, 0, 3], {
-    clamp: false,
-  });
+  const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 380 });
+  const velocityFactor = useTransform(smoothVelocity, [-1200, 0, 1200], [-3, 0, 3], { clamp: false });
   const skew = useTransform(smoothVelocity, [-1200, 0, 1200], [-12, 0, 12], { clamp: true });
 
-  // Move the marquee continuously, accelerated by scroll velocity
   const directionRef = useRef(1);
   useAnimationFrame((_, delta) => {
     let move = (delta / 1000) * BASE_SPEED * directionRef.current;
@@ -56,37 +50,27 @@ export function VelocityMarquee() {
     if (v < 0) directionRef.current = -1;
     else if (v > 0) directionRef.current = 1;
     move += (delta / 1000) * BASE_SPEED * v * directionRef.current;
-    baseX.set(wrap(baseX.get() + move, -2000, 0));
+    baseX.set(wrap(baseX.get() + move, -3200, 0));
   });
 
   const x = useTransform(baseX, (v) => `${v}px`);
-
-  // We render the items twice to allow seamless wrap
-  const doubled = [...ITEMS, ...ITEMS, ...ITEMS, ...ITEMS];
+  const doubled = [...ITEMS, ...ITEMS, ...ITEMS];
 
   return (
-    <div className="relative border-y border-hairline bg-paper-200/30 py-7 overflow-hidden mask-fade-edges">
+    <div className="relative border-y border-hairline bg-paper-200/30 overflow-hidden mask-fade-edges">
       <motion.div
         style={{ x, skewX: skew }}
-        className="flex w-max gap-12 will-change-transform"
+        className="flex w-max items-center gap-12 py-7 will-change-transform"
       >
-        {doubled.map((item, i) => (
+        {doubled.map((text, i) => (
           <div
-            key={`${item}-${i}`}
+            key={`${text}-${i}`}
             className="flex items-center gap-12 whitespace-nowrap"
           >
-            <span className="font-display italic text-2xl tracking-tight text-ink-700/85 md:text-3xl">
-              {item}
+            <span className="text-2xl font-bold tracking-tight text-ink-700 md:text-3xl">
+              {text}
             </span>
-            <svg
-              width="11"
-              height="11"
-              viewBox="0 0 12 12"
-              fill="none"
-              className="text-lime-300"
-            >
-              <circle cx="6" cy="6" r="5" fill="currentColor" />
-            </svg>
+            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-lime-300/80" />
           </div>
         ))}
       </motion.div>

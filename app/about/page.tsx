@@ -10,21 +10,21 @@ export const metadata = {
 };
 
 const PROCESS = [
-  { phase: 'Brief',     body: 'You write the brief. We read every line. No discovery call required to get started.' },
-  { phase: 'Proposal',  body: 'Within 48 hours: a written scope, deliverables, milestones, fixed fee. You say yes, no, or push back.' },
-  { phase: 'Sprint 1',  body: 'Brand foundation: voice, palette, type, motion principles. A direction you sign off on before we build.' },
-  { phase: 'Sprint 2',  body: 'Site design and prototype. Live preview link from day one. Daily ship, weekly review.' },
-  { phase: 'Ship',      body: 'Launch day, hands-on. We watch the analytics, fix what wobbles, hand over a clean install.' },
-  { phase: '+ 30 days', body: 'Thirty days of post-launch polish. Bugs, tweaks, the second-guesses. Then a clean off-boarding.' },
+  { phase: 'Brief',          body: 'You write the brief. We read every line. No discovery call required to get started.' },
+  { phase: 'Video demo',     body: 'Within 48 hours: a recorded walkthrough of a real, working preview of your site — designed, coded, hosted.' },
+  { phase: 'Change requests',body: 'Reply to the demo with notes in any format. Each revision turns in 24 hours with a fresh recording.' },
+  { phase: 'Brand & build',  body: 'You sign off. We finish the brand system and the production site in two-week sprints with daily preview ship.' },
+  { phase: 'Ship',           body: 'Launch day, hands-on. We watch the analytics, fix what wobbles, hand over a clean install.' },
+  { phase: '+ 30 days',      body: 'Thirty days of post-launch polish. Bugs, tweaks, the second-guesses. Then a clean off-boarding.' },
 ];
 
-const TEAM = [
-  { role: 'Creative direction', name: 'M. Stenseth' },
-  { role: 'Brand design',       name: 'A. Yarrow' },
-  { role: 'Engineering',        name: 'P. Halloran' },
-  { role: 'Motion',             name: 'N. Oh' },
-  { role: 'Writing',            name: 'L. Devaux' },
-  { role: 'Studio manager',     name: 'R. Imani' },
+const ROLES = [
+  { role: 'Creative direction', note: 'Shapes the brief into a brand and a build plan.' },
+  { role: 'Brand design',       note: 'Mark, palette, type, voice — the foundation.' },
+  { role: 'Engineering',        note: 'Production Next.js with performance and a11y built in.' },
+  { role: 'Motion',             note: 'Transitions, scroll behaviour, signature interactions.' },
+  { role: 'Copy & strategy',    note: 'First-draft copy on every page so you can edit, not write.' },
+  { role: 'Production',         note: 'Hosting, analytics, CMS, hand-over docs.' },
 ];
 
 export default function AboutPage() {
@@ -43,11 +43,11 @@ export default function AboutPage() {
             </div>
             <div className="md:col-span-5">
               <p className="text-pretty text-base leading-relaxed text-ash-500">
-                Swash is a six-person studio that builds websites for
-                every kind of business. We started in 2024 with a quiet
-                rule: no two sites we ship should look like the same
-                template, and no client should ever guess what we charged
-                the one before.
+                Swash is a tight team of web developers and brand designers
+                that builds websites for every kind of business. We started
+                in 2024 with a quiet rule: no two sites we ship should look
+                like the same template, and no client should ever guess
+                what we charged the one before.
               </p>
             </div>
           </div>
@@ -121,32 +121,36 @@ export default function AboutPage() {
       <section className="container-page py-20">
         <div className="grid gap-16 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Reveal><p className="eyebrow">Who&rsquo;s here</p></Reveal>
+            <Reveal><p className="eyebrow">Who&rsquo;s on it</p></Reveal>
             <Reveal delay={1}>
               <h2 className="mt-6 font-display text-display-md text-balance text-ink-700">
-                Six people.
+                A skilled team
                 <br />
-                <span className="italic text-ash-500">No subcontractors.</span>
+                <span className="italic text-ash-500">behind every build.</span>
               </h2>
             </Reveal>
             <Reveal delay={2}>
               <p className="mt-6 max-w-sm text-pretty text-base leading-relaxed text-ash-500">
-                Everyone who works on your project works at Swash. The
-                same six names from kickoff to launch day.
+                Every site we ship covers the six roles below — held by
+                our in-house team of web developers and brand designers.
+                No subcontractors, no offshoring, no junior swap-ins.
               </p>
             </Reveal>
           </div>
           <div className="md:col-span-8">
             <dl className="grid gap-x-12 gap-y-6 sm:grid-cols-2">
-              {TEAM.map((t, i) => (
-                <Reveal key={t.role} delay={i}>
+              {ROLES.map((r, i) => (
+                <Reveal key={r.role} delay={i}>
                   <div className="border-b border-hairline pb-4">
                     <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ash-400">
-                      {t.role}
+                      0{i + 1}
                     </dt>
                     <dd className="mt-2 font-display text-xl text-ink-700">
-                      {t.name}
+                      {r.role}
                     </dd>
+                    <p className="mt-2 text-sm leading-relaxed text-ash-500">
+                      {r.note}
+                    </p>
                   </div>
                 </Reveal>
               ))}
@@ -157,23 +161,23 @@ export default function AboutPage() {
 
       <section className="container-page py-20 pb-32">
         <Reveal>
-          <div className="rounded-card border border-hairline bg-ink-700 p-10 text-paper-50 md:p-16">
+          <div className="rounded-card border border-hairline bg-paper-100/75 p-10 text-ink-700 md:p-16">
             <div className="grid items-end gap-10 md:grid-cols-12">
               <div className="md:col-span-7">
-                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-gold-200">
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime-300">
                   Add a swash
                 </p>
                 <h2 className="mt-6 font-display text-display-lg text-balance">
                   Have a brief in mind?
                   <br />
-                  <span className="italic text-paper-200/70">Send it our way.</span>
+                  <span className="italic text-ash-500">Send it our way.</span>
                 </h2>
               </div>
               <div className="md:col-span-5 md:text-right">
                 <Magnetic strength={0.25}>
                   <Link
                     href="/brief"
-                    className="btn bg-ink_red-400 text-paper-50 px-6 py-3.5 hover:bg-paper-50 hover:text-ink-700 hover:-translate-y-0.5"
+                    className="btn bg-lime-300 text-paper-100 px-6 py-3.5 hover:bg-ink-700 hover:text-paper-100 hover:-translate-y-0.5"
                     data-cursor="link"
                   >
                     Start a brief

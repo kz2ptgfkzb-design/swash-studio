@@ -25,7 +25,7 @@ const QUOTES = [
 
 export function Testimonials() {
   return (
-    <section className="relative bg-bone-200/30 py-28 md:py-40">
+    <section className="relative bg-paper-200/30 py-28 md:py-40">
       <div className="container-page">
         <Reveal>
           <span className="eyebrow">In their words</span>
@@ -41,7 +41,7 @@ export function Testimonials() {
         <ul className="mt-14 grid gap-6 md:grid-cols-3">
           {QUOTES.map((q, i) => (
             <Reveal key={q.name} delay={i}>
-              <li className="flex h-full flex-col justify-between gap-8 rounded-card border border-hairline bg-bone-100 p-8 md:p-10">
+              <li className="flex h-full flex-col justify-between gap-8 rounded-card border border-hairline bg-paper-200/60 p-8 md:p-10">
                 <svg width="34" height="26" viewBox="0 0 34 26" fill="none" className="text-saffron-400">
                   <path
                     d="M0 26V14C0 6.3 5.2 0.8 13 0V5.2C8.6 5.7 5.7 8.7 5.7 13H13V26H0ZM21 26V14C21 6.3 26.2 0.8 34 0V5.2C29.6 5.7 26.7 8.7 26.7 13H34V26H21Z"

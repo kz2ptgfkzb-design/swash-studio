@@ -4,6 +4,14 @@ import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { PHOTOS } from '@/data/photos';
+import {
+  ScrollAwareNav,
+  FullBleedHero,
+  ParallaxImage,
+  HoverMagnify,
+  MagneticHover,
+  SectionFadeIn,
+} from '@/components/preview/PreviewUI';
 
 export default function HolmPreview() {
   return (
@@ -44,15 +52,21 @@ function HolmLogo({ size = 26 }: { size?: number }) {
 
 function HolmNav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[#0B1830]/10 bg-[#F0EAD9]/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-[1320px] items-center justify-between px-6 lg:px-10">
-        <Link href="/preview/holm"><HolmLogo /></Link>
+    <ScrollAwareNav
+      bg="rgba(11,24,48,0.55)"
+      border="rgba(240,234,217,0.12)"
+      threshold={64}
+    >
+      <div className="mx-auto flex h-[72px] max-w-[1320px] items-center justify-between px-6 lg:px-10">
+        <Link href="/preview/holm" className="text-[#F0EAD9] mix-blend-difference">
+          <HolmLogo />
+        </Link>
         <nav className="hidden items-center gap-7 md:flex">
           {['Listings', 'Neighborhoods', 'Agents', 'Sell with us'].map((l) => (
             <a
               key={l}
               href={`#${l.toLowerCase().replace(/\s+/g, '-')}`}
-              className="text-sm text-[#0B1830]/70 transition-colors hover:text-[#0B1830]"
+              className="text-sm text-[#F0EAD9]/90 mix-blend-difference transition-colors hover:text-[#E58669]"
             >
               {l}
             </a>
@@ -60,39 +74,36 @@ function HolmNav() {
         </nav>
         <a
           href="#contact"
-          className="rounded-none border border-[#0B1830] bg-[#0B1830] px-5 py-2.5 text-sm font-medium text-[#F0EAD9] transition-colors hover:bg-[#E58669] hover:border-[#E58669] hover:text-[#0B1830]"
+          className="rounded-none border border-[#F0EAD9]/30 bg-[#F0EAD9]/10 px-5 py-2.5 text-sm font-medium text-[#F0EAD9] backdrop-blur-sm transition-colors hover:bg-[#E58669] hover:border-[#E58669] hover:text-[#0B1830]"
         >
           Schedule a viewing
         </a>
       </div>
-    </header>
+    </ScrollAwareNav>
   );
 }
 
 function HolmHero() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 140]);
-  const yText = useTransform(scrollYProgress, [0, 1], [0, -60]);
-
   return (
-    <section ref={ref} className="relative overflow-hidden">
-      <motion.div style={{ y }} className="relative aspect-[16/10] md:aspect-[16/8.5]">
-        <img
-          src={PHOTOS.holm.hero}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1830]/80 via-[#0B1830]/15 to-[#0B1830]/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1830]/55 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-noise opacity-[0.04] mix-blend-overlay" />
-      </motion.div>
-
-      <motion.div
-        style={{ y: yText }}
-        className="absolute inset-0 z-10 flex items-end px-6 pb-20 lg:px-10 lg:pb-28"
-      >
-        <div className="mx-auto w-full max-w-[1320px]">
+    <FullBleedHero
+      src={PHOTOS.holm.hero}
+      minH="100svh"
+      parallax={220}
+      zoom={1.12}
+      overlays={
+        <>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B1830] via-[#0B1830]/20 to-[#0B1830]/55" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1830]/55 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-noise opacity-[0.05] mix-blend-overlay" />
+        </>
+      }
+    >
+      <div className="mx-auto w-full max-w-[1320px] px-6 pb-20 lg:px-10 lg:pb-28">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        >
           <p
             style={{ fontFamily: 'var(--font-mono)' }}
             className="text-[11px] uppercase tracking-[0.32em] text-[#E58669]"
@@ -101,34 +112,89 @@ function HolmHero() {
           </p>
           <h1
             style={{ fontFamily: 'var(--font-editorial)' }}
-            className="mt-6 max-w-[16ch] text-balance text-[clamp(2.5rem,8vw,8rem)] leading-[0.96] tracking-tight text-[#F0EAD9]"
+            className="mt-6 max-w-[16ch] text-balance text-[clamp(2.5rem,8vw,8.5rem)] leading-[0.94] tracking-tight text-[#F0EAD9]"
           >
             A boutique for the
             <br />
             <span className="italic">city&rsquo;s quieter listings.</span>
           </h1>
-          <p className="mt-8 max-w-md text-pretty text-lg leading-relaxed text-[#F0EAD9]/80">
+          <p className="mt-8 max-w-md text-pretty text-lg leading-relaxed text-[#F0EAD9]/85">
             Four agents. One firm. Listings we actually believe in.
             Holm represents homes — and the people selling them —
             without the spreadsheet feel.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href="#listings"
-              className="rounded-none bg-[#E58669] px-6 py-3.5 text-sm font-medium text-[#0B1830] transition-colors hover:bg-[#F0EAD9]"
-            >
-              See current listings →
-            </a>
-            <a
-              href="#contact"
-              className="rounded-none border border-[#F0EAD9]/40 px-6 py-3.5 text-sm font-medium text-[#F0EAD9] transition-colors hover:bg-[#F0EAD9] hover:text-[#0B1830]"
-            >
-              Schedule a viewing
-            </a>
+            <MagneticHover>
+              <a
+                href="#listings"
+                className="rounded-none bg-[#E58669] px-6 py-3.5 text-sm font-medium text-[#0B1830] transition-colors hover:bg-[#F0EAD9]"
+              >
+                See current listings →
+              </a>
+            </MagneticHover>
+            <MagneticHover strength={0.22}>
+              <a
+                href="#contact"
+                className="rounded-none border border-[#F0EAD9]/40 bg-[#F0EAD9]/5 px-6 py-3.5 text-sm font-medium text-[#F0EAD9] backdrop-blur-sm transition-colors hover:bg-[#F0EAD9] hover:text-[#0B1830]"
+              >
+                Schedule a viewing
+              </a>
+            </MagneticHover>
           </div>
-        </div>
-      </motion.div>
-    </section>
+        </motion.div>
+
+        {/* Bottom-bar meta */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-16 grid max-w-3xl gap-6 border-t border-[#F0EAD9]/15 pt-6 text-[#F0EAD9]/80 md:grid-cols-3"
+        >
+          {[
+            { k: '4', l: 'Agents · since 2017' },
+            { k: '83%', l: 'Listings sold above ask' },
+            { k: '14 days', l: 'Median time to offer' },
+          ].map((s) => (
+            <div key={s.l}>
+              <p
+                style={{ fontFamily: 'var(--font-editorial)' }}
+                className="text-3xl text-[#E58669] md:text-4xl"
+              >
+                {s.k}
+              </p>
+              <p
+                style={{ fontFamily: 'var(--font-mono)' }}
+                className="mt-1 text-[10px] uppercase tracking-[0.22em] text-[#F0EAD9]/65"
+              >
+                {s.l}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Scroll cue */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.4 }}
+          className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center"
+        >
+          <div className="flex flex-col items-center gap-2 text-[#F0EAD9]/65">
+            <span
+              style={{ fontFamily: 'var(--font-mono)' }}
+              className="text-[10px] uppercase tracking-[0.32em]"
+            >
+              Browse listings
+            </span>
+            <motion.span
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+              className="block h-6 w-px bg-current"
+            />
+          </div>
+        </motion.div>
+      </div>
+    </FullBleedHero>
   );
 }
 
@@ -193,32 +259,47 @@ function HolmListings() {
         </div>
 
         <ul className="grid gap-6 md:grid-cols-12">
-          {listings.map((l) => (
-            <li
+          {listings.map((l, i) => (
+            <SectionFadeIn
               key={l.title}
-              className={`group relative ${l.featured ? 'md:col-span-12 lg:col-span-7' : 'md:col-span-6 lg:col-span-5'}`}
+              delay={i * 0.08}
+              className={`relative ${l.featured ? 'md:col-span-12 lg:col-span-7' : 'md:col-span-6 lg:col-span-5'}`}
             >
-              <Link href="#" className="block">
-                <div className={`relative overflow-hidden border border-[#0B1830]/10 ${l.featured ? 'aspect-[16/10]' : 'aspect-[4/3]'}`}>
-                  <img
+              <Link href="#" className="group block">
+                <HoverMagnify
+                  scale={1.05}
+                  className={`relative border border-[#0B1830]/10 ${l.featured ? 'aspect-[16/10]' : 'aspect-[4/3]'}`}
+                >
+                  <ParallaxImage
                     src={l.img}
                     alt={l.title}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.04]"
+                    range={60}
+                    scaleFrom={1.08}
+                    scaleTo={1.2}
+                    className="absolute inset-0 h-full w-full"
                   />
-                  <div className="absolute right-4 top-4 rounded-none bg-[#F0EAD9] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#0B1830]">
+                  <div className="absolute right-4 top-4 z-10 rounded-none bg-[#F0EAD9] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#0B1830] shadow-sm">
                     {l.hood}
                   </div>
                   {l.featured && (
-                    <div className="absolute left-4 top-4 rounded-none bg-[#E58669] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#0B1830]">
+                    <div className="absolute left-4 top-4 z-10 rounded-none bg-[#E58669] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#0B1830] shadow-sm">
                       New · Open Sunday
                     </div>
                   )}
-                </div>
+                  <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[#0B1830]/45 via-transparent to-transparent p-5">
+                    <span
+                      style={{ fontFamily: 'var(--font-mono)' }}
+                      className="inline-flex items-center gap-2 rounded-none bg-[#F0EAD9]/0 text-[10px] uppercase tracking-[0.22em] text-[#F0EAD9] opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+                    >
+                      View listing →
+                    </span>
+                  </div>
+                </HoverMagnify>
 
                 <div className="mt-5 flex items-baseline justify-between gap-6 border-t border-[#0B1830]/15 pt-5">
                   <h3
                     style={{ fontFamily: 'var(--font-editorial)' }}
-                    className="text-balance text-[clamp(1.25rem,2vw,1.875rem)] leading-snug tracking-tight"
+                    className="text-balance text-[clamp(1.25rem,2vw,1.875rem)] leading-snug tracking-tight transition-colors duration-500 group-hover:text-[#E58669]"
                   >
                     {l.title}
                   </h3>
@@ -236,7 +317,7 @@ function HolmListings() {
                   {l.meta}
                 </p>
               </Link>
-            </li>
+            </SectionFadeIn>
           ))}
         </ul>
 
@@ -292,25 +373,31 @@ function HolmNeighborhoods() {
         </div>
 
         <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {hoods.map((h) => (
-            <li key={h.name} className="group">
-              <div className="relative aspect-[4/5] overflow-hidden border border-[#0B1830]/10">
-                <img
+          {hoods.map((h, i) => (
+            <SectionFadeIn key={h.name} delay={i * 0.08}>
+              <HoverMagnify
+                scale={1.06}
+                className="relative aspect-[4/5] border border-[#0B1830]/10"
+              >
+                <ParallaxImage
                   src={h.img}
                   alt={h.name}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
+                  range={50}
+                  scaleFrom={1.1}
+                  scaleTo={1.2}
+                  className="absolute inset-0 h-full w-full"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1830] via-transparent to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5">
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0B1830] via-[#0B1830]/15 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 z-10 p-5">
                   <p style={{ fontFamily: 'var(--font-editorial)' }} className="text-2xl text-[#F0EAD9]">
                     {h.name}
                   </p>
-                  <p style={{ fontFamily: 'var(--font-mono)' }} className="mt-2 text-[10px] uppercase tracking-[0.22em] text-[#F0EAD9]/70">
+                  <p style={{ fontFamily: 'var(--font-mono)' }} className="mt-2 text-[10px] uppercase tracking-[0.22em] text-[#F0EAD9]/75">
                     {h.blurb}
                   </p>
                 </div>
-              </div>
-            </li>
+              </HoverMagnify>
+            </SectionFadeIn>
           ))}
         </ul>
       </div>
@@ -378,16 +465,30 @@ function HolmAgents() {
         </div>
 
         <ul className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {agents.map((a) => (
-            <li key={a.name} className="group">
-              <div className="relative aspect-[4/5] overflow-hidden border border-[#F0EAD9]/15">
-                <img
+          {agents.map((a, i) => (
+            <SectionFadeIn key={a.name} delay={i * 0.08}>
+              <HoverMagnify
+                scale={1.05}
+                className="relative aspect-[4/5] border border-[#F0EAD9]/15"
+              >
+                <ParallaxImage
                   src={a.img}
                   alt={a.name}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+                  range={40}
+                  scaleFrom={1.06}
+                  scaleTo={1.16}
+                  className="absolute inset-0 h-full w-full"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1830] via-transparent to-transparent" />
-              </div>
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0B1830] via-transparent to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 z-10 p-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                  <p
+                    style={{ fontFamily: 'var(--font-mono)' }}
+                    className="text-[10px] uppercase tracking-[0.22em] text-[#E58669]"
+                  >
+                    Email →
+                  </p>
+                </div>
+              </HoverMagnify>
               <div className="mt-5">
                 <p style={{ fontFamily: 'var(--font-editorial)' }} className="text-2xl">
                   {a.name}
@@ -402,7 +503,7 @@ function HolmAgents() {
                   {a.tag}
                 </p>
               </div>
-            </li>
+            </SectionFadeIn>
           ))}
         </ul>
       </div>

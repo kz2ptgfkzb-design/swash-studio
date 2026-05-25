@@ -131,16 +131,16 @@ export default function JournalPostPage({ params }: { params: { slug: string } }
       </section>
 
       <section className="container-page py-12 pb-32">
-        <div className="rounded-card border border-hairline bg-ink-700 p-10 text-paper-100 md:p-16">
+        <div className="rounded-card border border-hairline bg-paper-100/75 p-10 text-ink-700 md:p-16">
           <div className="grid items-end gap-10 md:grid-cols-12">
             <div className="md:col-span-7">
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime-200">
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime-300">
                 Read enough?
               </p>
               <h2 className="mt-6 font-display text-display-lg text-balance">
                 Send the brief.
                 <br />
-                <span className="italic text-paper-100/60">We&rsquo;ll do the rest.</span>
+                <span className="italic text-ash-500">We&rsquo;ll do the rest.</span>
               </h2>
             </div>
             <div className="md:col-span-5 md:text-right">

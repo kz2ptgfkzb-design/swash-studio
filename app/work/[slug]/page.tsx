@@ -233,23 +233,23 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       </section>
 
       <section className="container-page py-12 pb-32">
-        <div className="rounded-card border border-hairline bg-ink-700 p-10 text-paper-50 md:p-16">
+        <div className="rounded-card border border-hairline bg-paper-100/75 p-10 text-ink-700 md:p-16">
           <div className="grid items-end gap-10 md:grid-cols-12">
             <div className="md:col-span-7">
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-gold-200">
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime-300">
                 Your turn
               </p>
               <h2 className="mt-6 font-display text-display-lg text-balance">
                 Something like this in mind?
                 <br />
-                <span className="italic text-paper-200/70">Send the brief.</span>
+                <span className="italic text-ash-500">Send the brief.</span>
               </h2>
             </div>
             <div className="md:col-span-5 md:text-right">
               <Magnetic strength={0.25}>
                 <Link
                   href="/brief"
-                  className="btn bg-ink_red-400 text-paper-50 px-6 py-3.5 hover:bg-paper-50 hover:text-ink-700 hover:-translate-y-0.5"
+                  className="btn bg-lime-300 text-paper-100 px-6 py-3.5 hover:bg-ink-700 hover:text-paper-100 hover:-translate-y-0.5"
                   data-cursor="link"
                 >
                   Start a brief

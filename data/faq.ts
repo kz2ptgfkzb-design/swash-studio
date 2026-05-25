@@ -23,8 +23,8 @@ export const FAQ: FaqGroup[] = [
         a: 'Yes — 40% on signing, 40% at milestone two, 20% at launch is our default. We will work with you on something else if cash flow needs it.',
       },
       {
-        q: 'What if I do not love the proposal?',
-        a: 'You walk away, free. The brief is not a commitment. We write proposals because we want to win the work — if we got it wrong, tell us why and we will rewrite it.',
+        q: 'What if I do not love the demo?',
+        a: 'Send back any changes you want — text, voice memo, scribbled screenshots, however you think. We revise within 24 hours and send a fresh video. Unlimited revisions until you sign off. If we never land it, you walk away free.',
       },
     ],
   },
@@ -34,7 +34,7 @@ export const FAQ: FaqGroup[] = [
     items: [
       {
         q: 'How long until launch?',
-        a: 'Two weeks for a single-page site. Four to six weeks for a typical multi-page brand site. Eight to twelve for a full ecommerce or flagship rebuild. The proposal locks the timeline in writing.',
+        a: 'A first video demo lands within 48 hours of your brief. From sign-off, count two weeks for a single-page site, four to six weeks for a typical multi-page brand site, eight to twelve for a full ecommerce or flagship rebuild. The engagement letter locks the timeline in writing.',
       },
       {
         q: 'Will I have to write copy?',
@@ -50,7 +50,7 @@ export const FAQ: FaqGroup[] = [
       },
       {
         q: 'Who actually does the work?',
-        a: 'Our six in-house people. No subcontractors, no offshoring, no surprise junior swap-ins. The names on the proposal are the names on the project.',
+        a: 'A skilled in-house team of web developers and brand designers. No subcontractors, no offshoring, no surprise junior swap-ins. The same team that builds your demo carries the project through to launch.',
       },
     ],
   },
@@ -72,7 +72,11 @@ export const FAQ: FaqGroup[] = [
       },
       {
         q: 'What if I want changes later?',
-        a: 'Retainer or by-the-hour. Retainers start at four hours a month. By-the-hour is billed weekly with a clear estimate before any work starts.',
+        a: 'We offer a monthly retainer for ongoing updates after the 30-day post-launch window. It covers up to 3 major tweaks per month — think new sections, design changes, integrations, copy overhauls — plus unlimited minor fixes (typos, image swaps, link updates). Month-to-month, cancel anytime, no minimum term. If you only need work occasionally, we also bill by the hour with a written estimate before anything starts.',
+      },
+      {
+        q: 'How does the retainer work?',
+        a: 'Flat monthly fee. Each month gives you up to 3 major tweaks (anything that needs design or development time beyond a quick fix) and unlimited minor edits (copy, images, small style changes). Unused major tweaks don\'t roll over. You email or message the request, we ship it within 5 business days for most items. No contracts, pause or cancel any month.',
       },
     ],
   },

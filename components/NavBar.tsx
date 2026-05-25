@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { Logo } from './Logo';
+import { NowIndicator } from './NowIndicator';
 import { cn } from '@/lib/utils';
 
 const NAV_ITEMS = [
@@ -42,18 +43,21 @@ export function NavBar() {
         <div className="container-wide flex h-16 items-center justify-between">
           <Logo size="sm" />
 
-          <nav className="hidden items-center gap-1 lg:flex">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-pill px-3.5 py-2 text-sm text-ink-400 transition-colors hover:text-ink-700"
-                data-cursor="link"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="hidden items-center gap-6 lg:flex">
+            <nav className="flex items-center gap-1">
+              {NAV_ITEMS.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-pill px-3.5 py-2 text-sm text-ink-400 transition-colors hover:text-ink-700"
+                  data-cursor="link"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <NowIndicator />
+          </div>
 
           <div className="flex items-center gap-2">
             <Link

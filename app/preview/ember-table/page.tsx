@@ -4,6 +4,15 @@ import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { PHOTOS } from '@/data/photos';
+import {
+  ScrollAwareNav,
+  FullBleedHero,
+  ParallaxImage,
+  HoverMagnify,
+  MagneticHover,
+  ScrollClipReveal,
+  SectionFadeIn,
+} from '@/components/preview/PreviewUI';
 
 export default function EmberTablePreview() {
   return (
@@ -48,106 +57,154 @@ function EmberLogo({ size = 30 }: { size?: number }) {
 
 function EmberNav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[#1A0F08]/10 bg-[#F5ECD7]/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-[1320px] items-center justify-between px-6 lg:px-10">
-        <Link href="/preview/ember-table"><EmberLogo /></Link>
+    <ScrollAwareNav
+      bg="rgba(245,236,215,0.78)"
+      border="rgba(26,15,8,0.10)"
+      threshold={72}
+    >
+      <div className="mx-auto flex h-[72px] max-w-[1320px] items-center justify-between px-6 lg:px-10">
+        <Link href="/preview/ember-table" className="text-[#F5ECD7] mix-blend-difference">
+          <EmberLogo />
+        </Link>
         <nav className="hidden items-center gap-8 md:flex">
           {['Menu', 'Story', 'Visit', 'Reserve'].map((l) => (
             <a
               key={l}
               href={`#${l.toLowerCase()}`}
-              className="text-sm text-[#1A0F08]/70 transition-colors hover:text-[#C8462C]"
+              className="text-sm text-[#F5ECD7]/90 mix-blend-difference transition-colors hover:text-[#C8462C]"
             >
               {l}
             </a>
           ))}
         </nav>
-        <a
-          href="#reserve"
-          className="rounded-full bg-[#1A0F08] px-5 py-2.5 text-sm font-medium text-[#F5ECD7] transition-colors hover:bg-[#C8462C]"
-        >
-          Reservations
-        </a>
+        <MagneticHover strength={0.22}>
+          <a
+            href="#reserve"
+            className="rounded-full border border-[#F5ECD7]/30 bg-[#F5ECD7]/10 px-5 py-2.5 text-sm font-medium text-[#F5ECD7] backdrop-blur-sm transition-colors hover:bg-[#C8462C] hover:border-[#C8462C]"
+          >
+            Reservations
+          </a>
+        </MagneticHover>
       </div>
-    </header>
+    </ScrollAwareNav>
   );
 }
 
 function EmberHero() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 140]);
-
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pt-24 pb-32 lg:px-10">
-      <div className="mx-auto grid max-w-[1320px] gap-16 md:grid-cols-12 md:gap-10">
-        <div className="md:col-span-7">
+    <FullBleedHero
+      src={PHOTOS.ember.interior}
+      minH="100svh"
+      parallax={220}
+      zoom={1.12}
+      overlays={
+        <>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1A0F08]/55 via-[#1A0F08]/35 to-[#1A0F08]/80" />
+          <div className="absolute inset-0 bg-[radial-gradient(at_70%_55%,rgba(200,70,44,0.32),transparent_60%)]" />
+          <div className="absolute inset-0 bg-noise opacity-[0.05] mix-blend-overlay" />
+        </>
+      }
+    >
+      <div className="mx-auto w-full max-w-[1320px] px-6 pb-24 lg:px-10 lg:pb-32">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          className="max-w-3xl text-[#F5ECD7]"
+        >
           <p
             style={{ fontFamily: 'var(--font-mono)' }}
-            className="text-[11px] uppercase tracking-[0.32em] text-[#C8462C]"
+            className="text-[11px] uppercase tracking-[0.32em] text-[#FFB89A]"
           >
             Est. 2019 · Wood-fired · Open Wed – Sun
           </p>
           <h1
             style={{ fontFamily: 'var(--font-editorial)' }}
-            className="mt-8 text-balance text-[clamp(3rem,9vw,9rem)] leading-[0.94] tracking-tight"
+            className="mt-8 text-balance text-[clamp(3rem,9.5vw,9.5rem)] leading-[0.92] tracking-tight"
           >
             <span className="font-normal">Slow heat.</span>
             <br />
-            <span className="italic text-[#5A3F2C]">Worth the wait.</span>
+            <span className="italic text-[#FFCDB1]">Worth the wait.</span>
           </h1>
-          <p className="mt-10 max-w-md text-pretty text-lg leading-relaxed text-[#1A0F08]/70">
+          <p className="mt-10 max-w-md text-pretty text-lg leading-relaxed text-[#F5ECD7]/85">
             A neighborhood bakehouse and table in the city&rsquo;s
             Outer Sunset — wood-fired sourdough by morning, a six-seat
             tasting at dusk, natural wine all day.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href="#reserve"
-              className="inline-flex items-center gap-2 rounded-full bg-[#C8462C] px-6 py-3.5 text-sm font-medium text-[#F5ECD7] transition-transform hover:-translate-y-0.5"
-            >
-              Book a seat
-              <span>→</span>
-            </a>
-            <a
-              href="#menu"
-              className="inline-flex items-center gap-2 rounded-full border border-[#1A0F08]/30 px-6 py-3.5 text-sm font-medium text-[#1A0F08] transition-colors hover:bg-[#1A0F08] hover:text-[#F5ECD7]"
-            >
-              See the menu
-            </a>
+            <MagneticHover>
+              <a
+                href="#reserve"
+                className="inline-flex items-center gap-2 rounded-full bg-[#C8462C] px-6 py-3.5 text-sm font-medium text-[#F5ECD7] transition-transform hover:-translate-y-0.5"
+              >
+                Book a seat
+                <span>→</span>
+              </a>
+            </MagneticHover>
+            <MagneticHover strength={0.22}>
+              <a
+                href="#menu"
+                className="inline-flex items-center gap-2 rounded-full border border-[#F5ECD7]/40 bg-[#F5ECD7]/5 px-6 py-3.5 text-sm font-medium text-[#F5ECD7] backdrop-blur-sm transition-colors hover:bg-[#F5ECD7] hover:text-[#1A0F08]"
+              >
+                See the menu
+              </a>
+            </MagneticHover>
           </div>
-        </div>
+        </motion.div>
 
+        {/* Today's bake floating card */}
         <motion.div
-          style={{ y }}
-          className="md:col-span-5 relative"
+          initial={{ opacity: 0, y: 24, x: 0 }}
+          animate={{ opacity: 1, y: 0, x: 0 }}
+          transition={{ duration: 1.0, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute right-6 bottom-24 hidden w-[260px] overflow-hidden rounded-sm border border-[#F5ECD7]/25 bg-[#1A0F08]/55 backdrop-blur-md lg:block lg:right-10 lg:bottom-28"
         >
-          <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-[#1A0F08]/10 bg-[#3A2618]">
+          <div className="relative aspect-[4/5]">
             <img
               src={PHOTOS.ember.hero}
               alt="Today's bake"
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1A0F08] via-[#1A0F08]/30 to-transparent" />
-            <div className="absolute inset-0 bg-[radial-gradient(at_50%_85%,rgba(200,70,44,0.35),transparent_55%)]" />
-            <div className="absolute inset-x-0 bottom-0 p-6">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1A0F08] via-[#1A0F08]/15 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-4">
               <p
                 style={{ fontFamily: 'var(--font-mono)' }}
-                className="text-[10px] uppercase tracking-[0.22em] text-[#F5ECD7]/70"
+                className="text-[9px] uppercase tracking-[0.28em] text-[#FFB89A]"
               >
                 Today&rsquo;s bake — 6:00 a.m.
               </p>
               <p
                 style={{ fontFamily: 'var(--font-editorial)' }}
-                className="mt-2 text-xl italic text-[#F5ECD7]"
+                className="mt-1.5 text-base italic text-[#F5ECD7]"
               >
-                Country sourdough, with sea salt
+                Country sourdough, sea salt
               </p>
             </div>
           </div>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center"
+        >
+          <div className="flex flex-col items-center gap-2 text-[#F5ECD7]/70">
+            <span
+              style={{ fontFamily: 'var(--font-mono)' }}
+              className="text-[10px] uppercase tracking-[0.32em]"
+            >
+              The bakehouse
+            </span>
+            <motion.span
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+              className="block h-6 w-px bg-current"
+            />
+          </div>
+        </motion.div>
       </div>
-    </section>
+    </FullBleedHero>
   );
 }
 
@@ -218,21 +275,30 @@ function EmberGallery() {
                        : i === 2 ? 'md:col-span-3 aspect-[4/5]'
                        : 'md:col-span-4 aspect-[4/3]';
             return (
-              <li
-                key={p.label}
-                className={`group relative overflow-hidden rounded-sm border border-[#1A0F08]/10 ${span}`}
-              >
-                <img src={p.src} alt={p.label} className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1A0F08]/85 via-[#1A0F08]/10 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <p style={{ fontFamily: 'var(--font-editorial)' }} className="text-lg italic text-[#F5ECD7]">
-                    {p.label}
-                  </p>
-                  <p style={{ fontFamily: 'var(--font-mono)' }} className="mt-1 text-[10px] uppercase tracking-[0.22em] text-[#F5ECD7]/65">
-                    {p.time}
-                  </p>
-                </div>
-              </li>
+              <SectionFadeIn key={p.label} delay={i * 0.07}>
+                <HoverMagnify
+                  scale={1.06}
+                  className={`relative rounded-sm border border-[#1A0F08]/10 ${span}`}
+                >
+                  <ParallaxImage
+                    src={p.src}
+                    alt={p.label}
+                    range={70}
+                    scaleFrom={1.08}
+                    scaleTo={1.22}
+                    className="absolute inset-0 h-full w-full"
+                  />
+                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#1A0F08]/90 via-[#1A0F08]/15 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 z-10 p-5">
+                    <p style={{ fontFamily: 'var(--font-editorial)' }} className="text-lg italic text-[#F5ECD7]">
+                      {p.label}
+                    </p>
+                    <p style={{ fontFamily: 'var(--font-mono)' }} className="mt-1 text-[10px] uppercase tracking-[0.22em] text-[#F5ECD7]/70">
+                      {p.time}
+                    </p>
+                  </div>
+                </HoverMagnify>
+              </SectionFadeIn>
             );
           })}
         </ul>

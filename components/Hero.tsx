@@ -5,8 +5,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { SwashMark } from './SwashMark';
 import { Magnetic } from './Magnetic';
-import { HeroSpotlight } from './HeroSpotlight';
-import { HeroMesh } from './HeroMesh';
 import { RevealText, RevealBlock } from './RevealText';
 
 export function Hero() {
@@ -26,22 +24,25 @@ export function Hero() {
     <section
       ref={ref}
       id="overview"
-      className="relative isolate min-h-[100svh] overflow-hidden bg-paper-100 grain"
+      className="relative isolate min-h-[100svh] overflow-hidden grain"
     >
-      <HeroMesh />
-      <HeroSpotlight />
 
       <div className="container-wide relative z-10 flex min-h-[100svh] flex-col justify-between pb-12 pt-32">
         <div className="flex items-center justify-between">
-          <motion.span
+          <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="chip"
+            className="inline-flex items-center overflow-hidden rounded-pill border border-hairline bg-paper-200/60 backdrop-blur-sm"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-ink_red-400 animate-pulse-soft" />
-            Studio · open for Q2 briefs
-          </motion.span>
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-ash-500">
+              <span className="h-1.5 w-1.5 rounded-full bg-ink_red-400 animate-pulse-soft" />
+              Edition · Summer &apos;26
+            </span>
+            <span className="inline-flex items-center bg-lime-300 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-paper-100">
+              Brief intake open
+            </span>
+          </motion.div>
 
           <motion.span
             initial={{ opacity: 0 }}

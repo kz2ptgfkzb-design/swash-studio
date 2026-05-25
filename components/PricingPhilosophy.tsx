@@ -61,7 +61,7 @@ export function PricingPhilosophy() {
         <ul className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {TIERS.map((t, i) => (
             <Reveal key={t.name} delay={i}>
-              <li className="flex h-full flex-col gap-6 rounded-card border border-hairline bg-bone-50/60 p-7 transition-all duration-500 ease-silk hover:-translate-y-1 hover:border-ink-700/15">
+              <li className="flex h-full flex-col gap-6 rounded-card border border-hairline bg-paper-200/60 p-7 transition-all duration-500 ease-silk hover:-translate-y-1 hover:border-lime-300/30">
                 <div className="flex items-center justify-between">
                   <p className="font-display text-2xl tracking-tight text-ink-700">
                     {t.name}
@@ -98,7 +98,7 @@ export function PricingPhilosophy() {
         </ul>
 
         <Reveal delay={5}>
-          <div className="mt-12 flex flex-col items-start justify-between gap-4 rounded-card border border-hairline bg-bone-200/40 p-8 md:flex-row md:items-center md:p-10">
+          <div className="mt-12 flex flex-col items-start justify-between gap-4 rounded-card border border-hairline bg-paper-200/40 p-8 md:flex-row md:items-center md:p-10">
             <div>
               <p className="font-display text-2xl text-ink-700">
                 Tell us your budget. We&rsquo;ll tell you what it builds.

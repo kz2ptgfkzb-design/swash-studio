@@ -57,7 +57,7 @@ export default function WorkPage() {
       </section>
 
       <section className="container-page pb-32">
-        <div className="rounded-card border border-hairline bg-bone-200/40 p-10 text-center md:p-16">
+        <div className="rounded-card border border-hairline bg-paper-100/75 p-10 text-center md:p-16">
           <Reveal>
             <p className="eyebrow">Your turn</p>
           </Reveal>

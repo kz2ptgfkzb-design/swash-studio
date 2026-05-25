@@ -4,14 +4,14 @@ import { BriefIntakeForm } from '@/components/BriefIntakeForm';
 export const metadata = {
   title: 'Start a brief · Swash',
   description:
-    'Five minutes. Tell us about the business, the build, and the budget. We come back with a written, fixed-fee proposal within 48 hours.',
+    'Five minutes. Tell us about the business, the build, and the budget. Within 48 hours we send a video demo of your site — request changes from there.',
 };
 
 const PROMISES = [
-  { title: 'Fixed-fee in 48 hours', body: 'Written scope, deliverables, milestones, fixed price.' },
-  { title: 'No call required', body: 'The brief is enough to get a real proposal back.' },
-  { title: 'Walk away anytime', body: 'You owe nothing for the brief or the proposal.' },
-  { title: 'Same six people', body: 'In-house team only. Names match through launch day.' },
+  { title: 'Video demo in 48 hours', body: 'A real, working preview of your site. Recorded walkthrough, lands in your inbox.' },
+  { title: 'Request changes, free', body: 'Watch the demo, send back notes. We revise — no extra cost, no call needed.' },
+  { title: 'Walk away anytime', body: 'You owe nothing for the brief, the demo, or the revisions.' },
+  { title: 'Skilled in-house team', body: 'Web developers and brand designers on staff. No subcontractors, no offshoring.' },
 ];
 
 export default function BriefPage() {
@@ -30,9 +30,10 @@ export default function BriefPage() {
             </div>
             <div className="md:col-span-5">
               <p className="text-pretty text-base leading-relaxed text-ash-500">
-                Five steps, about five minutes. We&rsquo;ll come back with
-                a written, fixed-fee proposal within forty-eight hours —
-                usually sooner. No call required to get started.
+                Five steps, about five minutes. Within forty-eight hours
+                we send a <span className="text-ink-700">video demo of
+                your site</span> — a real, working preview. Watch it,
+                send back any changes you want. No call required.
               </p>
             </div>
           </div>

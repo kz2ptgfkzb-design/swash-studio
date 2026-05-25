@@ -5,7 +5,7 @@ import { Magnetic } from '@/components/Magnetic';
 export const metadata = {
   title: 'Process · Swash',
   description:
-    'How Swash works — six stages from brief to thirty days post-launch. Fixed scope, fixed fee, clear ownership.',
+    'How Swash works — brief, 48-hour video demo, request changes, ship. Six stages, fixed fee, clear ownership.',
 };
 
 const STAGES = [
@@ -15,19 +15,29 @@ const STAGES = [
     days: '~5 min',
     title: 'You write it. We read every line.',
     body:
-      'A five-minute structured form on industry, goals, features, timeline, and budget — plus an open notes field for the things that do not fit into chips. No discovery call required to start. Most clients fill it out late in the evening, push send, and forget it until the proposal arrives.',
-    youDo: ['Fill out the brief (≈5 min)', 'Optional: attach links, screenshots, references'],
-    weDo: ['Read it within the day', 'Pull together a written response'],
+      'A five-minute structured form on industry, goals, features, timeline, budget, and references you love — plus an open notes field for the things that do not fit into chips. No discovery call required to start. Most clients fill it out late in the evening, push send, and forget it until the demo arrives.',
+    youDo: ['Fill out the brief (≈5 min)', 'Drop in reference URLs, screenshots, anything you love'],
+    weDo: ['Read it the same day', 'Get to work on a real preview'],
   },
   {
     n: 'II',
-    label: 'The proposal',
+    label: 'The video demo',
     days: '~48 hours',
-    title: 'A written, fixed-fee scope.',
+    title: 'A working preview, walked through on video.',
     body:
-      'You get a real document — scope, deliverables, milestones, timeline, fixed fee, deposit, and a written list of what is NOT included (because that is often more useful). You read it. You ask questions. You say yes, no, or push back. We rewrite once at no cost if needed.',
-    youDo: ['Read the proposal', 'Push back, ask questions, suggest changes'],
-    weDo: ['Write the scope', 'Hold the fee fixed for 14 days'],
+      'Within 48 hours of the brief we build a real, working preview of your site — designed, coded, hosted on a private URL — and send you a recorded walkthrough explaining every decision. Not a deck, not a moodboard. The actual thing. You can click through the live link yourself after watching.',
+    youDo: ['Watch the video (~5 – 8 min)', 'Reply with any changes, big or small'],
+    weDo: ['Build the preview', 'Record the walkthrough', 'Host it on a private URL'],
+  },
+  {
+    n: 'II.5',
+    label: 'Change requests',
+    days: '~24 hours / round',
+    title: 'You request changes. We revise.',
+    body:
+      'Reply to the demo with notes — text, voice memo, scribbled screenshots, however you think. We turn each round in 24 hours and send a fresh recording. Repeat until the demo feels right. No call required, no extra cost, no pressure to commit before you love it.',
+    youDo: ['Send change requests in any format', 'Sign off in writing when it lands'],
+    weDo: ['Revise the preview', 'Re-record the walkthrough each round'],
   },
   {
     n: 'III',
@@ -74,11 +84,11 @@ const STAGES = [
 const PROMISES = [
   {
     title: 'Fixed fee, locked.',
-    body: 'The number on the proposal is the number you pay. We do not pad estimates and we eat scope creep we caused.',
+    body: 'The number in the engagement letter is the number you pay. We do not pad estimates and we eat scope creep we caused.',
   },
   {
     title: 'No subcontractors.',
-    body: 'Six in-house people. The names on the proposal are the names on the project from kickoff to launch.',
+    body: 'A skilled in-house team of web developers and brand designers. No subcontractors, no offshoring, no surprise junior swap-ins.',
   },
   {
     title: 'Live preview from day one.',
@@ -189,7 +199,7 @@ export default function ProcessPage() {
           </Reveal>
           <Reveal delay={1}>
             <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
-              Four things on every proposal.
+              Four things in every engagement.
               <br />
               <span className="italic text-ash-500">Without exception.</span>
             </h2>
@@ -216,23 +226,23 @@ export default function ProcessPage() {
 
       <section className="container-page py-24 pb-32">
         <Reveal>
-          <div className="rounded-card border border-hairline bg-ink-700 p-10 text-paper-50 md:p-16">
+          <div className="rounded-card border border-hairline bg-paper-100/75 p-10 text-ink-700 md:p-16">
             <div className="grid items-end gap-10 md:grid-cols-12">
               <div className="md:col-span-7">
-                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-gold-200">
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime-300">
                   Ready when you are
                 </p>
                 <h2 className="mt-6 font-display text-display-lg text-balance">
                   Start where stage one starts.
                   <br />
-                  <span className="italic text-paper-200/70">With the brief.</span>
+                  <span className="italic text-ash-500">With the brief.</span>
                 </h2>
               </div>
               <div className="md:col-span-5 md:text-right">
                 <Magnetic strength={0.25}>
                   <Link
                     href="/brief"
-                    className="btn bg-ink_red-400 text-paper-50 px-6 py-3.5 hover:bg-paper-50 hover:text-ink-700 hover:-translate-y-0.5"
+                    className="btn bg-lime-300 text-paper-100 px-6 py-3.5 hover:bg-ink-700 hover:text-paper-100 hover:-translate-y-0.5"
                     data-cursor="link"
                   >
                     Start a brief

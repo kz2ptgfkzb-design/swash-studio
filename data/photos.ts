@@ -18,8 +18,8 @@ export const PHOTOS = {
     hero:        u('1581094288338-2314dddb7ece', 1600, 1100), // industrial pipes
     tools:       u('1530124566582-a618bc2615dc', 800, 800),   // tools
     plumberWork: u('1607400201515-c2c41c07d307', 800, 800),   // plumber at work
-    pipes:       u('1583513702439-2e611c50a6ac', 800, 800),   // pipe close-up
-    truck:       u('1592312040616-c8ed0fc59cb6', 800, 800),   // service truck
+    pipes:       u('1473773508845-188df298d2d1', 800, 800),   // pipe close-up
+    truck:       u('1486006920555-c77dcf18193c', 800, 800),   // service truck
   },
 
   // ─── Ember & Table (restaurant) ────────────────────────────────
@@ -29,7 +29,7 @@ export const PHOTOS = {
     breadStudio: u('1568254183919-78a4f43a2877', 800, 1000),  // bread close-up
     pasta:       u('1551183053-bf91a1d81141', 800, 800),      // pasta
     plate:       u('1551218808-94e220e084d2', 800, 800),      // plated dish
-    fire:        u('1572441710734-bd7068d8be24', 800, 800),   // wood fire
+    fire:        u('1503788311183-fa3bf9c4bc32', 800, 800),   // wood fire
     chef:        u('1577219491135-ce391730fb2c', 800, 1000),  // chef portrait
   },
 

@@ -10,7 +10,7 @@ export function BriefCtaSection() {
   return (
     <section id="cta" className="relative py-28 md:py-40">
       <div className="container-page">
-        <div className="relative overflow-hidden rounded-[28px] bg-ink-700 px-8 py-20 text-paper-50 md:px-16 md:py-32">
+        <div className="relative overflow-hidden rounded-[28px] border border-hairline bg-paper-100/75 px-8 py-20 text-ink-700 md:px-16 md:py-32">
           <motion.div
             aria-hidden
             initial={{ opacity: 0, rotate: -20 }}
@@ -27,39 +27,40 @@ export function BriefCtaSection() {
           <div className="relative grid items-end gap-12 md:grid-cols-12">
             <div className="md:col-span-7">
               <Reveal>
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-gold-200">
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime-300">
                   Add a swash
                 </span>
               </Reveal>
               <Reveal delay={1}>
-                <h2 className="mt-6 font-display text-display-xl text-balance text-paper-50">
+                <h2 className="mt-6 font-display text-display-xl text-balance text-ink-700">
                   Tell us the brief.
                   <br />
-                  <span className="italic text-paper-200/70">
+                  <span className="italic text-ash-500">
                     We&rsquo;ll do the rest.
                   </span>
                 </h2>
               </Reveal>
               <Reveal delay={2}>
-                <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-paper-200/80">
-                  Five minutes of writing on your end. A proposal in your
-                  inbox within 48 hours. No pricing menu. No hard sell.
-                  Just a written scope, fixed fee, and an honest yes-or-no.
+                <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-ash-500">
+                  Five minutes of writing on your end. A <span className="text-ink-700">video demo of your site</span>
+                  {' '}in your inbox within 48 hours — the actual page,
+                  built and hosted. Watch it, request changes. Pay
+                  nothing until you sign off.
                 </p>
               </Reveal>
             </div>
 
             <div className="md:col-span-5">
               <Reveal delay={3}>
-                <ul className="space-y-3 text-sm text-paper-200/85">
+                <ul className="space-y-3 text-sm text-ash-500">
                   {[
-                    'Fixed-fee proposal in 48 hours',
+                    'Recorded video demo of your site in 48 hours',
+                    'Request changes — we revise until you sign off',
                     'Brand, site, and motion in one engagement',
-                    'Live preview link from day one of the build',
-                    '30 days of polish included post-launch',
+                    'Pay nothing until you approve the build',
                   ].map((b) => (
                     <li key={b} className="flex items-start gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-ink_red-300 shrink-0" />
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-lime-300 shrink-0" />
                       {b}
                     </li>
                   ))}
@@ -68,7 +69,7 @@ export function BriefCtaSection() {
                   <Magnetic strength={0.25}>
                     <Link
                       href="/brief"
-                      className="btn bg-ink_red-400 text-paper-50 px-6 py-3.5 hover:bg-paper-50 hover:text-ink-700 hover:-translate-y-0.5"
+                      className="btn bg-lime-300 text-paper-100 px-6 py-3.5 hover:bg-ink-700 hover:text-paper-100 hover:-translate-y-0.5"
                       data-cursor="link"
                     >
                       Start a brief
@@ -79,7 +80,7 @@ export function BriefCtaSection() {
                   </Magnetic>
                   <Link
                     href="mailto:hello@swash.studio"
-                    className="btn border border-paper-50/20 text-paper-50 px-6 py-3.5 hover:border-paper-50 hover:bg-paper-50/5"
+                    className="btn border border-hairline bg-paper-200/40 text-ink-700 px-6 py-3.5 hover:border-lime-300/60 hover:bg-paper-200/70"
                     data-cursor="link"
                   >
                     Email us instead

@@ -5,7 +5,10 @@ import { NavBar } from '@/components/NavBar';
 import { Footer } from '@/components/Footer';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { CursorTrail } from '@/components/CursorTrail';
+import { CursorLabel } from '@/components/CursorLabel';
 import { Preloader } from '@/components/Preloader';
+import { SoundToggle } from '@/components/SoundToggle';
+import { AmbientFluid } from '@/components/AmbientFluid';
 
 const sans = Inter_Tight({
   subsets: ['latin'],
@@ -59,11 +62,14 @@ export default function RootLayout({
     >
       <body className="bg-paper-100 text-ink-700 antialiased">
         <SmoothScroll />
+        <AmbientFluid />
         <CursorTrail />
+        <CursorLabel />
         <Preloader />
         <NavBar />
-        <main className="relative">{children}</main>
+        <main className="relative z-10">{children}</main>
         <Footer />
+        <SoundToggle />
       </body>
     </html>
   );

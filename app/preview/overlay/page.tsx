@@ -4,6 +4,13 @@ import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { PHOTOS } from '@/data/photos';
+import {
+  ScrollAwareNav,
+  ParallaxImage,
+  HoverMagnify,
+  MagneticHover,
+  SectionFadeIn,
+} from '@/components/preview/PreviewUI';
 
 export default function OverlayPreview() {
   return (
@@ -35,8 +42,12 @@ function OverlayLogo({ size = 24 }: { size?: number }) {
 
 function OverlayNav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[#0A0A0A]/8 bg-[#F8F6F2]/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-[1320px] items-center justify-between px-6 lg:px-10">
+    <ScrollAwareNav
+      bg="rgba(248,246,242,0.78)"
+      border="rgba(10,10,10,0.08)"
+      threshold={80}
+    >
+      <div className="mx-auto flex h-[72px] max-w-[1320px] items-center justify-between px-6 lg:px-10">
         <Link href="/preview/overlay"><OverlayLogo /></Link>
         <nav className="hidden items-center gap-7 text-sm md:flex">
           {['Product', 'Customers', 'Pricing', 'Docs', 'Changelog'].map((l) => (
@@ -47,66 +58,129 @@ function OverlayNav() {
         </nav>
         <div className="flex items-center gap-3 text-sm">
           <a href="#" className="hidden text-[#0A0A0A]/65 hover:text-[#0A0A0A] md:inline">Sign in</a>
-          <a
-            href="#cta"
-            className="inline-flex items-center gap-1.5 rounded-md bg-[#0A0A0A] px-4 py-2 font-medium text-[#F8F6F2] transition-transform hover:-translate-y-0.5"
-          >
-            Start free
-            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-              <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
+          <MagneticHover strength={0.22}>
+            <a
+              href="#cta"
+              className="inline-flex items-center gap-1.5 rounded-md bg-[#0A0A0A] px-4 py-2 font-medium text-[#F8F6F2] transition-transform hover:-translate-y-0.5"
+            >
+              Start free
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+          </MagneticHover>
         </div>
       </div>
-    </header>
+    </ScrollAwareNav>
   );
 }
 
 function OverlayHero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const dashY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const dashScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const dashRot = useTransform(scrollYProgress, [0, 1], [0, -2]);
 
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pt-24 pb-12 lg:px-10">
+    <section
+      ref={ref}
+      className="relative isolate overflow-hidden px-6 pt-40 pb-12 lg:px-10 lg:pt-48"
+    >
+      {/* Ambient gradient field that bleeds up under the transparent nav */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            'radial-gradient(900px 600px at 18% -10%, rgba(36,71,255,0.16), transparent 60%), radial-gradient(800px 500px at 88% 14%, rgba(255,200,71,0.14), transparent 60%), radial-gradient(700px 400px at 50% 110%, rgba(36,71,255,0.10), transparent 65%)',
+        }}
+      />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        animate={{ opacity: [0.5, 0.85, 0.5] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        style={{
+          background:
+            'radial-gradient(600px 400px at 70% 30%, rgba(36,71,255,0.12), transparent 60%)',
+        }}
+      />
+      {/* Grid pattern overlay */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-30"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(10,10,10,0.06) 1px, transparent 1px)',
+          backgroundSize: '64px 64px',
+          maskImage: 'radial-gradient(ellipse at center, black 30%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at center, black 30%, transparent 80%)',
+        }}
+      />
+
       <div className="mx-auto max-w-[1320px]">
         <div className="grid items-end gap-10 md:grid-cols-12">
-          <div className="md:col-span-7">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#2447FF]/30 bg-[#2447FF]/8 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[#2447FF]" style={{ fontFamily: 'var(--font-mono)' }}>
+          <motion.div
+            className="md:col-span-8"
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span
+              className="inline-flex items-center gap-2 rounded-full border border-[#2447FF]/30 bg-[#2447FF]/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[#2447FF] backdrop-blur"
+              style={{ fontFamily: 'var(--font-mono)' }}
+            >
               <span className="h-1.5 w-1.5 rounded-full bg-[#2447FF]" />
               v4.2 · Session Replay now in beta
             </span>
-            <h1 className="mt-7 text-balance text-[clamp(2.75rem,7vw,6.5rem)] font-semibold leading-[0.95] tracking-tight">
+            <h1 className="mt-7 text-balance text-[clamp(2.75rem,8vw,7.5rem)] font-semibold leading-[0.93] tracking-tight">
               See what your users
               <br />
               <span className="text-[#0A0A0A]/40">actually do.</span>
             </h1>
-            <p className="mt-7 max-w-lg text-pretty text-lg leading-relaxed text-[#0A0A0A]/65">
+            <p className="mt-7 max-w-lg text-pretty text-lg leading-relaxed text-[#0A0A0A]/70">
               Overlay is the analytics tool engineers reach for first.
               Funnels, retention, session replay — wired to your warehouse,
               priced like infrastructure, not enterprise software.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <a href="#cta" className="inline-flex items-center gap-2 rounded-md bg-[#2447FF] px-5 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5">
-                Start free
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-              <a href="#how" className="inline-flex items-center gap-2 rounded-md border border-[#0A0A0A]/15 px-5 py-3 text-sm font-medium text-[#0A0A0A] transition-colors hover:bg-[#0A0A0A] hover:text-[#F8F6F2]">
-                Read the docs
-              </a>
+              <MagneticHover>
+                <a
+                  href="#cta"
+                  className="inline-flex items-center gap-2 rounded-md bg-[#2447FF] px-5 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
+                >
+                  Start free
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              </MagneticHover>
+              <MagneticHover strength={0.22}>
+                <a
+                  href="#how"
+                  className="inline-flex items-center gap-2 rounded-md border border-[#0A0A0A]/15 bg-white/40 px-5 py-3 text-sm font-medium text-[#0A0A0A] backdrop-blur transition-colors hover:bg-[#0A0A0A] hover:text-[#F8F6F2]"
+                >
+                  Read the docs
+                </a>
+              </MagneticHover>
             </div>
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-[#0A0A0A]/55" style={{ fontFamily: 'var(--font-mono)' }}>
+            <div
+              className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-[#0A0A0A]/55"
+              style={{ fontFamily: 'var(--font-mono)' }}
+            >
               <span>// No credit card</span>
               <span>// Self-host or cloud</span>
               <span>// SOC 2 Type II</span>
               <span>// GDPR + HIPAA</span>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <motion.div style={{ y }} className="mt-16 md:mt-20">
+        <motion.div
+          style={{ y: dashY, scale: dashScale, rotate: dashRot, transformPerspective: 1400 }}
+          className="mt-16 will-change-transform md:mt-20"
+        >
           <OverlayDashboardMock />
         </motion.div>
       </div>
@@ -492,19 +566,28 @@ function OverlayQuote() {
       <div className="mx-auto max-w-[1100px]">
         <div className="grid items-center gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-              <img
+            <HoverMagnify
+              scale={1.04}
+              className="relative aspect-[4/5] rounded-2xl"
+            >
+              <ParallaxImage
                 src={PHOTOS.overlay.team}
                 alt="The Overlay engineering team in a working session"
-                className="absolute inset-0 h-full w-full object-cover"
+                range={80}
+                scaleFrom={1.1}
+                scaleTo={1.22}
+                className="absolute inset-0 h-full w-full"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/60 via-transparent to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/85" style={{ fontFamily: 'var(--font-mono)' }}>
+              <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0A0A0A]/65 via-transparent to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 z-10 p-5">
+                <p
+                  className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/85"
+                  style={{ fontFamily: 'var(--font-mono)' }}
+                >
                   Stripeline · 41 engineers · SF
                 </p>
               </div>
-            </div>
+            </HoverMagnify>
           </div>
 
           <div className="md:col-span-8">

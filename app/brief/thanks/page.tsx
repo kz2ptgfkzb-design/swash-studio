@@ -46,9 +46,10 @@ export default function ThanksPage() {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="mx-auto mt-6 max-w-md text-pretty text-base leading-relaxed text-ash-500"
           >
-            We read every brief that comes in. You&rsquo;ll hear back from
-            us with a written proposal within forty-eight hours — usually
-            sooner.
+            We read every brief that comes in. Within forty-eight hours
+            we&rsquo;ll send a <span className="text-ink-700">video demo
+            of your site</span> — a working preview, not a pitch deck.
+            Watch it, send back any changes you want.
           </motion.p>
 
           <motion.div

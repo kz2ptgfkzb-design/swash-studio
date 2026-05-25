@@ -21,6 +21,8 @@ const STEPS = [
   { n: 5, label: 'Contact' },
 ];
 
+type Reference = { url: string; note: string };
+
 type Brief = {
   industry: string;
   projectName: string;
@@ -30,12 +32,16 @@ type Brief = {
   timeline: string;
   budget: string;
   brandStatus: string;
+  references: Reference[];
   notes: string;
   name: string;
   email: string;
   phone: string;
   bestReach: 'email' | 'phone' | 'either';
 };
+
+const MAX_REFS = 4;
+const EMPTY_REF: Reference = { url: '', note: '' };
 
 const INITIAL: Brief = {
   industry: '',
@@ -46,6 +52,7 @@ const INITIAL: Brief = {
   timeline: '',
   budget: '',
   brandStatus: '',
+  references: [{ ...EMPTY_REF }],
   notes: '',
   name: '',
   email: '',
@@ -77,6 +84,27 @@ export function BriefIntakeForm() {
         ? d.features.filter((f) => f !== id)
         : [...d.features, id],
     }));
+  };
+
+  const updateReference = (idx: number, patch: Partial<Reference>) => {
+    setData((d) => ({
+      ...d,
+      references: d.references.map((r, i) => (i === idx ? { ...r, ...patch } : r)),
+    }));
+  };
+
+  const addReference = () => {
+    setData((d) => {
+      if (d.references.length >= MAX_REFS) return d;
+      return { ...d, references: [...d.references, { ...EMPTY_REF }] };
+    });
+  };
+
+  const removeReference = (idx: number) => {
+    setData((d) => {
+      if (d.references.length <= 1) return { ...d, references: [{ ...EMPTY_REF }] };
+      return { ...d, references: d.references.filter((_, i) => i !== idx) };
+    });
   };
 
   const validate = (): boolean => {
@@ -200,7 +228,14 @@ export function BriefIntakeForm() {
               <Step3 data={data} update={update} errors={errors} />
             )}
             {step === 4 && (
-              <Step4 data={data} update={update} errors={errors} />
+              <Step4
+                data={data}
+                update={update}
+                errors={errors}
+                updateReference={updateReference}
+                addReference={addReference}
+                removeReference={removeReference}
+              />
             )}
             {step === 5 && (
               <Step5 data={data} update={update} errors={errors} />
@@ -217,7 +252,7 @@ export function BriefIntakeForm() {
               'btn px-5 py-3 text-sm',
               step === 1
                 ? 'cursor-not-allowed text-ash-400'
-                : 'text-ink-700 hover:bg-bone-200/60',
+                : 'text-ink-700 hover:bg-paper-200/60',
             )}
           >
             ← Back
@@ -243,7 +278,8 @@ export function BriefIntakeForm() {
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-          </button>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -288,26 +324,28 @@ function ChipGrid({
               className={cn(
                 'group flex items-start gap-3 rounded-card border px-5 py-4 text-left transition-all duration-300 ease-silk',
                 active
-                  ? 'border-ink-700 bg-ink-700 text-bone-50'
-                  : 'border-hairline bg-bone-50/50 text-ink-700 hover:border-ink-700/30 hover:bg-bone-50',
+                  ? 'border-lime-300 bg-lime-300 text-paper-100'
+                  : 'border-hairline bg-paper-200/40 text-ink-700 hover:border-lime-300/50 hover:bg-paper-200/70',
               )}
             >
               <span
                 className={cn(
                   'mt-1 grid h-4 w-4 shrink-0 place-items-center rounded-full border-2 transition-colors',
-                  active ? 'border-saffron-300 bg-saffron-300' : 'border-hairline group-hover:border-ink-300',
+                  active ? 'border-paper-100 bg-paper-100' : 'border-ash-500 group-hover:border-lime-300',
                 )}
               >
                 {active && (
                   <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                    <path d="M1.5 4l1.8 1.8L6.5 2.5" stroke="#0A0A0A" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M1.5 4l1.8 1.8L6.5 2.5" stroke="#C8FE3D" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 )}
               </span>
               <span>
-                <span className="block text-sm font-medium">{it.label}</span>
+                <span className={cn('block text-sm font-semibold', active ? 'text-paper-100' : 'text-ink-700')}>
+                  {it.label}
+                </span>
                 {it.hint && (
-                  <span className={cn('mt-0.5 block text-xs', active ? 'text-bone-300' : 'text-ash-400')}>
+                  <span className={cn('mt-0.5 block text-xs', active ? 'text-paper-100/75' : 'text-ash-500')}>
                     {it.hint}
                   </span>
                 )}
@@ -317,7 +355,7 @@ function ChipGrid({
         })}
       </div>
       {errorMsg && (
-        <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-[#B6553F]">
+        <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-ink_red-300">
           {errorMsg}
         </p>
       )}
@@ -344,13 +382,13 @@ function ChipMultiGrid({
             type="button"
             onClick={() => onToggle(it.id)}
             className={cn(
-              'inline-flex items-center gap-2 rounded-pill border px-4 py-2 text-sm transition-all duration-300 ease-silk',
+              'inline-flex items-center gap-2 rounded-pill border px-4 py-2 text-sm font-medium transition-all duration-300 ease-silk',
               active
-                ? 'border-ink-700 bg-ink-700 text-bone-50'
-                : 'border-hairline bg-bone-50/50 text-ink-400 hover:border-ink-700/30 hover:text-ink-700',
+                ? 'border-lime-300 bg-lime-300 text-paper-100'
+                : 'border-hairline bg-paper-200/40 text-ink-400 hover:border-lime-300/50 hover:text-ink-700',
             )}
           >
-            {active && <span className="text-saffron-300">+</span>}
+            {active && <span>+</span>}
             {it.label}
           </button>
         );
@@ -373,7 +411,7 @@ function Step1({
       <StepHeading
         eyebrow="01 — Business"
         title="Tell us about the business."
-        sub="A line on what you do and where you sit. We'll use this to shape the proposal."
+        sub="A line on what you do and where you sit. We'll use this to shape the demo."
       />
 
       <div>
@@ -399,7 +437,7 @@ function Step1({
             className="input-field"
           />
           {errors.projectName && (
-            <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[#B6553F]">
+            <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink_red-300">
               {errors.projectName}
             </p>
           )}
@@ -512,10 +550,16 @@ function Step4({
   data,
   update,
   errors,
+  updateReference,
+  addReference,
+  removeReference,
 }: {
   data: Brief;
   update: <K extends keyof Brief>(k: K, v: Brief[K]) => void;
   errors: Partial<Record<keyof Brief, string>>;
+  updateReference: (idx: number, patch: Partial<Reference>) => void;
+  addReference: () => void;
+  removeReference: (idx: number) => void;
 }) {
   return (
     <div className="space-y-10">
@@ -536,6 +580,81 @@ function Step4({
       </div>
 
       <div>
+        <div className="flex items-baseline justify-between">
+          <label className="label-field">
+            References — sites you love
+          </label>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ash-400">
+            optional · {data.references.length} / {MAX_REFS}
+          </span>
+        </div>
+
+        <p className="-mt-1 mb-4 text-xs text-ash-400">
+          Drop in up to {MAX_REFS} URLs of sites you want yours to feel
+          like. A line on what you love about each helps a lot — type,
+          motion, layout, the photography, the tone.
+        </p>
+
+        <ul className="space-y-2.5">
+          {data.references.map((ref, i) => (
+            <li
+              key={i}
+              className="grid gap-2 rounded-card border border-hairline bg-paper-50/40 p-3 sm:grid-cols-[1fr,1fr,auto] sm:items-center"
+            >
+              <input
+                type="url"
+                inputMode="url"
+                value={ref.url}
+                onChange={(e) => updateReference(i, { url: e.target.value })}
+                placeholder="https://example.com"
+                className="input-field py-3 text-sm"
+                aria-label={`Reference ${i + 1} URL`}
+              />
+              <input
+                value={ref.note}
+                onChange={(e) => updateReference(i, { note: e.target.value })}
+                placeholder="What do you love about it?"
+                className="input-field py-3 text-sm"
+                aria-label={`Reference ${i + 1} note`}
+              />
+              <button
+                type="button"
+                onClick={() => removeReference(i)}
+                disabled={data.references.length <= 1 && !ref.url && !ref.note}
+                aria-label={`Remove reference ${i + 1}`}
+                className={cn(
+                  'inline-flex h-10 w-10 items-center justify-center rounded-pill border text-ash-500 transition-all duration-300 ease-silk',
+                  data.references.length <= 1 && !ref.url && !ref.note
+                    ? 'border-hairline/60 cursor-not-allowed opacity-40'
+                    : 'border-hairline hover:border-ink_red-400 hover:text-ink_red-400',
+                )}
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 6h8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+                </svg>
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        {data.references.length < MAX_REFS && (
+          <button
+            type="button"
+            onClick={addReference}
+            data-cursor="link"
+            className="mt-3 inline-flex items-center gap-2 rounded-pill border border-hairline px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ash-500 transition-all duration-300 ease-silk hover:border-ink-700 hover:text-ink-700"
+          >
+            <span className="grid h-3.5 w-3.5 place-items-center rounded-full border border-current">
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                <path d="M4 1v6M1 4h6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+              </svg>
+            </span>
+            Add another reference
+          </button>
+        )}
+      </div>
+
+      <div>
         <label className="label-field" htmlFor="notes">
           Anything else we should know?
         </label>
@@ -544,7 +663,7 @@ function Step4({
           rows={6}
           value={data.notes}
           onChange={(e) => update('notes', e.target.value)}
-          placeholder="Inspiration sites, competitors you love, internal constraints, deadlines, names to avoid — the more we know, the sharper the proposal."
+          placeholder="Competitors you love, internal constraints, deadlines, names to avoid — the more we know, the sharper the demo we send back."
           className="input-field resize-none"
         />
       </div>
@@ -565,8 +684,8 @@ function Step5({
     <div className="space-y-10">
       <StepHeading
         eyebrow="05 — Contact"
-        title="Last bit — where do we send it?"
-        sub="The proposal lands in your inbox within 48 hours. No newsletter, no follow-up sequence."
+        title="Last bit — where do we send the demo?"
+        sub="A recorded video walkthrough of your site lands in your inbox within 48 hours. No newsletter, no follow-up sequence."
       />
 
       <div className="grid gap-6 sm:grid-cols-2">
@@ -582,7 +701,7 @@ function Step5({
             className="input-field"
           />
           {errors.name && (
-            <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[#B6553F]">
+            <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink_red-300">
               {errors.name}
             </p>
           )}
@@ -600,7 +719,7 @@ function Step5({
             className="input-field"
           />
           {errors.email && (
-            <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[#B6553F]">
+            <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink_red-300">
               {errors.email}
             </p>
           )}
@@ -632,8 +751,8 @@ function Step5({
                 className={cn(
                   'flex-1 rounded-pill border px-4 py-3 text-sm capitalize transition-all duration-300',
                   data.bestReach === opt
-                    ? 'border-ink-700 bg-ink-700 text-bone-50'
-                    : 'border-hairline text-ink-400 hover:border-ink-700/30 hover:text-ink-700',
+                    ? 'border-lime-300 bg-lime-300 text-paper-100 font-semibold'
+                    : 'border-hairline bg-paper-200/40 text-ink-400 hover:border-lime-300/50 hover:text-ink-700',
                 )}
               >
                 {opt}
@@ -643,11 +762,11 @@ function Step5({
         </div>
       </div>
 
-      <div className="rounded-card border border-hairline bg-bone-200/40 p-5">
+      <div className="rounded-card border border-hairline bg-paper-200/40 p-5">
         <p className="text-sm leading-relaxed text-ash-500">
           By sending this brief you&rsquo;re not committing to anything.
-          We&rsquo;ll write you back with a proposal you can take, leave,
-          or push back on.
+          Within 48 hours we&rsquo;ll send a video demo of your site —
+          watch it, request any changes, pay nothing until you sign off.
         </p>
       </div>
     </div>

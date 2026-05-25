@@ -8,24 +8,24 @@ import { cn } from '@/lib/utils';
 
 const TOP_FAQ = [
   {
+    q: 'What happens in the first 48 hours?',
+    a: 'We read your brief the same day. Within 48 hours we send a recorded video walkthrough of a real, working preview of your site — designed, coded, hosted on a private link. Watch it, click through, send back any changes.',
+  },
+  {
+    q: 'What if I want changes to the demo?',
+    a: 'Send notes in any format — text, voice memo, scribbled screenshots. Each revision turns in 24 hours with a fresh recording. Unlimited rounds until you sign off. No call required, no extra cost.',
+  },
+  {
     q: "Why don't you publish prices?",
     a: 'A fixed tag forces every brief into the same box. We scope to the brief. Tell us your budget; we will tell you what fits — never quietly stretching past it.',
   },
   {
-    q: 'How long until launch?',
-    a: 'Two weeks for a single page. Four to six for a typical multi-page site. Eight to twelve for a flagship build. The proposal locks the timeline in writing.',
-  },
-  {
-    q: 'What if I do not love the proposal?',
-    a: 'You walk away, free. The brief is not a commitment. We write proposals to win the work — if we got it wrong, tell us why and we will rewrite it.',
-  },
-  {
     q: 'Who actually does the work?',
-    a: 'Our six in-house people. No subcontractors, no offshoring, no junior swap-ins. The names on the proposal are the names on the project.',
+    a: 'A skilled in-house team of web developers and brand designers. No subcontractors, no offshoring, no junior swap-ins — the same team from kickoff to launch.',
   },
   {
-    q: 'What happens after the site launches?',
-    a: '30 days of polish included on every engagement. After that — retainer, by-the-hour, or clean hand-off. Your call.',
+    q: 'Can I get ongoing updates after launch?',
+    a: '30 days of polish included on every engagement. After that, we offer a monthly retainer covering up to 3 major tweaks per month (new sections, design changes, integrations) plus unlimited minor fixes. Month-to-month, cancel anytime. Or hand off cleanly — your call.',
   },
 ];
 

@@ -9,24 +9,24 @@ const STEPS = [
     label: 'The brief',
     title: 'You tell us what you need.',
     body:
-      'A five-minute form covers the essentials — industry, goals, features, timeline, budget. The richer the brief, the sharper the proposal. Anything off the menu? Tell us in the notes.',
+      'A five-minute form covers the essentials — industry, goals, features, timeline, budget, references you love. The richer the brief, the sharper the demo. Anything off the menu? Tell us in the notes.',
     detail: 'Five minutes. No call required to start.',
   },
   {
     n: '02',
-    label: 'The proposal',
-    title: 'We scope it to fit.',
+    label: 'The video demo',
+    title: 'We build it. We send the video.',
     body:
-      'Within 48 hours you get a written proposal — scope, deliverables, milestones, a fixed fee. We size the work to the budget you set; we never quietly stretch past it.',
-    detail: 'Fixed fee. Clear scope. No mystery line items.',
+      'Within 48 hours of your brief, we ship a recorded walkthrough of a real, working preview of your site — designed, built, hosted. Not a deck, not a moodboard. The actual thing.',
+    detail: '48 hours. Real preview. Send back any change.',
   },
   {
     n: '03',
-    label: 'The build',
-    title: "We ship — and we don't disappear.",
+    label: 'Revisions & ship',
+    title: 'Request changes — then we launch.',
     body:
-      'Brand, site, and motion delivered in two-week sprints with a live preview link from day one. Launch day, plus thirty days of polish after, included in every engagement.',
-    detail: '2-week sprints. Live preview from day one.',
+      'Reply to the demo with notes. We revise until it lands, then ship the site to your domain. Two-week build sprints, thirty days of polish after launch, all included.',
+    detail: 'Unlimited revisions until you sign off.',
   },
 ];
 

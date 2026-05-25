@@ -13,6 +13,8 @@ import { Resend } from 'resend';
  *   BRIEF_FROM_EMAIL  verified send-from  (e.g. briefs@swash.studio)
  */
 
+type Reference = { url?: string; note?: string };
+
 type Brief = {
   industry?: string;
   projectName?: string;
@@ -22,6 +24,7 @@ type Brief = {
   timeline?: string;
   budget?: string;
   brandStatus?: string;
+  references?: Reference[];
   notes?: string;
   name?: string;
   email?: string;
@@ -33,6 +36,14 @@ function htmlEscape(s: string) {
   return s.replace(/[&<>"']/g, (c) =>
     ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!),
   );
+}
+
+function formatRefs(refs?: Reference[]) {
+  if (!refs || refs.length === 0) return '';
+  return refs
+    .filter(r => (r.url ?? '').trim().length > 0)
+    .map(r => (r.note ? `${r.url} — ${r.note}` : r.url ?? ''))
+    .join('\n');
 }
 
 function row(label: string, value?: string | string[]) {
@@ -77,6 +88,7 @@ function buildEmail(d: Brief) {
         ${row('Timeline', d.timeline)}
         ${row('Budget', d.budget)}
         ${row('Brand status', d.brandStatus)}
+        ${row('References', formatRefs(d.references))}
         ${row('Notes', d.notes || '—')}
         ${row('Name', d.name)}
         ${row('Email', d.email)}
@@ -86,7 +98,7 @@ function buildEmail(d: Brief) {
     </td></tr>
     <tr><td style="padding:16px 28px 32px;">
       <p style="margin:0;font:11px/1.5 'JetBrains Mono', monospace;color:#6B6B65;text-transform:uppercase;letter-spacing:0.18em;">
-        Reply within 48 hours · scope to fit · fixed fee · in writing.
+        Video demo within 48 hours · request changes after · pay nothing until you sign off.
       </p>
     </td></tr>
   </table>
@@ -102,6 +114,7 @@ function buildEmail(d: Brief) {
     `Timeline: ${d.timeline ?? ''}`,
     `Budget: ${d.budget ?? ''}`,
     `Brand status: ${d.brandStatus ?? ''}`,
+    `References:\n${formatRefs(d.references) || '—'}`,
     `Notes: ${d.notes ?? '—'}`,
     '',
     `From: ${d.name ?? ''} <${d.email ?? ''}>`,

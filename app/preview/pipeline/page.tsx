@@ -4,6 +4,14 @@ import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { PHOTOS } from '@/data/photos';
+import {
+  ScrollAwareNav,
+  FullBleedHero,
+  ParallaxImage,
+  HoverMagnify,
+  MagneticHover,
+  SectionFadeIn,
+} from '@/components/preview/PreviewUI';
 
 export default function PipelinePreview() {
   return (
@@ -38,94 +46,112 @@ function PipelineLogo({ size = 28 }: { size?: number }) {
 
 function PipelineNav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0E2236]/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-[1320px] items-center justify-between px-6 lg:px-10">
-        <Link href="/preview/pipeline"><PipelineLogo /></Link>
+    <ScrollAwareNav
+      bg="rgba(14,34,54,0.78)"
+      border="rgba(255,255,255,0.08)"
+      threshold={64}
+    >
+      <div className="mx-auto flex h-[72px] max-w-[1320px] items-center justify-between px-6 lg:px-10">
+        <Link href="/preview/pipeline" className="text-white">
+          <PipelineLogo />
+        </Link>
         <nav className="hidden items-center gap-8 md:flex" style={{ fontFamily: 'var(--font-sans)' }}>
           {['Services', 'Areas', 'Reviews', 'About'].map((l) => (
-            <a key={l} href={`#${l.toLowerCase()}`} className="text-sm text-white/70 transition-colors hover:text-white">
+            <a
+              key={l}
+              href={`#${l.toLowerCase()}`}
+              className="text-sm text-white/85 transition-colors hover:text-[#FFD93D]"
+            >
               {l}
             </a>
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <a href="tel:5550100142" className="hidden text-sm font-medium text-white/90 hover:text-[#FFD93D] md:inline">
+          <a href="tel:5550100142" className="hidden text-sm font-medium text-white hover:text-[#FFD93D] md:inline">
             (555) 010-0142
           </a>
-          <a
-            href="#quote"
-            className="rounded-md bg-[#FFD93D] px-4 py-2.5 text-sm font-bold text-[#0E2236] transition-transform hover:-translate-y-0.5"
-            style={{ fontFamily: 'var(--font-sans)' }}
-          >
-            Get a quote
-          </a>
+          <MagneticHover strength={0.25}>
+            <a
+              href="#quote"
+              className="rounded-md bg-[#FFD93D] px-4 py-2.5 text-sm font-bold text-[#0E2236] transition-transform hover:-translate-y-0.5"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              Get a quote
+            </a>
+          </MagneticHover>
         </div>
       </div>
-    </header>
+    </ScrollAwareNav>
   );
 }
 
 function PipelineHero() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
-
   return (
-    <section ref={ref} className="relative overflow-hidden px-6 pt-20 pb-32 lg:px-10">
-      {/* Hero photo, far right */}
-      <motion.div
-        aria-hidden
-        style={{ y }}
-        className="pointer-events-none absolute right-0 top-0 hidden h-full md:block md:w-[42%]"
-      >
-        <div className="relative h-full w-full overflow-hidden">
-          <img
-            src={PHOTOS.pipeline.hero}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0E2236] via-[#0E2236]/30 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0E2236]/40 via-transparent to-[#0E2236]/60" />
-          <div className="absolute inset-0 bg-noise opacity-[0.05] mix-blend-overlay" />
-        </div>
-      </motion.div>
-
-      <div className="relative mx-auto max-w-[1320px] md:max-w-[63%] md:ml-0">
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFD93D]">
-          Est. 2008 · Licensed · Bonded · Insured
-        </p>
-        <h1
-          style={{ fontFamily: 'var(--font-display)' }}
-          className="mt-6 text-balance text-[clamp(3rem,9vw,9rem)] font-bold leading-[0.92] tracking-tight"
+    <FullBleedHero
+      src={PHOTOS.pipeline.hero}
+      minH="100svh"
+      parallax={200}
+      zoom={1.1}
+      overlays={
+        <>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0E2236] via-[#0E2236]/65 to-[#0E2236]/15" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0E2236] via-transparent to-[#0E2236]/55" />
+          <div className="absolute inset-0 bg-noise opacity-[0.06] mix-blend-overlay" />
+        </>
+      }
+    >
+      <div className="mx-auto w-full max-w-[1320px] px-6 pb-24 lg:px-10 lg:pb-32">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          className="max-w-3xl"
         >
-          Plumbing that
-          <br />
-          <span className="text-[#FFD93D]">shows up.</span>
-        </h1>
-        <p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-white/75">
-          Family-owned commercial &amp; residential plumbing for the
-          Greater Bay area since 2008. Real techs, transparent pricing,
-          a single number that someone picks up — even at 2&nbsp;a.m.
-        </p>
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <a
-            href="tel:5550100142"
-            className="group inline-flex items-center gap-3 rounded-md bg-[#FFD93D] px-6 py-4 text-base font-bold text-[#0E2236] transition-transform hover:-translate-y-0.5"
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFD93D]">
+            Est. 2008 · Licensed · Bonded · Insured
+          </p>
+          <h1
+            style={{ fontFamily: 'var(--font-display)' }}
+            className="mt-6 text-balance text-[clamp(3rem,9.5vw,10rem)] font-bold leading-[0.9] tracking-tight text-white"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            Call (555) 010-0142
-          </a>
-          <a
-            href="#quote"
-            className="inline-flex items-center gap-2 rounded-md border-2 border-white/20 px-6 py-3.5 text-base font-bold text-white transition-colors hover:border-[#FFD93D] hover:text-[#FFD93D]"
-          >
-            Get a written quote →
-          </a>
-        </div>
+            Plumbing that
+            <br />
+            <span className="text-[#FFD93D]">shows up.</span>
+          </h1>
+          <p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-white/80">
+            Family-owned commercial &amp; residential plumbing for the
+            Greater Bay area since 2008. Real techs, transparent pricing,
+            a single number that someone picks up — even at 2&nbsp;a.m.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <MagneticHover>
+              <a
+                href="tel:5550100142"
+                className="group inline-flex items-center gap-3 rounded-md bg-[#FFD93D] px-6 py-4 text-base font-bold text-[#0E2236] transition-transform hover:-translate-y-0.5"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                Call (555) 010-0142
+              </a>
+            </MagneticHover>
+            <MagneticHover strength={0.22}>
+              <a
+                href="#quote"
+                className="inline-flex items-center gap-2 rounded-md border-2 border-white/25 bg-white/5 px-6 py-3.5 text-base font-bold text-white backdrop-blur-sm transition-colors hover:border-[#FFD93D] hover:text-[#FFD93D]"
+              >
+                Get a written quote →
+              </a>
+            </MagneticHover>
+          </div>
+        </motion.div>
 
-        <div className="mt-16 grid max-w-2xl grid-cols-3 gap-8 border-t border-white/10 pt-8">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-16 grid max-w-2xl grid-cols-3 gap-8 border-t border-white/15 pt-8"
+        >
           {[
             { k: '6,400+', l: 'Jobs completed' },
             { k: '15 min', l: 'Avg response time' },
@@ -135,14 +161,30 @@ function PipelineHero() {
               <p style={{ fontFamily: 'var(--font-display)' }} className="text-3xl font-bold text-[#FFD93D] md:text-4xl">
                 {s.k}
               </p>
-              <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-white/55">
+              <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-white/65">
                 {s.l}
               </p>
             </div>
           ))}
-        </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center"
+        >
+          <div className="flex flex-col items-center gap-2 text-white/65">
+            <span className="font-mono text-[10px] uppercase tracking-[0.32em]">Services</span>
+            <motion.span
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+              className="block h-6 w-px bg-current"
+            />
+          </div>
+        </motion.div>
       </div>
-    </section>
+    </FullBleedHero>
   );
 }
 
@@ -283,28 +325,33 @@ function PipelineOnTheJob() {
 
         <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {items.map((it, i) => (
-            <li
-              key={i}
-              className="group relative aspect-[4/5] overflow-hidden rounded-lg border-2 border-white/10"
-            >
-              <motion.img
-                src={it.src}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0E2236] via-[#0E2236]/30 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <p style={{ fontFamily: 'var(--font-display)' }} className="text-lg font-semibold text-[#F4EFE3]">
-                  {it.label}
-                </p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-[#FFD93D]">
-                  {it.loc}
-                </p>
-              </div>
-              <div className="absolute right-4 top-4 rounded-full bg-[#FFD93D] px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-[#0E2236]">
-                {String(i + 1).padStart(2, '0')} · done
-              </div>
-            </li>
+            <SectionFadeIn key={i} delay={i * 0.08}>
+              <HoverMagnify
+                scale={1.06}
+                className="relative aspect-[4/5] rounded-lg border-2 border-white/10"
+              >
+                <ParallaxImage
+                  src={it.src}
+                  alt=""
+                  range={60}
+                  scaleFrom={1.1}
+                  scaleTo={1.22}
+                  className="absolute inset-0 h-full w-full"
+                />
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0E2236] via-[#0E2236]/25 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 z-10 p-5">
+                  <p style={{ fontFamily: 'var(--font-display)' }} className="text-lg font-semibold text-[#F4EFE3]">
+                    {it.label}
+                  </p>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-[#FFD93D]">
+                    {it.loc}
+                  </p>
+                </div>
+                <div className="absolute right-4 top-4 z-10 rounded-full bg-[#FFD93D] px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-[#0E2236] shadow-sm">
+                  {String(i + 1).padStart(2, '0')} · done
+                </div>
+              </HoverMagnify>
+            </SectionFadeIn>
           ))}
         </ul>
       </div>
