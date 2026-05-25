@@ -4,11 +4,11 @@ import { Resend } from 'resend';
 /**
  * GET /api/test-email
  *
- * One-shot Resend smoke test — visit this URL in the browser to verify
+ * One-shot Resend smoke test - visit this URL in the browser to verify
  * your RESEND_API_KEY + BRIEF_TO_EMAIL combo is working. You should see
  * "Hello World" land in your inbox within a few seconds.
  *
- * Delete this file once you've confirmed delivery — the real brief form
+ * Delete this file once you've confirmed delivery - the real brief form
  * already uses Resend via /api/brief.
  */
 export async function GET() {

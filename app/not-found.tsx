@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <section className="container-page grid min-h-[80vh] place-items-center text-center">
       <div>
-        <p className="eyebrow">404 — Off the brief</p>
+        <p className="eyebrow">404 - Off the brief</p>
         <h1 className="mt-6 font-display text-display-2xl text-ink-700">
           Lost the
           <br />

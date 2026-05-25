@@ -6,7 +6,7 @@ import { Magnetic } from '@/components/Magnetic';
 export const metadata = {
   title: 'Services · Swash',
   description:
-    'The six services Swash offers — brand identity, website design, ecommerce, motion, campaign pages, and audits. Bundle them, pick one, mix as the brief asks.',
+    'The six services Swash offers - brand identity, website design, ecommerce, motion, campaign pages, and audits. Bundle them, pick one, mix as the brief asks.',
 };
 
 const CATEGORY_LABEL: Record<string, string> = {

@@ -38,14 +38,14 @@ const editorial = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: 'Swash — websites for every business',
+  title: 'Swash - websites for every business',
   description:
-    'A boutique studio that builds websites, brands, and the motion that ties them together. HVAC to luxury DTC. Tell us the brief — we deliver.',
+    'A boutique studio that builds websites, brands, and the motion that ties them together. HVAC to luxury DTC. Tell us the brief - we deliver.',
   metadataBase: new URL('https://swash.studio'),
   openGraph: {
-    title: 'Swash — websites for every business',
+    title: 'Swash - websites for every business',
     description:
-      'A boutique studio that builds websites, brands, and the motion that ties them together. HVAC to luxury DTC. Tell us the brief — we deliver.',
+      'A boutique studio that builds websites, brands, and the motion that ties them together. HVAC to luxury DTC. Tell us the brief - we deliver.',
     type: 'website',
   },
 };

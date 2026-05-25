@@ -5,7 +5,7 @@ import { Magnetic } from '@/components/Magnetic';
 export const metadata = {
   title: 'Process · Swash',
   description:
-    'How Swash works — brief, 48-hour video demo, request changes, ship. Six stages, fixed fee, clear ownership.',
+    'How Swash works - brief, 48-hour video demo, request changes, ship. Six stages, fixed fee, clear ownership.',
 };
 
 const STAGES = [
@@ -15,7 +15,7 @@ const STAGES = [
     days: '~5 min',
     title: 'You write it. We read every line.',
     body:
-      'A five-minute structured form on industry, goals, features, timeline, budget, and references you love — plus an open notes field for the things that do not fit into chips. No discovery call required to start. Most clients fill it out late in the evening, push send, and forget it until the demo arrives.',
+      'A five-minute structured form on industry, goals, features, timeline, budget, and references you love - plus an open notes field for the things that do not fit into chips. No discovery call required to start. Most clients fill it out late in the evening, push send, and forget it until the demo arrives.',
     youDo: ['Fill out the brief (≈5 min)', 'Drop in reference URLs, screenshots, anything you love'],
     weDo: ['Read it the same day', 'Get to work on a real preview'],
   },
@@ -25,8 +25,8 @@ const STAGES = [
     days: '~48 hours',
     title: 'A working preview, walked through on video.',
     body:
-      'Within 48 hours of the brief we build a real, working preview of your site — designed, coded, hosted on a private URL — and send you a recorded walkthrough explaining every decision. Not a deck, not a moodboard. The actual thing. You can click through the live link yourself after watching.',
-    youDo: ['Watch the video (~5 – 8 min)', 'Reply with any changes, big or small'],
+      'Within 48 hours of the brief we build a real, working preview of your site - designed, coded, hosted on a private URL - and send you a recorded walkthrough explaining every decision. Not a deck, not a moodboard. The actual thing. You can click through the live link yourself after watching.',
+    youDo: ['Watch the video (~5 - 8 min)', 'Reply with any changes, big or small'],
     weDo: ['Build the preview', 'Record the walkthrough', 'Host it on a private URL'],
   },
   {
@@ -35,7 +35,7 @@ const STAGES = [
     days: '~24 hours / round',
     title: 'You request changes. We revise.',
     body:
-      'Reply to the demo with notes — text, voice memo, scribbled screenshots, however you think. We turn each round in 24 hours and send a fresh recording. Repeat until the demo feels right. No call required, no extra cost, no pressure to commit before you love it.',
+      'Reply to the demo with notes - text, voice memo, scribbled screenshots, however you think. We turn each round in 24 hours and send a fresh recording. Repeat until the demo feels right. No call required, no extra cost, no pressure to commit before you love it.',
     youDo: ['Send change requests in any format', 'Sign off in writing when it lands'],
     weDo: ['Revise the preview', 'Re-record the walkthrough each round'],
   },
@@ -52,10 +52,10 @@ const STAGES = [
   {
     n: 'IV',
     label: 'Site design + build',
-    days: 'Sprint 2 – 3 · ~3 – 5 weeks',
+    days: 'Sprint 2 - 3 · ~3 - 5 weeks',
     title: 'Pages, then production.',
     body:
-      'Live preview link from day one of design. We design and build in parallel — designers in Figma, engineers writing the production site against the same components. Daily ship to the preview, weekly review with you.',
+      'Live preview link from day one of design. We design and build in parallel - designers in Figma, engineers writing the production site against the same components. Daily ship to the preview, weekly review with you.',
     youDo: ['30-min weekly review', 'Copy edits + content approvals'],
     weDo: ['Design every page + breakpoint', 'Production build + CMS', 'Daily preview updates'],
   },
@@ -75,7 +75,7 @@ const STAGES = [
     days: '4 weeks post-launch',
     title: 'Polish, then a clean hand-off.',
     body:
-      'Thirty days of bug fixes, small tweaks, and the second-guesses that always come up post-launch — included in every engagement. After day 30, we either part on good terms or you put us on a retainer. No pressure either way.',
+      'Thirty days of bug fixes, small tweaks, and the second-guesses that always come up post-launch - included in every engagement. After day 30, we either part on good terms or you put us on a retainer. No pressure either way.',
     youDo: ['Send tweaks via shared doc'],
     weDo: ['Bug fixes, polish, micro-improvements', 'Post-launch analytics review at day 30'],
   },
@@ -96,7 +96,7 @@ const PROMISES = [
   },
   {
     title: 'You own everything.',
-    body: 'Source code, design files, brand book, fonts — all yours, no lock-in, no proprietary builders.',
+    body: 'Source code, design files, brand book, fonts - all yours, no lock-in, no proprietary builders.',
   },
 ];
 

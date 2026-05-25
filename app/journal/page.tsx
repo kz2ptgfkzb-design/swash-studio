@@ -6,7 +6,7 @@ import { TiltCard } from '@/components/TiltCard';
 export const metadata = {
   title: 'Journal · Swash',
   description:
-    'Notes from inside the studio — how we scope briefs, why we price the way we do, what we learn shipping work.',
+    'Notes from inside the studio - how we scope briefs, why we price the way we do, what we learn shipping work.',
 };
 
 const CATEGORY_LABEL: Record<string, string> = {
@@ -33,7 +33,7 @@ export default function JournalPage() {
             </div>
             <div className="md:col-span-5">
               <p className="text-pretty text-base leading-relaxed text-ash-500">
-                Short essays on how we work — the way we read a brief,
+                Short essays on how we work - the way we read a brief,
                 the way we price, the way we ship. Written by the
                 team, not by a content shop.
               </p>

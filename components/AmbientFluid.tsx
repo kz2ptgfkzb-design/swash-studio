@@ -88,7 +88,7 @@ export function AmbientFluid() {
       float fbm(vec2 p) {
         float v = 0.0;
         float a = 0.5;
-        // 4 octaves — one less than the studio default; the smoke still
+        // 4 octaves - one less than the studio default; the smoke still
         // reads soft and broken-up but costs ~20% fewer samples per frame.
         for (int i = 0; i < 4; i++) {
           v += a * noise(p);
@@ -195,12 +195,12 @@ export function AmbientFluid() {
     const uPalA     = gl.getUniformLocation(prog, 'u_palA');
     const uPalB     = gl.getUniformLocation(prog, 'u_palB');
 
-    // Smoothed palette — interpolates toward the current pathname's palette
+    // Smoothed palette - interpolates toward the current pathname's palette
     const smoothA: number[] = paletteRef.current.a.flat();
     const smoothB: number[] = paletteRef.current.b.flat();
 
     // Cap to 1.25× so a retina laptop renders ~6 MP instead of ~14 MP
-    // per frame. The smoke is intentionally soft and blurry — the
+    // per frame. The smoke is intentionally soft and blurry - the
     // extra resolution is invisible but the perf cost is huge.
     let dpr = Math.min(window.devicePixelRatio || 1, 1.25);
     function resize() {
@@ -220,7 +220,7 @@ export function AmbientFluid() {
     resize();
     window.addEventListener('resize', resize);
 
-    // Pause the loop when the tab is hidden — saves battery and reduces
+    // Pause the loop when the tab is hidden - saves battery and reduces
     // background CPU on inactive tabs.
     let docVisible = !document.hidden;
     function onVisibility() { docVisible = !document.hidden; }
@@ -281,7 +281,7 @@ export function AmbientFluid() {
     }
 
     // ~30fps target. The smoke moves slowly, so halving the draw rate is
-    // imperceptible visually but halves the GPU + JS budget — meaning the
+    // imperceptible visually but halves the GPU + JS budget - meaning the
     // browser composite thread has more headroom for scroll.
     const FRAME_INTERVAL = 1000 / 30;
     let nextFrameAt = start;

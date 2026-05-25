@@ -121,7 +121,7 @@ function PipelineHero() {
           <p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-white/80">
             Family-owned commercial &amp; residential plumbing for the
             Greater Bay area since 2008. Real techs, transparent pricing,
-            a single number that someone picks up — even at 2&nbsp;a.m.
+            a single number that someone picks up - even at 2&nbsp;a.m.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <MagneticHover>
@@ -229,7 +229,7 @@ function PipelineServices() {
     {
       icon: '🏢',
       title: 'Commercial',
-      body: 'Restaurants, offices, multi-family, retail. Scheduled maintenance, retrofits, code-compliant builds — on your timeline.',
+      body: 'Restaurants, offices, multi-family, retail. Scheduled maintenance, retrofits, code-compliant builds - on your timeline.',
       bullets: ['Off-hours work available', 'Net-30 invoicing for accounts', 'Permit handling included'],
     },
     {
@@ -255,7 +255,7 @@ function PipelineServices() {
             </h2>
           </div>
           <p className="md:col-span-5 text-pretty text-base leading-relaxed text-white/70">
-            We don&rsquo;t spread thin. Plumbing — and only plumbing —
+            We don&rsquo;t spread thin. Plumbing - and only plumbing -
             done by techs we trained ourselves. Same answer every time
             you call, in person or on the phone.
           </p>
@@ -318,7 +318,7 @@ function PipelineOnTheJob() {
             </h2>
           </div>
           <p className="md:col-span-5 text-pretty leading-relaxed text-white/70">
-            A snapshot of recent calls — the routine and the chaos. No two
+            A snapshot of recent calls - the routine and the chaos. No two
             weeks look the same; we&rsquo;re built for both.
           </p>
         </div>
@@ -439,7 +439,7 @@ function PipelineReviews() {
   const reviews = [
     {
       stars: 5,
-      body: 'Called at 11pm for a burst pipe — Mike was at our door in 32 minutes. Fixed it, cleaned up, and the bill was what he quoted on the phone. Will never use anyone else.',
+      body: 'Called at 11pm for a burst pipe - Mike was at our door in 32 minutes. Fixed it, cleaned up, and the bill was what he quoted on the phone. Will never use anyone else.',
       name: 'Sarah K.',
       where: 'San Mateo · Yelp',
     },
@@ -532,12 +532,12 @@ function PipelineQuote() {
               surprises when the bill comes.
             </p>
             <div className="mt-8 space-y-2 font-mono text-sm">
-              <p><strong>Phone:</strong> (555) 010-0142 — answered 24/7</p>
+              <p><strong>Phone:</strong> (555) 010-0142 - answered 24/7</p>
               <p><strong>Email:</strong> dispatch@pipelineco.example</p>
-              <p><strong>Hours:</strong> Live 24/7 · Trucks 6am – 10pm</p>
+              <p><strong>Hours:</strong> Live 24/7 · Trucks 6am - 10pm</p>
             </div>
           </div>
-          <form className="md:col-span-6 grid gap-4" onSubmit={(e) => { e.preventDefault(); alert('Demo only — wire to your CRM.'); }}>
+          <form className="md:col-span-6 grid gap-4" onSubmit={(e) => { e.preventDefault(); alert('Demo only - wire to your CRM.'); }}>
             <input className="w-full rounded-md border-2 border-[#0E2236]/20 bg-white px-4 py-3 text-[#0E2236] placeholder:text-[#0E2236]/50 focus:border-[#0E2236] focus:outline-none" placeholder="Your name" required />
             <input className="w-full rounded-md border-2 border-[#0E2236]/20 bg-white px-4 py-3 text-[#0E2236] placeholder:text-[#0E2236]/50 focus:border-[#0E2236] focus:outline-none" type="tel" placeholder="Phone number" required />
             <input className="w-full rounded-md border-2 border-[#0E2236]/20 bg-white px-4 py-3 text-[#0E2236] placeholder:text-[#0E2236]/50 focus:border-[#0E2236] focus:outline-none" placeholder="Address (so we can dispatch the right truck)" />
@@ -546,7 +546,7 @@ function PipelineQuote() {
               Send for a quote →
             </button>
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#0E2236]/55">
-              We typically reply in 8 – 30 minutes. 24/7.
+              We typically reply in 8 - 30 minutes. 24/7.
             </p>
           </form>
         </div>
@@ -578,7 +578,7 @@ function PipelineFooter() {
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#FFD93D]">Hours</p>
           <ul className="mt-4 space-y-2 text-sm text-white/80">
             <li>Live phones · 24/7</li>
-            <li>Service trucks · 6am – 10pm</li>
+            <li>Service trucks · 6am - 10pm</li>
             <li>Emergency · any time</li>
           </ul>
         </div>

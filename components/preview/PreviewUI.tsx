@@ -9,7 +9,7 @@ import { ReactNode, useEffect, useRef, useState, MouseEvent } from 'react';
  */
 
 /**
- * ScrollAwareNav — wraps a sticky nav header. Background is transparent
+ * ScrollAwareNav - wraps a sticky nav header. Background is transparent
  * over the hero, then transitions to a colored backdrop-blur once scrolled
  * past a threshold. The hero image bleeds up underneath.
  */
@@ -50,9 +50,9 @@ export function ScrollAwareNav({
 }
 
 /**
- * FullBleedHero — an image that runs from y=0 (under the transparent nav)
+ * FullBleedHero - an image that runs from y=0 (under the transparent nav)
  * down to the bottom of the section. Scrolling pulls the image upward (parallax)
- * and scales it gently — feels like the cover of a magazine that breathes.
+ * and scales it gently - feels like the cover of a magazine that breathes.
  */
 export function FullBleedHero({
   src,
@@ -109,7 +109,7 @@ export function FullBleedHero({
 }
 
 /**
- * ParallaxImage — pure scroll-driven y-parallax for in-section photography.
+ * ParallaxImage - pure scroll-driven y-parallax for in-section photography.
  * Pass `range` to control how aggressively the image moves with scroll.
  */
 export function ParallaxImage({
@@ -159,7 +159,7 @@ export function ParallaxImage({
 }
 
 /**
- * HoverMagnify — wraps a child image and zooms/pans it toward the cursor on
+ * HoverMagnify - wraps a child image and zooms/pans it toward the cursor on
  * hover. Combined with overflow-hidden it gives a gallery a crisp interactive feel.
  */
 export function HoverMagnify({
@@ -211,8 +211,8 @@ export function HoverMagnify({
 }
 
 /**
- * ScrollClipReveal — image with a clip-path that opens as the section
- * scrolls into view. Editorial reveal — feels intentional, not gimmicky.
+ * ScrollClipReveal - image with a clip-path that opens as the section
+ * scrolls into view. Editorial reveal - feels intentional, not gimmicky.
  */
 export function ScrollClipReveal({
   src,
@@ -253,7 +253,7 @@ export function ScrollClipReveal({
 }
 
 /**
- * MagneticHover — spring-based magnetic pull on a wrapper. Use for CTAs
+ * MagneticHover - spring-based magnetic pull on a wrapper. Use for CTAs
  * and small interactive accents inside demos.
  */
 export function MagneticHover({
@@ -296,7 +296,7 @@ export function MagneticHover({
 }
 
 /**
- * SectionFadeIn — simple stagger reveal on scroll. Local to demos so we don't
+ * SectionFadeIn - simple stagger reveal on scroll. Local to demos so we don't
  * pull in the studio's Reveal (which expects different tokens).
  */
 export function SectionFadeIn({

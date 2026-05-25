@@ -9,7 +9,7 @@ const STEPS = [
     label: 'The brief',
     title: 'You tell us what you need.',
     body:
-      'A five-minute form covers the essentials — industry, goals, features, timeline, budget, references you love. The richer the brief, the sharper the demo. Anything off the menu? Tell us in the notes.',
+      'A five-minute form covers the essentials - industry, goals, features, timeline, budget, references you love. The richer the brief, the sharper the demo. Anything off the menu? Tell us in the notes.',
     detail: 'Five minutes. No call required to start.',
   },
   {
@@ -17,13 +17,13 @@ const STEPS = [
     label: 'The video demo',
     title: 'We build it. We send the video.',
     body:
-      'Within 48 hours of your brief, we ship a recorded walkthrough of a real, working preview of your site — designed, built, hosted. Not a deck, not a moodboard. The actual thing.',
+      'Within 48 hours of your brief, we ship a recorded walkthrough of a real, working preview of your site - designed, built, hosted. Not a deck, not a moodboard. The actual thing.',
     detail: '48 hours. Real preview. Send back any change.',
   },
   {
     n: '03',
     label: 'Revisions & ship',
-    title: 'Request changes — then we launch.',
+    title: 'Request changes - then we launch.',
     body:
       'Reply to the demo with notes. We revise until it lands, then ship the site to your domain. Two-week build sprints, thirty days of polish after launch, all included.',
     detail: 'Unlimited revisions until you sign off.',
@@ -87,7 +87,7 @@ export function HowItWorks() {
           <div className="mt-12 flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
             <p className="text-pretty text-base text-ash-500 max-w-md">
               The brief takes about five minutes. There&rsquo;s no pricing
-              menu to navigate — you tell us your budget, we tell you what
+              menu to navigate - you tell us your budget, we tell you what
               fits.
             </p>
             <Link href="/brief" className="btn-primary" data-cursor="link">

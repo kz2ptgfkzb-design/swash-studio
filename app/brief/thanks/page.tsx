@@ -48,7 +48,7 @@ export default function ThanksPage() {
           >
             We read every brief that comes in. Within forty-eight hours
             we&rsquo;ll send a <span className="text-ink-700">video demo
-            of your site</span> — a working preview, not a pitch deck.
+            of your site</span> - a working preview, not a pitch deck.
             Watch it, send back any changes you want.
           </motion.p>
 

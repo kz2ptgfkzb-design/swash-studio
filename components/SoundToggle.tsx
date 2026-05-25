@@ -8,7 +8,7 @@ const STORAGE_KEY = 'swash:sound-v1';
 type Mode = 'on' | 'off';
 
 /**
- * Web Audio synthesized UI sounds — no asset files.
+ * Web Audio synthesized UI sounds - no asset files.
  *
  * Off by default, opt-in via the corner toggle. When on, hovers and clicks
  * on data-cursor elements produce tiny ticks; route changes get a soft

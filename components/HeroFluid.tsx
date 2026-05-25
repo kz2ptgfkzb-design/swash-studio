@@ -51,8 +51,8 @@ export function HeroFluid() {
       uniform vec2  u_res;
       uniform float u_time;
       uniform vec2  u_mouse;     // 0..1
-      uniform float u_heat;      // 0..1 — driven up by cursor movement
-      uniform float u_scroll;    // 0..1 — page scroll progress through hero
+      uniform float u_heat;      // 0..1 - driven up by cursor movement
+      uniform float u_scroll;    // 0..1 - page scroll progress through hero
 
       // Hash & noise helpers
       vec2 hash22(vec2 p) {
@@ -98,7 +98,7 @@ export function HeroFluid() {
 
         float t = u_time * 0.07;
 
-        // Two layers of fbm — second one drives the warp on the first
+        // Two layers of fbm - second one drives the warp on the first
         vec2 q = vec2(fbm(puv * 1.2 + t),
                       fbm(puv * 1.2 - t + 5.0));
         vec2 r = vec2(fbm(puv * 1.6 + q + vec2(1.7, 9.2) + 0.15 * t),
@@ -112,7 +112,7 @@ export function HeroFluid() {
         float f = fbm(puv * 1.8 + r);
         f = pow(f * 0.55 + 0.55, 1.6);
 
-        // Base brand palette — deep paper background, lime, hot red, warm gold
+        // Base brand palette - deep paper background, lime, hot red, warm gold
         vec3 paper  = vec3(0.039, 0.035, 0.031);
         vec3 lime   = vec3(0.784, 0.996, 0.239);
         vec3 hotRed = vec3(1.000, 0.361, 0.267);
@@ -129,7 +129,7 @@ export function HeroFluid() {
         float spot = halo(puv, m, 0.42);
         col += lime * spot * (0.18 + u_heat * 0.45);
 
-        // Cool violet floating in the upper right — depth
+        // Cool violet floating in the upper right - depth
         col += violet * halo(puv, vec2(0.55, -0.25) * aspect, 0.55) * 0.18;
 
         // Vignette so the type stays anchored
@@ -269,7 +269,7 @@ export function HeroFluid() {
 
       mx += (tmx - mx) * 0.08;
       my += (tmy - my) * 0.08;
-      heat *= Math.pow(0.06, dt); // exponential decay — heat fades when still
+      heat *= Math.pow(0.06, dt); // exponential decay - heat fades when still
 
       resize();
       if (canvas) {

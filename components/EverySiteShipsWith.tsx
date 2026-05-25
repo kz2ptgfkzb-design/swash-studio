@@ -25,7 +25,7 @@ const FEATURES: Feature[] = [
   },
   {
     label: 'Live preview URL',
-    desc: 'Real link from day one — watch us ship.',
+    desc: 'Real link from day one - watch us ship.',
     Icon: () => (
       <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
         <circle cx="8" cy="8" r="6" stroke="currentColor" />
@@ -55,7 +55,7 @@ const FEATURES: Feature[] = [
   },
   {
     label: 'SEO foundation',
-    desc: 'Sitemap, schema, OG, redirects — wired.',
+    desc: 'Sitemap, schema, OG, redirects - wired.',
     Icon: () => (
       <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
         <circle cx="7" cy="7" r="4" stroke="currentColor" />
@@ -99,7 +99,7 @@ const FEATURES: Feature[] = [
   },
   {
     label: 'Form integrations',
-    desc: 'Resend, Postmark, your CRM — wired and tested.',
+    desc: 'Resend, Postmark, your CRM - wired and tested.',
     Icon: () => (
       <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
         <rect x="2" y="3" width="12" height="10" rx="1" stroke="currentColor" />
@@ -120,7 +120,7 @@ const FEATURES: Feature[] = [
   },
   {
     label: '30 days of polish',
-    desc: 'Bug fixes, tweaks, second-guesses — included.',
+    desc: 'Bug fixes, tweaks, second-guesses - included.',
     Icon: () => (
       <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
         <circle cx="8" cy="8" r="6" stroke="currentColor" />
@@ -130,7 +130,7 @@ const FEATURES: Feature[] = [
   },
   {
     label: 'Source code yours',
-    desc: 'Git history, design files, brand book — handed over.',
+    desc: 'Git history, design files, brand book - handed over.',
     Icon: () => (
       <svg viewBox="0 0 16 16" width="16" height="16" fill="none">
         <path d="M3 5L6 8L3 11M7 11H13" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
@@ -150,7 +150,7 @@ export function EverySiteShipsWith() {
         <div className="grid items-end gap-10 md:grid-cols-12">
           <div className="md:col-span-7">
             <Reveal>
-              <span className="eyebrow">— Every site we ship</span>
+              <span className="eyebrow">- Every site we ship</span>
             </Reveal>
             <Reveal delay={1}>
               <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
@@ -164,7 +164,7 @@ export function EverySiteShipsWith() {
             <Reveal delay={2}>
               <p className="text-pretty text-base leading-relaxed text-ash-500">
                 Not add-ons. Not tiered. Not contingent on the contract
-                size. Every Swash site ships with the list below — from the
+                size. Every Swash site ships with the list below - from the
                 starter to the flagship.
               </p>
             </Reveal>

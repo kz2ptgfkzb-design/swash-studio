@@ -11,7 +11,7 @@ export const metadata = {
 
 const PROCESS = [
   { phase: 'Brief',          body: 'You write the brief. We read every line. No discovery call required to get started.' },
-  { phase: 'Video demo',     body: 'Within 48 hours: a recorded walkthrough of a real, working preview of your site — designed, coded, hosted.' },
+  { phase: 'Video demo',     body: 'Within 48 hours: a recorded walkthrough of a real, working preview of your site - designed, coded, hosted.' },
   { phase: 'Change requests',body: 'Reply to the demo with notes in any format. Each revision turns in 24 hours with a fresh recording.' },
   { phase: 'Brand & build',  body: 'You sign off. We finish the brand system and the production site in two-week sprints with daily preview ship.' },
   { phase: 'Ship',           body: 'Launch day, hands-on. We watch the analytics, fix what wobbles, hand over a clean install.' },
@@ -20,7 +20,7 @@ const PROCESS = [
 
 const ROLES = [
   { role: 'Creative direction', note: 'Shapes the brief into a brand and a build plan.' },
-  { role: 'Brand design',       note: 'Mark, palette, type, voice — the foundation.' },
+  { role: 'Brand design',       note: 'Mark, palette, type, voice - the foundation.' },
   { role: 'Engineering',        note: 'Production Next.js with performance and a11y built in.' },
   { role: 'Motion',             note: 'Transitions, scroll behaviour, signature interactions.' },
   { role: 'Copy & strategy',    note: 'First-draft copy on every page so you can edit, not write.' },
@@ -131,7 +131,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={2}>
               <p className="mt-6 max-w-sm text-pretty text-base leading-relaxed text-ash-500">
-                Every site we ship covers the six roles below — held by
+                Every site we ship covers the six roles below - held by
                 our in-house team of web developers and brand designers.
                 No subcontractors, no offshoring, no junior swap-ins.
               </p>

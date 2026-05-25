@@ -6,7 +6,7 @@ import { Reveal } from '@/components/Reveal';
 export const metadata = {
   title: 'Work · Swash',
   description:
-    'Every brief Swash has answered — across HVAC, ecommerce, SaaS, restaurants, real estate, and skincare.',
+    'Every brief Swash has answered - across HVAC, ecommerce, SaaS, restaurants, real estate, and skincare.',
 };
 
 export default function WorkPage() {

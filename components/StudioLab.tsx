@@ -29,7 +29,7 @@ type DriftId  = (typeof DRIFTS)[number]['id'];
 type PaletteId = (typeof PALETTES)[number]['id'];
 
 /**
- * Studio Lab — a live, sculptable mark.
+ * Studio Lab - a live, sculptable mark.
  *
  * The user toggles weight / drift / palette chips on the left; the big
  * brushstroke on the right re-derives its path from those params in real
@@ -45,7 +45,7 @@ export function StudioLab() {
   const driftCfg = DRIFTS.find(d => d.id === drift)!;
   const color    = PALETTES.find(p => p.id === palette)!.color;
 
-  // Drift phase — slow sine, but only ticks while the lab section is in
+  // Drift phase - slow sine, but only ticks while the lab section is in
   // view (saves a RAF + state-update per frame on every other section).
   const [phase, setPhase] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
@@ -130,10 +130,10 @@ export function StudioLab() {
     <section ref={sectionRef} id="lab" className="relative overflow-hidden bg-paper-50/55 py-28 md:py-40">
       <div className="container-wide">
         <div className="grid items-center gap-14 lg:grid-cols-12">
-          {/* LEFT — copy + controls */}
+          {/* LEFT - copy + controls */}
           <div className="lg:col-span-5">
             <Reveal>
-              <span className="eyebrow">— Studio Lab</span>
+              <span className="eyebrow">- Studio Lab</span>
             </Reveal>
             <Reveal delay={1}>
               <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
@@ -146,7 +146,7 @@ export function StudioLab() {
               <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-ash-500">
                 Press a chip. Move your mouse over the canvas. The mark
                 rewrites itself. This is what we mean by &ldquo;motion as a
-                language&rdquo; — the brand is alive in every state, not
+                language&rdquo; - the brand is alive in every state, not
                 frozen on a style guide.
               </p>
             </Reveal>
@@ -182,7 +182,7 @@ export function StudioLab() {
             </div>
           </div>
 
-          {/* RIGHT — live canvas */}
+          {/* RIGHT - live canvas */}
           <div className="lg:col-span-7">
             <div
               ref={stageRef}
@@ -208,7 +208,7 @@ export function StudioLab() {
                   </filter>
                 </defs>
 
-                {/* Echo paths — softer, behind */}
+                {/* Echo paths - softer, behind */}
                 <motion.path
                   d={pathD}
                   fill="none"
@@ -227,7 +227,7 @@ export function StudioLab() {
                   filter="url(#softInk)"
                 />
 
-                {/* End dot — the period after the swash */}
+                {/* End dot - the period after the swash */}
                 <motion.circle
                   r={stroke * 0.65}
                   fill={color}

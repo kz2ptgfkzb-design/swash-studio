@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 const SILK = [0.65, 0, 0.35, 1] as const;
 
 /**
- * Page-transition: a layered calligraphic sweep — not a flat curtain.
+ * Page-transition: a layered calligraphic sweep - not a flat curtain.
  *
  * Three rotated bands cross the screen in sequence (paper → lime → paper),
  * each with soft mask-fade leading edges so they read as brush strokes.
@@ -20,7 +20,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {/* Band 1 — paper, leading edge */}
+      {/* Band 1 - paper, leading edge */}
       <motion.div
         aria-hidden
         initial={{ x: '-130%', skewX: -12 }}
@@ -35,7 +35,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         }}
       />
 
-      {/* Band 2 — lime accent, follows just behind */}
+      {/* Band 2 - lime accent, follows just behind */}
       <motion.div
         aria-hidden
         initial={{ x: '-130%', skewX: -12 }}
@@ -50,7 +50,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
         }}
       />
 
-      {/* Band 3 — second paper layer, kills any seam */}
+      {/* Band 3 - second paper layer, kills any seam */}
       <motion.div
         aria-hidden
         initial={{ x: '-130%', skewX: -12 }}

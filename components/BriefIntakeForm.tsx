@@ -118,7 +118,7 @@ export function BriefIntakeForm() {
     }
     if (step === 3) {
       if (!data.timeline) next.timeline = 'Pick one.';
-      if (!data.budget) next.budget = 'Pick one — or "not sure".';
+      if (!data.budget) next.budget = 'Pick one - or "not sure".';
     }
     if (step === 4) {
       if (!data.brandStatus) next.brandStatus = 'Pick one.';
@@ -261,7 +261,7 @@ export function BriefIntakeForm() {
           <div className="flex flex-col items-end gap-2">
             {submitError && (
               <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#FF5C44]">
-                {submitError} — try again or email hello@swash.studio
+                {submitError} - try again or email hello@swash.studio
               </p>
             )}
             <button
@@ -409,7 +409,7 @@ function Step1({
   return (
     <div className="space-y-10">
       <StepHeading
-        eyebrow="01 — Business"
+        eyebrow="01 - Business"
         title="Tell us about the business."
         sub="A line on what you do and where you sit. We'll use this to shape the demo."
       />
@@ -473,7 +473,7 @@ function Step2({
   return (
     <div className="space-y-10">
       <StepHeading
-        eyebrow="02 — The build"
+        eyebrow="02 - The build"
         title="What are we building?"
         sub="Pick the closest goal. Then check anything the site needs to do."
       />
@@ -496,7 +496,7 @@ function Step2({
           onToggle={toggleFeature}
         />
         <p className="mt-3 text-xs text-ash-400">
-          Multi-select — pick everything that applies.
+          Multi-select - pick everything that applies.
         </p>
       </div>
     </div>
@@ -515,7 +515,7 @@ function Step3({
   return (
     <div className="space-y-10">
       <StepHeading
-        eyebrow="03 — Timeline & budget"
+        eyebrow="03 - Timeline & budget"
         title="When and how big?"
         sub="We size the work to what you've got. No hidden tiers, no upsell."
       />
@@ -564,7 +564,7 @@ function Step4({
   return (
     <div className="space-y-10">
       <StepHeading
-        eyebrow="04 — Brand & details"
+        eyebrow="04 - Brand & details"
         title="Where's the brand at?"
         sub="So we know whether to plug into what you have or build it from scratch."
       />
@@ -582,7 +582,7 @@ function Step4({
       <div>
         <div className="flex items-baseline justify-between">
           <label className="label-field">
-            References — sites you love
+            References - sites you love
           </label>
           <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ash-400">
             optional · {data.references.length} / {MAX_REFS}
@@ -591,7 +591,7 @@ function Step4({
 
         <p className="-mt-1 mb-4 text-xs text-ash-400">
           Drop in up to {MAX_REFS} URLs of sites you want yours to feel
-          like. A line on what you love about each helps a lot — type,
+          like. A line on what you love about each helps a lot - type,
           motion, layout, the photography, the tone.
         </p>
 
@@ -663,7 +663,7 @@ function Step4({
           rows={6}
           value={data.notes}
           onChange={(e) => update('notes', e.target.value)}
-          placeholder="Competitors you love, internal constraints, deadlines, names to avoid — the more we know, the sharper the demo we send back."
+          placeholder="Competitors you love, internal constraints, deadlines, names to avoid - the more we know, the sharper the demo we send back."
           className="input-field resize-none"
         />
       </div>
@@ -683,8 +683,8 @@ function Step5({
   return (
     <div className="space-y-10">
       <StepHeading
-        eyebrow="05 — Contact"
-        title="Last bit — where do we send the demo?"
+        eyebrow="05 - Contact"
+        title="Last bit - where do we send the demo?"
         sub="A recorded video walkthrough of your site lands in your inbox within 48 hours. No newsletter, no follow-up sequence."
       />
 
@@ -765,7 +765,7 @@ function Step5({
       <div className="rounded-card border border-hairline bg-paper-200/40 p-5">
         <p className="text-sm leading-relaxed text-ash-500">
           By sending this brief you&rsquo;re not committing to anything.
-          Within 48 hours we&rsquo;ll send a video demo of your site —
+          Within 48 hours we&rsquo;ll send a video demo of your site -
           watch it, request any changes, pay nothing until you sign off.
         </p>
       </div>

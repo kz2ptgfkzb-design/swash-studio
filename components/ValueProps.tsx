@@ -7,19 +7,19 @@ const PROPS = [
     n: '01',
     title: 'Brand built into the site, not bolted on.',
     body:
-      'Every site we ship starts with a brand foundation — voice, palette, type, motion. The site is the brand expressed, not a wrapper around it.',
+      'Every site we ship starts with a brand foundation - voice, palette, type, motion. The site is the brand expressed, not a wrapper around it.',
   },
   {
     n: '02',
     title: 'Budget-aware, not budget-bound.',
     body:
-      "Tell us what you can spend. We scope the work to fit — a starter site, a full studio build, or somewhere in between. The brief drives the price, not a tier sheet.",
+      "Tell us what you can spend. We scope the work to fit - a starter site, a full studio build, or somewhere in between. The brief drives the price, not a tier sheet.",
   },
   {
     n: '03',
     title: 'Motion as a language, not a layer.',
     body:
-      'Animation is part of how the brand reads. We design it like type or color — restrained where it should be, expressive where it has to be.',
+      'Animation is part of how the brand reads. We design it like type or color - restrained where it should be, expressive where it has to be.',
   },
 ];
 

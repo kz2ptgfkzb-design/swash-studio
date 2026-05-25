@@ -120,7 +120,7 @@ function HolmHero() {
           </h1>
           <p className="mt-8 max-w-md text-pretty text-lg leading-relaxed text-[#F0EAD9]/85">
             Four agents. One firm. Listings we actually believe in.
-            Holm represents homes — and the people selling them —
+            Holm represents homes - and the people selling them -
             without the spreadsheet feel.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -253,7 +253,7 @@ function HolmListings() {
           </div>
           <p className="md:col-span-4 md:col-start-9 text-pretty leading-relaxed text-[#0B1830]/65">
             Every listing is one we&rsquo;d show our family. We say no
-            twice as often as we say yes — that&rsquo;s the boutique
+            twice as often as we say yes - that&rsquo;s the boutique
             part.
           </p>
         </div>
@@ -422,7 +422,7 @@ function HolmPhilosophy() {
           <span className="italic">&ldquo;If we wouldn&rsquo;t buy it ourselves, we won&rsquo;t represent it.&rdquo;</span>
         </p>
         <p style={{ fontFamily: 'var(--font-mono)' }} className="mt-6 text-[10px] uppercase tracking-[0.22em] text-[#0B1830]/55">
-          — Founding agreement, 2017
+          - Founding agreement, 2017
         </p>
       </div>
     </section>
@@ -593,7 +593,7 @@ function HolmContact() {
           <p className="mt-6 max-w-md text-pretty leading-relaxed text-[#0B1830]/70">
             Tell us which listing, when works, and how we should
             reach you. One of the four agents calls back within the
-            day — never a junior, never an auto-responder.
+            day - never a junior, never an auto-responder.
           </p>
 
           <div className="mt-10 space-y-2 font-mono text-sm">
@@ -605,7 +605,7 @@ function HolmContact() {
 
         <form
           className="md:col-span-7 grid gap-4"
-          onSubmit={(e) => { e.preventDefault(); alert('Demo only — wire to your CRM.'); }}
+          onSubmit={(e) => { e.preventDefault(); alert('Demo only - wire to your CRM.'); }}
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <input
@@ -626,12 +626,12 @@ function HolmContact() {
             className="rounded-none border border-[#0B1830]/20 bg-[#F0EAD9] px-4 py-3.5 text-[#0B1830] placeholder:text-[#0B1830]/45 focus:border-[#0B1830] focus:outline-none"
           />
           <select className="rounded-none border border-[#0B1830]/20 bg-[#F0EAD9] px-4 py-3.5 text-[#0B1830] focus:border-[#0B1830] focus:outline-none">
-            <option>Which listing? — pick one</option>
+            <option>Which listing? - pick one</option>
             <option>Bernal Heights · $2,650,000</option>
             <option>Hayes Valley · $1,495,000</option>
             <option>Mission · $895,000</option>
             <option>Noe Valley · $3,200,000</option>
-            <option>I&rsquo;m looking to sell — call me</option>
+            <option>I&rsquo;m looking to sell - call me</option>
           </select>
           <textarea
             rows={4}
@@ -689,9 +689,9 @@ function HolmFooter() {
             Hours
           </p>
           <ul className="mt-3 space-y-1.5 text-sm text-[#0B1830]/75">
-            <li>Open houses · Sun 1–4</li>
-            <li>By appointment · M–Sa</li>
-            <li>Phone · 9 – 7 pm</li>
+            <li>Open houses · Sun 1-4</li>
+            <li>By appointment · M-Sa</li>
+            <li>Phone · 9 - 7 pm</li>
           </ul>
         </div>
       </div>

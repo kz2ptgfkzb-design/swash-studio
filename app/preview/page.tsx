@@ -7,7 +7,7 @@ import { PHOTOS } from '@/data/photos';
 export const metadata = {
   title: 'Live previews · Swash',
   description:
-    'Three demo websites — plumber, restaurant, SaaS. Built with Swash, fully clickable. Each one is a different industry, palette, type system.',
+    'Three demo websites - plumber, restaurant, SaaS. Built with Swash, fully clickable. Each one is a different industry, palette, type system.',
 };
 
 type Demo = {
@@ -89,7 +89,7 @@ export default function PreviewIndex() {
             </div>
             <div className="md:col-span-5">
               <p className="text-pretty text-base leading-relaxed text-ash-500">
-                Four fictional websites built end-to-end with Swash — a
+                Four fictional websites built end-to-end with Swash - a
                 plumber, a wood-fired restaurant, a SaaS analytics tool,
                 and a boutique real-estate brokerage. Each lives at its
                 own URL, with its own brand. Click in, scroll around,
@@ -144,7 +144,7 @@ export default function PreviewIndex() {
                     <div className="flex flex-col justify-between gap-10 p-8 md:col-span-5 md:p-12">
                       <div>
                         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ash-400">
-                          {String(i + 1).padStart(2, '0')} — Preview
+                          {String(i + 1).padStart(2, '0')} - Preview
                         </p>
                         <h2 className="mt-4 font-display text-display-md tracking-tight text-ink-700 transition-colors group-hover:text-lime-300">
                           {d.brand}
@@ -284,7 +284,7 @@ function PreviewMockup({ demo }: { demo: Demo }) {
             style={{ fontFamily: 'var(--font-editorial)' }}
             className="mt-6 italic text-lg"
           >
-            — the menu — reservations — find us
+            - the menu - reservations - find us
           </p>
         </div>
       </div>
@@ -330,7 +330,7 @@ function PreviewMockup({ demo }: { demo: Demo }) {
     );
   }
 
-  // holm — uses a real photo as the preview, since the demo is photo-driven
+  // holm - uses a real photo as the preview, since the demo is photo-driven
   return (
     <>
       <img

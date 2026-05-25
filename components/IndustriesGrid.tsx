@@ -84,7 +84,7 @@ export function IndustriesGrid() {
 
         <Reveal delay={4}>
           <p className="mt-10 text-center font-mono text-[11px] uppercase tracking-[0.22em] text-ash-400">
-            None of the above? — <Link href="/brief" className="text-ink-700 underline decoration-ink_red-400 underline-offset-4" data-cursor="link">Tell us in the brief.</Link>
+            None of the above? - <Link href="/brief" className="text-ink-700 underline decoration-ink_red-400 underline-offset-4" data-cursor="link">Tell us in the brief.</Link>
           </p>
         </Reveal>
       </div>

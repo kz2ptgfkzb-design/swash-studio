@@ -10,8 +10,8 @@ import { paletteFor, pickFromPalette, scrollProgress } from '@/lib/ambient-palet
  *
  * Tuning rationale (the prior version whipped through 360s on sharp
  * direction changes because the chain was too long and under-damped):
- *  - Shorter chain (14 points instead of 26) — tail can't lap the head.
- *  - Lower stiffness, higher per-frame damping — the chain converges
+ *  - Shorter chain (14 points instead of 26) - tail can't lap the head.
+ *  - Lower stiffness, higher per-frame damping - the chain converges
  *    instead of orbiting.
  *  - Velocity is zeroed below a small threshold each frame so points
  *    settle clean when the cursor is still.
@@ -21,8 +21,8 @@ import { paletteFor, pickFromPalette, scrollProgress } from '@/lib/ambient-palet
  */
 
 const NUM_POINTS = 14;
-const STIFFNESS_HEAD = 0.34;   // first segment — closest to cursor
-const STIFFNESS_TAIL = 0.22;   // last segment — looser, prettier curve
+const STIFFNESS_HEAD = 0.34;   // first segment - closest to cursor
+const STIFFNESS_TAIL = 0.22;   // last segment - looser, prettier curve
 const FRICTION = 0.62;          // 1 - per-frame damping; lower = settles faster
 const STILL_THRESHOLD = 0.04;   // px/frame velocity below this snaps to rest
 const HEAD_RADIUS = 3;
@@ -109,7 +109,7 @@ export function CursorTrail() {
     document.addEventListener('focusin', onFocusIn);
 
     // Resolve the current smoke color from the same palette logic AmbientFluid
-    // uses — independent path, no CSS-var handshake required.
+    // uses - independent path, no CSS-var handshake required.
     function ambientColor(): [number, number, number] {
       const palette = paletteFor(window.location.pathname);
       const [r, g, b] = pickFromPalette(palette, scrollProgress());
@@ -120,7 +120,7 @@ export function CursorTrail() {
       ];
     }
 
-    // Smoothed RGB the trail actually paints with — lerps toward ambient
+    // Smoothed RGB the trail actually paints with - lerps toward ambient
     let smoothRGB: [number, number, number] = ambientColor();
 
     function pickColor(): [number, number, number] {
@@ -156,7 +156,7 @@ export function CursorTrail() {
     let sampleCounter = 0;
     let targetRGB: [number, number, number] = ambientColor();
 
-    // Track scroll velocity — skip the expensive elementFromPoint sample
+    // Track scroll velocity - skip the expensive elementFromPoint sample
     // while the user is mid-flick. picks up again once the page settles.
     let lastScrollY = window.scrollY;
     let lastScrollT = performance.now();
@@ -185,7 +185,7 @@ export function CursorTrail() {
       // Idle short-circuit: if cursor hasn't moved in 240ms AND the chain
       // is settled AND the colour isn't still lerping, skip every draw
       // call this frame. Saves a clearRect + 12 bezier strokes when
-      // nothing's actually happening — frees the compositor for scroll.
+      // nothing's actually happening - frees the compositor for scroll.
       const tnow = performance.now();
       const cursorIdle = tnow - lastMoveT > 240;
       let chainSettled = true;
@@ -211,7 +211,7 @@ export function CursorTrail() {
 
       if (visibleRef.current && mouseRef.current.hasMoved) {
         // Re-sample the target color every ~32 frames (~half-second at 60fps)
-        // — the page colour shifts slowly, so we don't need to spam
+        // - the page colour shifts slowly, so we don't need to spam
         // elementFromPoint. Also skip while the user is mid-flick so the
         // sample doesn't force a layout during scroll.
         const now = performance.now();
@@ -235,14 +235,14 @@ export function CursorTrail() {
         let prevX = mx;
         let prevY = my;
 
-        // Spring chase — interpolate stiffness from head (snappy) to tail (loose)
+        // Spring chase - interpolate stiffness from head (snappy) to tail (loose)
         for (let i = 0; i < points.length; i++) {
           const p = points[i];
           const t = i / Math.max(1, points.length - 1);
           const k = STIFFNESS_HEAD + (STIFFNESS_TAIL - STIFFNESS_HEAD) * t;
           p.vx = (p.vx + (prevX - p.x) * k) * FRICTION;
           p.vy = (p.vy + (prevY - p.y) * k) * FRICTION;
-          // Hard-stop when velocity drops below visible threshold — kills the
+          // Hard-stop when velocity drops below visible threshold - kills the
           // residual orbits that look like random 360s.
           if (Math.abs(p.vx) < STILL_THRESHOLD) p.vx = 0;
           if (Math.abs(p.vy) < STILL_THRESHOLD) p.vy = 0;
@@ -277,7 +277,7 @@ export function CursorTrail() {
           ctx.stroke();
         }
 
-        // Soft inner glow (small — not a spotlight)
+        // Soft inner glow (small - not a spotlight)
         const halo = ctx.createRadialGradient(mx, my, 0, mx, my, HALO_RADIUS);
         halo.addColorStop(0, hexToRgba(strokeCache, 0.35));
         halo.addColorStop(1, hexToRgba(strokeCache, 0));
@@ -287,7 +287,7 @@ export function CursorTrail() {
         ctx.arc(mx, my, HALO_RADIUS, 0, Math.PI * 2);
         ctx.fill();
 
-        // Head dot — tracks the cursor exactly (no extra lag)
+        // Head dot - tracks the cursor exactly (no extra lag)
         ctx.globalAlpha = 1;
         ctx.fillStyle = strokeCache;
         ctx.beginPath();

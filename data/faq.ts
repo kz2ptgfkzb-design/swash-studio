@@ -12,7 +12,7 @@ export const FAQ: FaqGroup[] = [
       },
       {
         q: 'What is the smallest project you take?',
-        a: 'A single-page site, light brand polish, and a working form. Starts around the price of a good camera. We size the work to the budget you set — we never quietly stretch past it.',
+        a: 'A single-page site, light brand polish, and a working form. Starts around the price of a good camera. We size the work to the budget you set - we never quietly stretch past it.',
       },
       {
         q: 'What is the largest project you take?',
@@ -20,11 +20,11 @@ export const FAQ: FaqGroup[] = [
       },
       {
         q: 'Do you do payment plans?',
-        a: 'Yes — 40% on signing, 40% at milestone two, 20% at launch is our default. We will work with you on something else if cash flow needs it.',
+        a: 'Yes - 40% on signing, 40% at milestone two, 20% at launch is our default. We will work with you on something else if cash flow needs it.',
       },
       {
         q: 'What if I do not love the demo?',
-        a: 'Send back any changes you want — text, voice memo, scribbled screenshots, however you think. We revise within 24 hours and send a fresh video. Unlimited revisions until you sign off. If we never land it, you walk away free.',
+        a: 'Send back any changes you want - text, voice memo, scribbled screenshots, however you think. We revise within 24 hours and send a fresh video. Unlimited revisions until you sign off. If we never land it, you walk away free.',
       },
     ],
   },
@@ -46,7 +46,7 @@ export const FAQ: FaqGroup[] = [
       },
       {
         q: 'Can you migrate from my existing platform?',
-        a: 'Yes. Shopify, Squarespace, Wix, WordPress, Webflow, Framer, custom — we have migrated from all of them. Redirects, SEO continuity, and analytics carry-over are part of the standard checklist.',
+        a: 'Yes. Shopify, Squarespace, Wix, WordPress, Webflow, Framer, custom - we have migrated from all of them. Redirects, SEO continuity, and analytics carry-over are part of the standard checklist.',
       },
       {
         q: 'Who actually does the work?',
@@ -60,19 +60,19 @@ export const FAQ: FaqGroup[] = [
     items: [
       {
         q: 'What happens after the site launches?',
-        a: '30 days of polish included on every engagement — bug fixes, small tweaks, the second-guesses that always come up post-launch. After that, we either hand off cleanly or you put us on a retainer.',
+        a: '30 days of polish included on every engagement - bug fixes, small tweaks, the second-guesses that always come up post-launch. After that, we either hand off cleanly or you put us on a retainer.',
       },
       {
         q: 'Do you do hosting?',
-        a: 'We do not host long-term, but we set up your hosting on launch — Vercel, Netlify, your own server. Hosting fees are yours; we make sure they are reasonable (usually $20 – $200 / month depending on traffic).',
+        a: 'We do not host long-term, but we set up your hosting on launch - Vercel, Netlify, your own server. Hosting fees are yours; we make sure they are reasonable (usually $20 - $200 / month depending on traffic).',
       },
       {
         q: 'Can my team update the site?',
-        a: 'Yes. Every site ships with a CMS for the content you actually update — blog, team, FAQs, services. We train your team on the CMS during week six.',
+        a: 'Yes. Every site ships with a CMS for the content you actually update - blog, team, FAQs, services. We train your team on the CMS during week six.',
       },
       {
         q: 'What if I want changes later?',
-        a: 'We offer a monthly retainer for ongoing updates after the 30-day post-launch window. It covers up to 3 major tweaks per month — think new sections, design changes, integrations, copy overhauls — plus unlimited minor fixes (typos, image swaps, link updates). Month-to-month, cancel anytime, no minimum term. If you only need work occasionally, we also bill by the hour with a written estimate before anything starts.',
+        a: 'We offer a monthly retainer for ongoing updates after the 30-day post-launch window. It covers up to 3 major tweaks per month - think new sections, design changes, integrations, copy overhauls - plus unlimited minor fixes (typos, image swaps, link updates). Month-to-month, cancel anytime, no minimum term. If you only need work occasionally, we also bill by the hour with a written estimate before anything starts.',
       },
       {
         q: 'How does the retainer work?',

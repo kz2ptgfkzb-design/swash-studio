@@ -4,12 +4,12 @@ import { BriefIntakeForm } from '@/components/BriefIntakeForm';
 export const metadata = {
   title: 'Start a brief · Swash',
   description:
-    'Five minutes. Tell us about the business, the build, and the budget. Within 48 hours we send a video demo of your site — request changes from there.',
+    'Five minutes. Tell us about the business, the build, and the budget. Within 48 hours we send a video demo of your site - request changes from there.',
 };
 
 const PROMISES = [
   { title: 'Video demo in 48 hours', body: 'A real, working preview of your site. Recorded walkthrough, lands in your inbox.' },
-  { title: 'Request changes, free', body: 'Watch the demo, send back notes. We revise — no extra cost, no call needed.' },
+  { title: 'Request changes, free', body: 'Watch the demo, send back notes. We revise - no extra cost, no call needed.' },
   { title: 'Walk away anytime', body: 'You owe nothing for the brief, the demo, or the revisions.' },
   { title: 'Skilled in-house team', body: 'Web developers and brand designers on staff. No subcontractors, no offshoring.' },
 ];
@@ -32,7 +32,7 @@ export default function BriefPage() {
               <p className="text-pretty text-base leading-relaxed text-ash-500">
                 Five steps, about five minutes. Within forty-eight hours
                 we send a <span className="text-ink-700">video demo of
-                your site</span> — a real, working preview. Watch it,
+                your site</span> - a real, working preview. Watch it,
                 send back any changes you want. No call required.
               </p>
             </div>

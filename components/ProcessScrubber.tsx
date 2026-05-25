@@ -9,7 +9,7 @@ const STAGES = [
     title: 'Brief',
     line: 'Five minutes. No call required.',
     body:
-      'A structured form on industry, goals, features, timeline, budget, and references you love. Open notes for the things that do not fit into chips. Submit and forget — we read every line the same day.',
+      'A structured form on industry, goals, features, timeline, budget, and references you love. Open notes for the things that do not fit into chips. Submit and forget - we read every line the same day.',
     accent: '#C8FE3D',
     glyph: 'B',
   },
@@ -18,7 +18,7 @@ const STAGES = [
     title: 'Video demo',
     line: 'In your inbox within 48 hours.',
     body:
-      'We build a real, working preview of your site — designed, coded, hosted on a private URL — and send a recorded walkthrough explaining every choice. Not a deck. The actual thing. Click through the live link after.',
+      'We build a real, working preview of your site - designed, coded, hosted on a private URL - and send a recorded walkthrough explaining every choice. Not a deck. The actual thing. Click through the live link after.',
     accent: '#FFC247',
     glyph: '▶',
   },
@@ -27,7 +27,7 @@ const STAGES = [
     title: 'Request changes',
     line: 'Reply with notes. We revise.',
     body:
-      'Text, voice memo, scribbled screenshot — however you think. Each revision round turns in 24 hours with a fresh recording. Repeat until the demo lands. No call required, no cost, no pressure.',
+      'Text, voice memo, scribbled screenshot - however you think. Each revision round turns in 24 hours with a fresh recording. Repeat until the demo lands. No call required, no cost, no pressure.',
     accent: '#FF5C44',
     glyph: '↺',
   },
@@ -102,10 +102,10 @@ export function ProcessScrubber() {
         />
 
         <div className="container-wide relative grid h-full grid-cols-12 items-center gap-8 py-24">
-          {/* LEFT — copy */}
+          {/* LEFT - copy */}
           <div className="col-span-12 lg:col-span-6">
             <div className="mb-10 flex items-baseline gap-4">
-              <span className="eyebrow">— how we build</span>
+              <span className="eyebrow">- how we build</span>
               <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ash-400">
                 {String(active + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
               </span>
@@ -123,7 +123,7 @@ export function ProcessScrubber() {
               <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700">
                 {stage.title}
                 <span className="block text-display-md italic text-ash-500">
-                  — {stage.line}
+                  - {stage.line}
                 </span>
               </h2>
               <p className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-ash-500">
@@ -158,7 +158,7 @@ export function ProcessScrubber() {
             </ul>
           </div>
 
-          {/* RIGHT — visual */}
+          {/* RIGHT - visual */}
           <div className="col-span-12 lg:col-span-5 lg:col-start-8">
             <div className="relative aspect-square w-full max-w-[560px]">
               {/* Pulse halo */}
@@ -240,7 +240,7 @@ function StageMockup({ index, accent }: { index: number; accent: string }) {
   }
 }
 
-/* Stage 01 — Brief: a glimpse of the form, 5-minute promise */
+/* Stage 01 - Brief: a glimpse of the form, 5-minute promise */
 function BriefFormMockup({ accent }: { accent: string }) {
   const chips = ['Home services', 'Restaurant', 'SaaS', 'Real estate', 'DTC'];
   return (
@@ -294,7 +294,7 @@ function BriefFormMockup({ accent }: { accent: string }) {
   );
 }
 
-/* Stage 02 — Video demo: a video player with scrubber and timestamp */
+/* Stage 02 - Video demo: a video player with scrubber and timestamp */
 function VideoDemoMockup({ accent }: { accent: string }) {
   return (
     <div className="flex h-full w-full flex-col gap-3 rounded-xl border border-hairline bg-paper-100/85 p-4 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.7)]">
@@ -362,7 +362,7 @@ function VideoDemoMockup({ accent }: { accent: string }) {
   );
 }
 
-/* Stage 03 — Change requests: a reply thread with voice memo */
+/* Stage 03 - Change requests: a reply thread with voice memo */
 function ChangeRequestsMockup({ accent }: { accent: string }) {
   return (
     <div className="flex h-full w-full flex-col gap-2.5 rounded-xl border border-hairline bg-paper-100/85 p-4 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.7)]">
@@ -378,7 +378,7 @@ function ChangeRequestsMockup({ accent }: { accent: string }) {
       {/* Their reply with voice memo */}
       <div className="rounded-lg border border-hairline bg-paper-200/40 p-3">
         <p className="text-[11px] text-ink-700">
-          Love the hero — can the gallery be 3 columns? Also softer photography on the about page.
+          Love the hero - can the gallery be 3 columns? Also softer photography on the about page.
         </p>
         {/* Voice memo */}
         <div
@@ -412,7 +412,7 @@ function ChangeRequestsMockup({ accent }: { accent: string }) {
           <span className="font-mono text-[9px] uppercase tracking-wider text-ash-500">Swash · revised</span>
         </div>
         <p className="mt-2 text-[11px] text-ink-700">
-          New demo coming in 24h — gallery now 3-col, photography pass on the about page. We&apos;ll send a fresh recording.
+          New demo coming in 24h - gallery now 3-col, photography pass on the about page. We&apos;ll send a fresh recording.
         </p>
       </div>
 
@@ -426,7 +426,7 @@ function ChangeRequestsMockup({ accent }: { accent: string }) {
   );
 }
 
-/* Stage 04 — Brand & build: palette + type + components */
+/* Stage 04 - Brand & build: palette + type + components */
 function BrandSystemMockup({ accent }: { accent: string }) {
   return (
     <div className="flex h-full w-full flex-col gap-3 rounded-xl border border-hairline bg-paper-100/85 p-4 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.7)]">
@@ -483,7 +483,7 @@ function BrandSystemMockup({ accent }: { accent: string }) {
   );
 }
 
-/* Stage 05 — Motion: keyframe timeline + easing curve */
+/* Stage 05 - Motion: keyframe timeline + easing curve */
 function MotionTimelineMockup({ accent }: { accent: string }) {
   return (
     <div className="flex h-full w-full flex-col gap-3 rounded-xl border border-hairline bg-paper-100/85 p-4 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.7)]">
@@ -555,7 +555,7 @@ function MotionTimelineMockup({ accent }: { accent: string }) {
   );
 }
 
-/* Stage 06 — Ship: launched status with sparkline */
+/* Stage 06 - Ship: launched status with sparkline */
 function LaunchedMockup({ accent }: { accent: string }) {
   return (
     <div className="flex h-full w-full flex-col gap-3 rounded-xl border border-hairline bg-paper-100/85 p-4 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.7)]">

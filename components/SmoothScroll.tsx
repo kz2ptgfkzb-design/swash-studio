@@ -12,7 +12,7 @@ export function SmoothScroll() {
 
     // Lenis is only used here for programmatic smooth scrolling (chapter
     // nav, in-page anchors). Wheel + touch use the browser's native
-    // scrolling — it's GPU-accelerated, 120Hz-capable, and never blocks
+    // scrolling - it's GPU-accelerated, 120Hz-capable, and never blocks
     // on a JS frame. Mixing in JS-driven wheel smoothing was the source
     // of the "skippy" feel.
     const lenis = new Lenis({

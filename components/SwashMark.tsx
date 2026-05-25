@@ -6,9 +6,9 @@ import { cn } from '@/lib/utils';
 type Variant = 'default' | 'ink' | 'paper' | 'red' | 'gold' | 'lime';
 
 const PALETTE: Record<Variant, string> = {
-  default: '#F4EEDF',  // bone cream — main mark on dark bg
+  default: '#F4EEDF',  // bone cream - main mark on dark bg
   ink:     '#F4EEDF',  // alias
-  paper:   '#0A0908',  // dark mark — for light cards
+  paper:   '#0A0908',  // dark mark - for light cards
   red:     '#FF5C44',
   gold:    '#FFC247',
   lime:    '#C8FE3D',
@@ -89,7 +89,7 @@ export function SwashMark({
         }}
       />
 
-      {/* Signature dot — the period after the swash */}
+      {/* Signature dot - the period after the swash */}
       <motion.circle
         cx="218"
         cy="148"

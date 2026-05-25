@@ -43,7 +43,7 @@ export function BriefCtaSection() {
               <Reveal delay={2}>
                 <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-ash-500">
                   Five minutes of writing on your end. A <span className="text-ink-700">video demo of your site</span>
-                  {' '}in your inbox within 48 hours — the actual page,
+                  {' '}in your inbox within 48 hours - the actual page,
                   built and hosted. Watch it, request changes. Pay
                   nothing until you sign off.
                 </p>
@@ -55,7 +55,7 @@ export function BriefCtaSection() {
                 <ul className="space-y-3 text-sm text-ash-500">
                   {[
                     'Recorded video demo of your site in 48 hours',
-                    'Request changes — we revise until you sign off',
+                    'Request changes - we revise until you sign off',
                     'Brand, site, and motion in one engagement',
                     'Pay nothing until you approve the build',
                   ].map((b) => (

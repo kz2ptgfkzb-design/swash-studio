@@ -4,7 +4,7 @@ export default function WorkNotFound() {
   return (
     <section className="container-page grid min-h-[70vh] place-items-center text-center">
       <div>
-        <p className="eyebrow">404 — Not in the archive</p>
+        <p className="eyebrow">404 - Not in the archive</p>
         <h1 className="mt-6 font-display text-display-xl text-ink-700">
           That brief isn&rsquo;t
           <br />

@@ -35,8 +35,8 @@ export const WORK: WorkItem[] = [
       challenge:
         'Apex had been a referral-only commercial HVAC shop for fifteen years. Two new competitors moved into the metro running heavy local SEO, and the phone slowed. The old site was a 2014 template with no clear service hierarchy and a contact form that emailed an inbox no one read.',
       approach: [
-        'Audited the local SEO landscape — every competitor, every search term, every gap.',
-        'Rebuilt the brand voice around "no nonsense, on time" — leaving the warmth in the wordmark and the proof in the copy.',
+        'Audited the local SEO landscape - every competitor, every search term, every gap.',
+        'Rebuilt the brand voice around "no nonsense, on time" - leaving the warmth in the wordmark and the proof in the copy.',
         'Wrote service pages that target the exact terms commercial property managers search.',
         'Wired the quote form to the dispatcher\'s phone, with SMS confirmations either way.',
       ],
@@ -69,11 +69,11 @@ export const WORK: WorkItem[] = [
     metric: { value: '42%', label: 'AOV lift, 90 days' },
     caseStudy: {
       challenge:
-        'Saltwater had a loud, surf-shop aesthetic that no longer matched the way their customers shopped. Conversion was healthy but AOV was stuck — shoppers bought a single shirt and bounced. They wanted to feel less like a tee brand and more like a coastal house brand.',
+        'Saltwater had a loud, surf-shop aesthetic that no longer matched the way their customers shopped. Conversion was healthy but AOV was stuck - shoppers bought a single shirt and bounced. They wanted to feel less like a tee brand and more like a coastal house brand.',
       approach: [
         'Toned the palette down to driftwood, salt, and a single deep ink-red.',
-        'Replaced the grid PDP with a long-scroll story format — fabric, fit, where it was photographed.',
-        'Built cross-sell into the PDP narrative — pair this shirt with the trunks photographed beside it.',
+        'Replaced the grid PDP with a long-scroll story format - fabric, fit, where it was photographed.',
+        'Built cross-sell into the PDP narrative - pair this shirt with the trunks photographed beside it.',
         'Rewrote the welcome and abandoned-cart sequences in a quieter, more confident voice.',
       ],
       outcome:
@@ -107,8 +107,8 @@ export const WORK: WorkItem[] = [
       challenge:
         'Kilncraft was opening their second location and rebranding from a casual cafe into a destination bakehouse. The old brand felt indistinguishable from twelve other neighborhood spots. The new brand needed to land with food press AND walk-in customers in the same week.',
       approach: [
-        'Brand built around the rhythm of a wood-fired kiln — slow heat, deliberate cooling, repeat.',
-        'Site designed as a quiet flagship — one signature loaf featured per week, photographed by the team.',
+        'Brand built around the rhythm of a wood-fired kiln - slow heat, deliberate cooling, repeat.',
+        'Site designed as a quiet flagship - one signature loaf featured per week, photographed by the team.',
         'Press kit built into the site with one-click downloads for editors.',
         'Reservation flow that respects the host-stand workflow, not a generic OpenTable embed.',
       ],
@@ -143,7 +143,7 @@ export const WORK: WorkItem[] = [
       challenge:
         'Tidemark wanted the brand of a national luxury brokerage on the budget of a four-agent boutique. The competition was either too corporate or too vintage; nothing felt current AND credible at the price point Tidemark sat at.',
       approach: [
-        'Brand built around the typography of a great hotel — quiet, considered, slightly editorial.',
+        'Brand built around the typography of a great hotel - quiet, considered, slightly editorial.',
         'Custom property page layout with photographer credits and neighborhood notes.',
         'Agent profiles that feel like staff pages at a magazine, not Realtor.com.',
         'CMS designed so the agents can publish a new listing in under three minutes.',
@@ -215,10 +215,10 @@ export const WORK: WorkItem[] = [
       challenge:
         'Mira was a one-product founder-led skincare brand going from Instagram to a Sephora endcap in six months. The brand had to read as credible to a beauty buyer AND personal to a founder-loyal customer. Two audiences, one site, no compromises.',
       approach: [
-        'Brand foundation built around the founder\'s point of view — ingredient-led, slowly built.',
-        'PDP designed around what a chemist would want to see — full ingredient breakdown, sourcing, why each one.',
+        'Brand foundation built around the founder\'s point of view - ingredient-led, slowly built.',
+        'PDP designed around what a chemist would want to see - full ingredient breakdown, sourcing, why each one.',
         'Founder narrative woven through the site without it becoming a memoir.',
-        'A waitlist flow honest about timing — no fake urgency, no countdown timer theater.',
+        'A waitlist flow honest about timing - no fake urgency, no countdown timer theater.',
       ],
       outcome:
         '11k pre-launch waitlist. Sephora buyer cited the brand as a key factor in shelf placement. Launch sold through first allocation in 11 days.',
@@ -277,8 +277,8 @@ export const FEATURES_NEEDED = [
 
 export const TIMELINES = [
   { id: 'asap', label: 'ASAP', hint: 'Under 2 weeks' },
-  { id: '2-4', label: '2 – 4 weeks', hint: 'Quick turn' },
-  { id: '1-2m', label: '1 – 2 months', hint: 'Standard pace' },
+  { id: '2-4', label: '2 - 4 weeks', hint: 'Quick turn' },
+  { id: '1-2m', label: '1 - 2 months', hint: 'Standard pace' },
   { id: 'flex', label: 'Flexible', hint: "We'll move when it's right" },
 ];
 
@@ -286,12 +286,12 @@ export const BUDGETS = [
   { id: 'starter', label: 'Starter', hint: 'A clean, single-page site to get going' },
   { id: 'core', label: 'Core', hint: 'Multi-page, branded, set up for growth' },
   { id: 'studio', label: 'Studio', hint: 'A full brand + site + motion system' },
-  { id: 'flagship', label: 'Flagship', hint: 'A flagship build — no ceiling' },
+  { id: 'flagship', label: 'Flagship', hint: 'A flagship build - no ceiling' },
   { id: 'unsure', label: 'Not sure yet', hint: "Help us figure it out" },
 ];
 
 export const BRAND_STATUS = [
-  { id: 'full', label: 'Full brand', hint: 'Logo, palette, type — locked' },
+  { id: 'full', label: 'Full brand', hint: 'Logo, palette, type - locked' },
   { id: 'logo', label: 'Logo only', hint: 'A mark, no system yet' },
   { id: 'wip', label: 'Work in progress', hint: 'Halfway there' },
   { id: 'scratch', label: 'From scratch', hint: 'You decide everything' },

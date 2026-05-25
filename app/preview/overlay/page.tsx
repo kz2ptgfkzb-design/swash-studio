@@ -141,7 +141,7 @@ function OverlayHero() {
             </h1>
             <p className="mt-7 max-w-lg text-pretty text-lg leading-relaxed text-[#0A0A0A]/70">
               Overlay is the analytics tool engineers reach for first.
-              Funnels, retention, session replay — wired to your warehouse,
+              Funnels, retention, session replay - wired to your warehouse,
               priced like infrastructure, not enterprise software.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -372,7 +372,7 @@ function OverlayFeatures() {
           </div>
           <p className="md:col-span-5 text-pretty text-base leading-relaxed text-[#0A0A0A]/65">
             Most analytics tools are dashboards with a SQL editor bolted
-            on. Overlay starts with the SQL editor — and gives you
+            on. Overlay starts with the SQL editor - and gives you
             dashboards, replay, and experiments built on the same engine.
           </p>
         </div>
@@ -396,7 +396,7 @@ function OverlayHow() {
     {
       n: '01',
       title: 'Drop the snippet.',
-      body: 'One npm install, one line of code. Or load it via script tag — your call.',
+      body: 'One npm install, one line of code. Or load it via script tag - your call.',
       code: `npm i @overlay/sdk\n\nimport { track } from '@overlay/sdk';\ntrack('checkout_started', { plan: 'pro' });`,
     },
     {
@@ -596,7 +596,7 @@ function OverlayQuote() {
             </p>
             <p className="mt-8 max-w-[28ch] text-balance text-[clamp(1.75rem,3.6vw,3rem)] leading-[1.16] tracking-tight">
               &ldquo;We replaced three tools with Overlay in a weekend. Our
-              engineers stopped asking the data team for funnels — they
+              engineers stopped asking the data team for funnels - they
               just answer the questions themselves now.&rdquo;
             </p>
             <div className="mt-8 flex items-center gap-4">
@@ -630,7 +630,7 @@ function OverlayCta() {
         </h2>
         <p className="mx-auto mt-7 max-w-md text-base leading-relaxed text-[#F8F6F2]/65">
           Hobby tier is free forever. Team tier comes with a 14-day
-          trial — no card. Cancel any time.
+          trial - no card. Cancel any time.
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <a

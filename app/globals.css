@@ -15,7 +15,7 @@
     --lime-deep: #A8DA1F;
     --ink-red: #FF5C44;
     --gold: #FFC247;
-    /* Published by AmbientFluid each frame — current dominant smoke color.
+    /* Published by AmbientFluid each frame - current dominant smoke color.
        Components (CursorTrail, etc.) read this to sync. */
     --ambient-color: 200 254 61;
   }
@@ -33,7 +33,7 @@
   }
 
   body {
-    /* No background — the AmbientFluid canvas paints the page on the homepage.
+    /* No background - the AmbientFluid canvas paints the page on the homepage.
        Other pages fall back to the html root paper color. */
     color: var(--ink);
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;

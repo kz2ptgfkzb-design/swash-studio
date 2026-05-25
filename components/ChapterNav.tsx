@@ -34,7 +34,7 @@ export function ChapterNav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // IntersectionObserver — set the active chapter as sections cross center
+  // IntersectionObserver - set the active chapter as sections cross center
   useEffect(() => {
     const sections = CHAPTERS
       .map(c => document.getElementById(c.id))

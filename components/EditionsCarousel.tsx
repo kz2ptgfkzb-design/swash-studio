@@ -75,7 +75,7 @@ const EDITIONS: Edition[] = [
 ];
 
 /**
- * Swash Editions — keyboard-navigable carousel of demo brands.
+ * Swash Editions - keyboard-navigable carousel of demo brands.
  * Inspired by Shopify Editions' theme gallery.
  *
  *  - Scroll-snap horizontal carousel
@@ -145,7 +145,7 @@ export function EditionsCarousel() {
         {/* Header row */}
         <div className="grid items-end gap-10 md:grid-cols-12">
           <div className="md:col-span-7">
-            <p className="eyebrow">— Swash Editions · Summer &apos;26</p>
+            <p className="eyebrow">- Swash Editions · Summer &apos;26</p>
             <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
               Four brands.
               <br />
@@ -154,7 +154,7 @@ export function EditionsCarousel() {
           </div>
           <div className="md:col-span-4 md:col-start-9">
             <p className="text-pretty text-base leading-relaxed text-ash-500">
-              A curated set of demo brands shipped this quarter — plumber,
+              A curated set of demo brands shipped this quarter - plumber,
               wood-fired restaurant, SaaS analytics, boutique brokerage.
               Each lives at its own URL. Click in to walk through.
             </p>
@@ -319,7 +319,7 @@ function EditionCard({
           </div>
         </div>
 
-        {/* Bottom rail — palette + meta + CTA */}
+        {/* Bottom rail - palette + meta + CTA */}
         <div
           className="flex flex-wrap items-center justify-between gap-5 px-6 py-5 md:px-8"
           style={{ borderTop: `1px solid ${edition.fg}15` }}

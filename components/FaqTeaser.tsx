@@ -9,23 +9,23 @@ import { cn } from '@/lib/utils';
 const TOP_FAQ = [
   {
     q: 'What happens in the first 48 hours?',
-    a: 'We read your brief the same day. Within 48 hours we send a recorded video walkthrough of a real, working preview of your site — designed, coded, hosted on a private link. Watch it, click through, send back any changes.',
+    a: 'We read your brief the same day. Within 48 hours we send a recorded video walkthrough of a real, working preview of your site - designed, coded, hosted on a private link. Watch it, click through, send back any changes.',
   },
   {
     q: 'What if I want changes to the demo?',
-    a: 'Send notes in any format — text, voice memo, scribbled screenshots. Each revision turns in 24 hours with a fresh recording. Unlimited rounds until you sign off. No call required, no extra cost.',
+    a: 'Send notes in any format - text, voice memo, scribbled screenshots. Each revision turns in 24 hours with a fresh recording. Unlimited rounds until you sign off. No call required, no extra cost.',
   },
   {
     q: "Why don't you publish prices?",
-    a: 'A fixed tag forces every brief into the same box. We scope to the brief. Tell us your budget; we will tell you what fits — never quietly stretching past it.',
+    a: 'A fixed tag forces every brief into the same box. We scope to the brief. Tell us your budget; we will tell you what fits - never quietly stretching past it.',
   },
   {
     q: 'Who actually does the work?',
-    a: 'A skilled in-house team of web developers and brand designers. No subcontractors, no offshoring, no junior swap-ins — the same team from kickoff to launch.',
+    a: 'A skilled in-house team of web developers and brand designers. No subcontractors, no offshoring, no junior swap-ins - the same team from kickoff to launch.',
   },
   {
     q: 'Can I get ongoing updates after launch?',
-    a: '30 days of polish included on every engagement. After that, we offer a monthly retainer covering up to 3 major tweaks per month (new sections, design changes, integrations) plus unlimited minor fixes. Month-to-month, cancel anytime. Or hand off cleanly — your call.',
+    a: '30 days of polish included on every engagement. After that, we offer a monthly retainer covering up to 3 major tweaks per month (new sections, design changes, integrations) plus unlimited minor fixes. Month-to-month, cancel anytime. Or hand off cleanly - your call.',
   },
 ];
 
@@ -49,7 +49,7 @@ export function FaqTeaser() {
             </Reveal>
             <Reveal delay={2}>
               <p className="mt-6 max-w-sm text-pretty text-base leading-relaxed text-ash-500">
-                More on the full FAQ — grouped by pricing, process,
+                More on the full FAQ - grouped by pricing, process,
                 after-launch, and fit.
               </p>
               <Link href="/faq" className="link-arrow mt-6 text-sm" data-cursor="link">

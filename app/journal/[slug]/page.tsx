@@ -186,7 +186,7 @@ function BlockRenderer({ block }: { block: JournalBlock }) {
           </blockquote>
           {block.cite && (
             <figcaption className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-ash-400">
-              — {block.cite}
+              - {block.cite}
             </figcaption>
           )}
         </figure>

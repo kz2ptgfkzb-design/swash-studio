@@ -51,7 +51,7 @@ export function PricingPhilosophy() {
                 give you a fee that reflects the project, not a tier sheet.
               </p>
               <p className="mt-4 text-pretty text-base leading-relaxed text-ash-500">
-                That said — here&rsquo;s a rough map of the shapes a
+                That said - here&rsquo;s a rough map of the shapes a
                 Swash project tends to take.
               </p>
             </Reveal>

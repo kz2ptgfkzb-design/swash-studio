@@ -116,7 +116,7 @@ function EmberHero() {
             style={{ fontFamily: 'var(--font-mono)' }}
             className="text-[11px] uppercase tracking-[0.32em] text-[#FFB89A]"
           >
-            Est. 2019 · Wood-fired · Open Wed – Sun
+            Est. 2019 · Wood-fired · Open Wed - Sun
           </p>
           <h1
             style={{ fontFamily: 'var(--font-editorial)' }}
@@ -128,7 +128,7 @@ function EmberHero() {
           </h1>
           <p className="mt-10 max-w-md text-pretty text-lg leading-relaxed text-[#F5ECD7]/85">
             A neighborhood bakehouse and table in the city&rsquo;s
-            Outer Sunset — wood-fired sourdough by morning, a six-seat
+            Outer Sunset - wood-fired sourdough by morning, a six-seat
             tasting at dusk, natural wine all day.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -171,7 +171,7 @@ function EmberHero() {
                 style={{ fontFamily: 'var(--font-mono)' }}
                 className="text-[9px] uppercase tracking-[0.28em] text-[#FFB89A]"
               >
-                Today&rsquo;s bake — 6:00 a.m.
+                Today&rsquo;s bake - 6:00 a.m.
               </p>
               <p
                 style={{ fontFamily: 'var(--font-editorial)' }}
@@ -216,7 +216,7 @@ function EmberPhilosophy() {
           style={{ fontFamily: 'var(--font-mono)' }}
           className="text-[11px] uppercase tracking-[0.32em] text-[#C8462C]"
         >
-          — our way of cooking —
+          - our way of cooking -
         </p>
         <p
           style={{ fontFamily: 'var(--font-editorial)' }}
@@ -241,7 +241,7 @@ function EmberGallery() {
     { src: PHOTOS.ember.fire,        label: 'The oven',         time: 'always on' },
     { src: PHOTOS.ember.pasta,       label: 'Pasta of the day', time: '4:00 p.m.' },
     { src: PHOTOS.ember.plate,       label: 'Tonight’s plate', time: '18:30' },
-    { src: PHOTOS.ember.chef,        label: 'Hana, in the kitchen', time: 'Wed – Sun' },
+    { src: PHOTOS.ember.chef,        label: 'Hana, in the kitchen', time: 'Wed - Sun' },
     { src: PHOTOS.ember.interior,    label: 'The counter',      time: 'six seats' },
   ];
 
@@ -321,7 +321,7 @@ function EmberMenu() {
     },
     {
       heading: 'The table',
-      sub: 'Six seats · Wed – Sun, 18:30 seating · Tasting changes weekly',
+      sub: 'Six seats · Wed - Sun, 18:30 seating · Tasting changes weekly',
       items: [
         { name: 'Beet &amp; whey, charred greens', desc: 'Local beets cooked in the embers.', price: '22' },
         { name: 'Pasta of the day', desc: 'Hand-rolled at 4 p.m.', price: '28' },
@@ -497,13 +497,13 @@ function EmberHours() {
           </div>
 
           <div className="grid grid-cols-2 gap-y-5 gap-x-8 border-t border-[#1A0F08]/15 pt-6">
-            <p style={{ fontFamily: 'var(--font-mono)' }} className="text-[10px] uppercase tracking-[0.22em] text-[#1A0F08]/55">Wed – Fri</p>
-            <p>7:00 — 14:00 · bakery</p>
-            <p style={{ fontFamily: 'var(--font-mono)' }} className="text-[10px] uppercase tracking-[0.22em] text-[#1A0F08]/55">Wed – Sun</p>
-            <p>18:30 — 22:30 · table</p>
-            <p style={{ fontFamily: 'var(--font-mono)' }} className="text-[10px] uppercase tracking-[0.22em] text-[#1A0F08]/55">Sat – Sun</p>
-            <p>8:00 — 15:00 · bakery + brunch</p>
-            <p style={{ fontFamily: 'var(--font-mono)' }} className="text-[10px] uppercase tracking-[0.22em] text-[#1A0F08]/55">Mon – Tue</p>
+            <p style={{ fontFamily: 'var(--font-mono)' }} className="text-[10px] uppercase tracking-[0.22em] text-[#1A0F08]/55">Wed - Fri</p>
+            <p>7:00 - 14:00 · bakery</p>
+            <p style={{ fontFamily: 'var(--font-mono)' }} className="text-[10px] uppercase tracking-[0.22em] text-[#1A0F08]/55">Wed - Sun</p>
+            <p>18:30 - 22:30 · table</p>
+            <p style={{ fontFamily: 'var(--font-mono)' }} className="text-[10px] uppercase tracking-[0.22em] text-[#1A0F08]/55">Sat - Sun</p>
+            <p>8:00 - 15:00 · bakery + brunch</p>
+            <p style={{ fontFamily: 'var(--font-mono)' }} className="text-[10px] uppercase tracking-[0.22em] text-[#1A0F08]/55">Mon - Tue</p>
             <p>Closed (the oven rests too)</p>
           </div>
 
@@ -551,7 +551,7 @@ function EmberReservations() {
 
         <form
           className="md:col-span-7 grid gap-4"
-          onSubmit={(e) => { e.preventDefault(); alert('Demo only — wire to OpenTable or your reservation backend.'); }}
+          onSubmit={(e) => { e.preventDefault(); alert('Demo only - wire to OpenTable or your reservation backend.'); }}
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <input

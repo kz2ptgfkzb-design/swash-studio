@@ -5,7 +5,7 @@ import { Resend } from 'resend';
  * POST /api/brief
  * Receives the multi-step brief form submission and emails it to the studio
  * inbox via Resend. Falls back to a console-log in dev if RESEND_API_KEY
- * is unset — so the form still works locally without configuration.
+ * is unset - so the form still works locally without configuration.
  *
  * Required env vars (prod):
  *   RESEND_API_KEY    e.g. re_XXXXXXXXXX (from https://resend.com)
@@ -42,7 +42,7 @@ function formatRefs(refs?: Reference[]) {
   if (!refs || refs.length === 0) return '';
   return refs
     .filter(r => (r.url ?? '').trim().length > 0)
-    .map(r => (r.note ? `${r.url} — ${r.note}` : r.url ?? ''))
+    .map(r => (r.note ? `${r.url} - ${r.note}` : r.url ?? ''))
     .join('\n');
 }
 
@@ -61,7 +61,7 @@ function row(label: string, value?: string | string[]) {
 }
 
 function buildEmail(d: Brief) {
-  const subject = `New brief — ${d.projectName ?? 'Unnamed'} · ${d.industry ?? 'unknown industry'}`;
+  const subject = `New brief - ${d.projectName ?? 'Unnamed'} · ${d.industry ?? 'unknown industry'}`;
   const html = `<!DOCTYPE html>
 <html><body style="margin:0;padding:32px;background:#F7F1E2;font-family:-apple-system, system-ui, sans-serif;">
   <table cellpadding="0" cellspacing="0" border="0" style="max-width:640px;margin:0 auto;background:#FBF6E8;border:1px solid #E1DAC4;border-radius:12px;overflow:hidden;">
@@ -82,17 +82,17 @@ function buildEmail(d: Brief) {
       <table cellpadding="0" cellspacing="0" border="0" style="width:100%;border-collapse:collapse;">
         ${row('Industry', d.industry)}
         ${row('Project', d.projectName)}
-        ${row('Current site', d.currentSite || '—')}
+        ${row('Current site', d.currentSite || '-')}
         ${row('Goal', d.goal)}
         ${row('Features', d.features)}
         ${row('Timeline', d.timeline)}
         ${row('Budget', d.budget)}
         ${row('Brand status', d.brandStatus)}
         ${row('References', formatRefs(d.references))}
-        ${row('Notes', d.notes || '—')}
+        ${row('Notes', d.notes || '-')}
         ${row('Name', d.name)}
         ${row('Email', d.email)}
-        ${row('Phone', d.phone || '—')}
+        ${row('Phone', d.phone || '-')}
         ${row('Best reach', d.bestReach)}
       </table>
     </td></tr>
@@ -105,20 +105,20 @@ function buildEmail(d: Brief) {
 </body></html>`;
 
   const text = [
-    `New brief — ${d.projectName ?? 'Unnamed'}`,
+    `New brief - ${d.projectName ?? 'Unnamed'}`,
     '',
     `Industry: ${d.industry ?? ''}`,
-    `Current site: ${d.currentSite ?? '—'}`,
+    `Current site: ${d.currentSite ?? '-'}`,
     `Goal: ${d.goal ?? ''}`,
     `Features: ${(d.features ?? []).join(', ')}`,
     `Timeline: ${d.timeline ?? ''}`,
     `Budget: ${d.budget ?? ''}`,
     `Brand status: ${d.brandStatus ?? ''}`,
-    `References:\n${formatRefs(d.references) || '—'}`,
-    `Notes: ${d.notes ?? '—'}`,
+    `References:\n${formatRefs(d.references) || '-'}`,
+    `Notes: ${d.notes ?? '-'}`,
     '',
     `From: ${d.name ?? ''} <${d.email ?? ''}>`,
-    `Phone: ${d.phone ?? '—'}`,
+    `Phone: ${d.phone ?? '-'}`,
     `Best reach: ${d.bestReach ?? ''}`,
   ].join('\n');
 
@@ -145,7 +145,7 @@ export async function POST(req: Request) {
 
   // Dev fallback: log and succeed so the form is functional without setup.
   if (!apiKey) {
-    console.log('[brief] RESEND_API_KEY unset — logging instead of sending');
+    console.log('[brief] RESEND_API_KEY unset - logging instead of sending');
     console.log('[brief] to:', to);
     console.log('[brief] subject:', email.subject);
     console.log('[brief] data:', JSON.stringify(data, null, 2));

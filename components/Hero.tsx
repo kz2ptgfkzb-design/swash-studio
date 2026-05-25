@@ -77,7 +77,7 @@ export function Hero() {
             className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
           >
             <p className="max-w-md text-balance text-base leading-relaxed text-ash-500 md:text-lg">
-              A boutique studio that builds websites — and the brands and
+              A boutique studio that builds websites - and the brands and
               motion that go with them. We&rsquo;ve shipped for HVAC
               dispatchers, DTC skincare lines, neighborhood bakeries, and
               Series-A SaaS teams. Tell us the brief; we&rsquo;ll do the rest.

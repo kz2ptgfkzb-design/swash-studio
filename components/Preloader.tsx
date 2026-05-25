@@ -45,7 +45,7 @@ export function Preloader() {
     };
   }, []);
 
-  // Avoid hydration mismatch — preloader only renders client-side
+  // Avoid hydration mismatch - preloader only renders client-side
   if (!hasMounted) return null;
   if (pathname?.startsWith('/preview/')) return null;
 
@@ -110,7 +110,7 @@ export function Preloader() {
                 transition={{ duration: 0.4, delay: 1.4 }}
                 className="font-mono text-[10px] uppercase tracking-[0.32em] text-ash-400"
               >
-                — add a swash to it —
+                - add a swash to it -
               </motion.span>
             </motion.div>
           </div>
