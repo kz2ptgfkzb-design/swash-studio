@@ -33,15 +33,10 @@ export function Hero() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center overflow-hidden rounded-pill border border-hairline bg-paper-200/60 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 rounded-pill bg-lime-300 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-paper-100"
           >
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-ash-500">
-              <span className="h-1.5 w-1.5 rounded-full bg-ink_red-400 animate-pulse-soft" />
-              Edition · Summer &apos;26
-            </span>
-            <span className="inline-flex items-center bg-lime-300 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-paper-100">
-              Brief intake open
-            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-paper-100 animate-pulse-soft" />
+            Brief intake open
           </motion.div>
 
           <motion.span
