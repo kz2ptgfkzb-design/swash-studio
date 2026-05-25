@@ -15,6 +15,13 @@ import { Resend } from 'resend';
 
 type Reference = { url?: string; note?: string };
 
+type UploadedFile = {
+  name?: string;
+  type?: string;
+  size?: number;
+  content?: string; // base64
+};
+
 type Brief = {
   industry?: string;
   projectName?: string;
@@ -27,6 +34,10 @@ type Brief = {
   ongoingUpdates?: string;
   paymentPreference?: string;
   brandStatus?: string;
+  brandColors?: string[];
+  logo?: UploadedFile | null;
+  assets?: UploadedFile[];
+  assetsLink?: string;
   references?: Reference[];
   notes?: string;
   name?: string;
@@ -86,6 +97,64 @@ function row(label: string, value?: string | string[]) {
     </tr>`;
 }
 
+function colorRow(label: string, hexes?: string[]) {
+  if (!hexes || hexes.length === 0) return '';
+  const swatches = hexes
+    .map((h) => {
+      const safe = /^#[0-9a-fA-F]{3,8}$/.test(h) ? h : '#000000';
+      return `<span style="display:inline-block;width:18px;height:18px;border-radius:4px;background:${safe};border:1px solid rgba(0,0,0,0.1);margin-right:6px;vertical-align:middle;"></span><span style="vertical-align:middle;font-family:monospace;font-size:12px;color:#0A0A0A;margin-right:14px;">${htmlEscape(h)}</span>`;
+    })
+    .join('');
+  return `
+    <tr>
+      <td style="padding:10px 14px;border-bottom:1px solid #E1DAC4;font:11px/1 'JetBrains Mono', monospace;text-transform:uppercase;letter-spacing:0.18em;color:#6B6B65;width:160px;vertical-align:top;">
+        ${htmlEscape(label)}
+      </td>
+      <td style="padding:10px 14px;border-bottom:1px solid #E1DAC4;line-height:1.8;">
+        ${swatches}
+      </td>
+    </tr>`;
+}
+
+function attachmentRow(label: string, files: { name: string; size: number }[]) {
+  if (files.length === 0) return '';
+  const list = files
+    .map((f) => `${htmlEscape(f.name)} <span style="color:#6B6B65;font-family:monospace;font-size:11px;">(${formatBytesServer(f.size)})</span>`)
+    .join('<br />');
+  return `
+    <tr>
+      <td style="padding:10px 14px;border-bottom:1px solid #E1DAC4;font:11px/1 'JetBrains Mono', monospace;text-transform:uppercase;letter-spacing:0.18em;color:#6B6B65;width:160px;vertical-align:top;">
+        ${htmlEscape(label)}
+      </td>
+      <td style="padding:10px 14px;border-bottom:1px solid #E1DAC4;font:14px/1.5 -apple-system;color:#0A0A0A;">
+        ${list}
+        <p style="margin:6px 0 0;font:11px/1.4 'JetBrains Mono';color:#6B6B65;text-transform:uppercase;letter-spacing:0.16em;">
+          (attached to this email)
+        </p>
+      </td>
+    </tr>`;
+}
+
+function formatBytesServer(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
+
+function linkRow(label: string, url?: string) {
+  if (!url || !url.trim()) return '';
+  const safe = htmlEscape(url.trim());
+  return `
+    <tr>
+      <td style="padding:10px 14px;border-bottom:1px solid #E1DAC4;font:11px/1 'JetBrains Mono', monospace;text-transform:uppercase;letter-spacing:0.18em;color:#6B6B65;width:160px;vertical-align:top;">
+        ${htmlEscape(label)}
+      </td>
+      <td style="padding:10px 14px;border-bottom:1px solid #E1DAC4;font:14px/1.5 -apple-system, system-ui, sans-serif;">
+        <a href="${safe}" style="color:#2447FF;text-decoration:underline;word-break:break-all;">${safe}</a>
+      </td>
+    </tr>`;
+}
+
 function buildEmail(d: Brief) {
   const subject = `New brief - ${d.projectName ?? 'Unnamed'} · ${d.industry ?? 'unknown industry'}`;
   const html = `<!DOCTYPE html>
@@ -117,6 +186,10 @@ function buildEmail(d: Brief) {
         ${row('Hosting', label(HOSTING_LABEL, d.hosting))}
         ${row('Updates after launch', label(UPDATES_LABEL, d.ongoingUpdates))}
         ${row('Brand status', d.brandStatus)}
+        ${colorRow('Brand colors', d.brandColors)}
+        ${attachmentRow('Logo', d.logo && d.logo.name && d.logo.size ? [{ name: d.logo.name, size: d.logo.size }] : [])}
+        ${attachmentRow('Assets', (d.assets ?? []).filter((a): a is Required<UploadedFile> => !!a.name && !!a.size).map(a => ({ name: a.name, size: a.size })))}
+        ${linkRow('Assets link', d.assetsLink)}
         ${row('References', formatRefs(d.references))}
         ${row('Notes', d.notes || '-')}
         ${row('Name', d.name)}
@@ -146,6 +219,10 @@ function buildEmail(d: Brief) {
     `Hosting: ${label(HOSTING_LABEL, d.hosting)}`,
     `Updates after launch: ${label(UPDATES_LABEL, d.ongoingUpdates)}`,
     `Brand status: ${d.brandStatus ?? ''}`,
+    `Brand colors: ${(d.brandColors ?? []).join(', ') || '-'}`,
+    `Logo: ${d.logo?.name ?? '-'}`,
+    `Assets: ${(d.assets ?? []).map(a => a.name).join(', ') || '-'}`,
+    `Assets link: ${d.assetsLink?.trim() || '-'}`,
     `References:\n${formatRefs(d.references) || '-'}`,
     `Notes: ${d.notes ?? '-'}`,
     '',
@@ -195,6 +272,21 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, dev: true });
   }
 
+  // Build Resend attachments from uploaded files (logo + assets).
+  // Resend total email size limit is 40MB; per-file we already capped at 5MB.
+  const attachments: { filename: string; content: string }[] = [];
+  if (data.logo?.content && data.logo.name) {
+    attachments.push({
+      filename: `logo-${data.logo.name}`,
+      content: data.logo.content,
+    });
+  }
+  for (const asset of data.assets ?? []) {
+    if (asset?.content && asset.name) {
+      attachments.push({ filename: asset.name, content: asset.content });
+    }
+  }
+
   try {
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
@@ -204,6 +296,7 @@ export async function POST(req: Request) {
       subject: email.subject,
       html: email.html,
       text: email.text,
+      attachments: attachments.length > 0 ? attachments : undefined,
     });
 
     if (error) {

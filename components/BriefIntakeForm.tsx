@@ -23,6 +23,13 @@ const STEPS = [
 
 type Reference = { url: string; note: string };
 
+type UploadedFile = {
+  name: string;
+  type: string;
+  size: number;
+  content: string; // base64 (no data: prefix)
+};
+
 type Brief = {
   industry: string;
   projectName: string;
@@ -35,6 +42,10 @@ type Brief = {
   ongoingUpdates: string;
   paymentPreference: string;
   brandStatus: string;
+  brandColors: string[];
+  logo: UploadedFile | null;
+  assets: UploadedFile[];
+  assetsLink: string;
   references: Reference[];
   notes: string;
   name: string;
@@ -45,6 +56,32 @@ type Brief = {
 
 const MAX_REFS = 4;
 const EMPTY_REF: Reference = { url: '', note: '' };
+
+const MAX_ASSETS = 4;
+const MAX_FILE_BYTES = 5 * 1024 * 1024; // 5MB per file
+const ACCEPT_LOGO = 'image/png,image/jpeg,image/svg+xml,image/webp,application/pdf';
+const ACCEPT_ASSETS = 'image/*,application/pdf';
+const MAX_COLORS = 5;
+
+async function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result as string;
+      // Strip the "data:...;base64," prefix
+      const idx = result.indexOf(',');
+      resolve(idx >= 0 ? result.slice(idx + 1) : result);
+    };
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
+}
+
+function formatBytes(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
 
 const HOSTING_OPTIONS = [
   { id: 'yes',    label: 'Yes - host it for me',   hint: 'Flat monthly fee, we handle uptime, backups, security.' },
@@ -76,6 +113,10 @@ const INITIAL: Brief = {
   ongoingUpdates: '',
   paymentPreference: '',
   brandStatus: '',
+  brandColors: [],
+  logo: null,
+  assets: [],
+  assetsLink: '',
   references: [{ ...EMPTY_REF }],
   notes: '',
   name: '',
@@ -131,6 +172,63 @@ export function BriefIntakeForm() {
     });
   };
 
+  // File upload state
+  const [fileError, setFileError] = useState<string | null>(null);
+
+  const readFile = async (file: File): Promise<UploadedFile | null> => {
+    if (file.size > MAX_FILE_BYTES) {
+      setFileError(`"${file.name}" is ${formatBytes(file.size)} - over the ${formatBytes(MAX_FILE_BYTES)} limit per file.`);
+      return null;
+    }
+    try {
+      const content = await fileToBase64(file);
+      return { name: file.name, type: file.type, size: file.size, content };
+    } catch {
+      setFileError(`Could not read "${file.name}". Try a different file.`);
+      return null;
+    }
+  };
+
+  const handleLogoUpload = async (file: File | null) => {
+    setFileError(null);
+    if (!file) { setData(d => ({ ...d, logo: null })); return; }
+    const uploaded = await readFile(file);
+    if (uploaded) setData(d => ({ ...d, logo: uploaded }));
+  };
+
+  const removeLogo = () => setData(d => ({ ...d, logo: null }));
+
+  const handleAssetsUpload = async (files: FileList | null) => {
+    setFileError(null);
+    if (!files || files.length === 0) return;
+    const current = data.assets.length;
+    const room = MAX_ASSETS - current;
+    if (room <= 0) {
+      setFileError(`You've already added ${MAX_ASSETS} files. Remove one before adding another.`);
+      return;
+    }
+    const toRead = Array.from(files).slice(0, room);
+    const uploaded = (await Promise.all(toRead.map(readFile))).filter((f): f is UploadedFile => f !== null);
+    setData(d => ({ ...d, assets: [...d.assets, ...uploaded] }));
+  };
+
+  const removeAsset = (idx: number) => {
+    setData(d => ({ ...d, assets: d.assets.filter((_, i) => i !== idx) }));
+  };
+
+  // Color picker
+  const addColor = (hex: string = '#C8FE3D') => {
+    setData(d => d.brandColors.length >= MAX_COLORS ? d : { ...d, brandColors: [...d.brandColors, hex] });
+  };
+
+  const updateColor = (idx: number, hex: string) => {
+    setData(d => ({ ...d, brandColors: d.brandColors.map((c, i) => i === idx ? hex : c) }));
+  };
+
+  const removeColor = (idx: number) => {
+    setData(d => ({ ...d, brandColors: d.brandColors.filter((_, i) => i !== idx) }));
+  };
+
   const validate = (): boolean => {
     const next: Partial<Record<keyof Brief, string>> = {};
     if (step === 1) {
@@ -149,6 +247,15 @@ export function BriefIntakeForm() {
     }
     if (step === 4) {
       if (!data.brandStatus) next.brandStatus = 'Pick one.';
+      // Soft guard: total upload payload (base64) must stay under ~4MB
+      // so Vercel's serverless body limit doesn't reject the POST.
+      const totalBase64 =
+        (data.logo?.content?.length ?? 0) +
+        data.assets.reduce((sum, a) => sum + (a.content?.length ?? 0), 0);
+      if (totalBase64 > 4 * 1024 * 1024) {
+        setFileError('Your uploads are too large combined - try removing or compressing one. Total must stay under ~3MB raw.');
+        return false;
+      }
     }
     if (step === 5) {
       if (!data.name.trim()) next.name = "What's your name?";
@@ -262,6 +369,14 @@ export function BriefIntakeForm() {
                 updateReference={updateReference}
                 addReference={addReference}
                 removeReference={removeReference}
+                fileError={fileError}
+                handleLogoUpload={handleLogoUpload}
+                removeLogo={removeLogo}
+                handleAssetsUpload={handleAssetsUpload}
+                removeAsset={removeAsset}
+                addColor={addColor}
+                updateColor={updateColor}
+                removeColor={removeColor}
               />
             )}
             {step === 5 && (
@@ -613,6 +728,14 @@ function Step4({
   updateReference,
   addReference,
   removeReference,
+  fileError,
+  handleLogoUpload,
+  removeLogo,
+  handleAssetsUpload,
+  removeAsset,
+  addColor,
+  updateColor,
+  removeColor,
 }: {
   data: Brief;
   update: <K extends keyof Brief>(k: K, v: Brief[K]) => void;
@@ -620,13 +743,21 @@ function Step4({
   updateReference: (idx: number, patch: Partial<Reference>) => void;
   addReference: () => void;
   removeReference: (idx: number) => void;
+  fileError: string | null;
+  handleLogoUpload: (file: File | null) => void;
+  removeLogo: () => void;
+  handleAssetsUpload: (files: FileList | null) => void;
+  removeAsset: (idx: number) => void;
+  addColor: (hex?: string) => void;
+  updateColor: (idx: number, hex: string) => void;
+  removeColor: (idx: number) => void;
 }) {
   return (
     <div className="space-y-10">
       <StepHeading
-        eyebrow="04 - Brand & details"
+        eyebrow="04 - Brand & assets"
         title="Where's the brand at?"
-        sub="So we know whether to plug into what you have or build it from scratch."
+        sub="Tell us what you have. Drop in your logo, brand colors, any references or work samples that give us a feel for you."
       />
 
       <div>
@@ -638,6 +769,135 @@ function Step4({
           errorMsg={errors.brandStatus}
         />
       </div>
+
+      {/* Brand colors */}
+      <div>
+        <div className="flex items-baseline justify-between">
+          <label className="label-field">Brand colors</label>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ash-400">
+            optional · {data.brandColors.length} / {MAX_COLORS}
+          </span>
+        </div>
+        <p className="-mt-1 mb-4 text-xs text-ash-400">
+          Pick any hex you want - no fixed palette. Drop in what your brand already uses, or what you wish it did.
+        </p>
+
+        <div className="flex flex-wrap items-center gap-2">
+          {data.brandColors.map((hex, i) => (
+            <ColorSwatch
+              key={i}
+              hex={hex}
+              onChange={(v) => updateColor(i, v)}
+              onRemove={() => removeColor(i)}
+            />
+          ))}
+          {data.brandColors.length < MAX_COLORS && (
+            <button
+              type="button"
+              onClick={() => addColor()}
+              data-cursor="link"
+              className="inline-flex items-center gap-2 rounded-pill border border-hairline px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ash-500 transition-all duration-300 ease-silk hover:border-ink-700 hover:text-ink-700"
+            >
+              <span className="grid h-3.5 w-3.5 place-items-center rounded-full border border-current">
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                  <path d="M4 1v6M1 4h6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                </svg>
+              </span>
+              Add a color
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Logo upload */}
+      <div>
+        <div className="flex items-baseline justify-between">
+          <label className="label-field">Logo</label>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ash-400">
+            optional · PNG / JPG / SVG / PDF · max 5MB
+          </span>
+        </div>
+        <p className="-mt-1 mb-4 text-xs text-ash-400">
+          Drop your existing logo if you have one. Vector (SVG/PDF) preferred. Skip if you don&apos;t.
+        </p>
+
+        {data.logo ? (
+          <FilePreview
+            file={data.logo}
+            onRemove={removeLogo}
+          />
+        ) : (
+          <FileDropArea
+            id="logo-upload"
+            accept={ACCEPT_LOGO}
+            label="Click to upload your logo"
+            onFiles={(files) => handleLogoUpload(files?.[0] ?? null)}
+          />
+        )}
+      </div>
+
+      {/* Assets / work samples */}
+      <div>
+        <div className="flex items-baseline justify-between">
+          <label className="label-field">Assets &amp; inspiration</label>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ash-400">
+            optional · {data.assets.length} / {MAX_ASSETS} · max 5MB each
+          </span>
+        </div>
+        <p className="-mt-1 mb-4 text-xs text-ash-400">
+          Drop a few small files here, OR share a Drive / Dropbox / WeTransfer link below for anything bigger.
+        </p>
+
+        {data.assets.length < MAX_ASSETS && (
+          <FileDropArea
+            id="assets-upload"
+            accept={ACCEPT_ASSETS}
+            label="Click to upload images"
+            multiple
+            onFiles={handleAssetsUpload}
+          />
+        )}
+
+        {data.assets.length > 0 && (
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {data.assets.map((f, i) => (
+              <li key={i}>
+                <FilePreview file={f} onRemove={() => removeAsset(i)} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Cloud storage link - for anything too big to upload directly */}
+      <div>
+        <div className="flex items-baseline justify-between">
+          <label className="label-field" htmlFor="assetsLink">
+            Or share a link to all your assets
+          </label>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ash-400">
+            optional · best for big libraries
+          </span>
+        </div>
+        <p className="-mt-1 mb-3 text-xs text-ash-400">
+          Google Drive, Dropbox, WeTransfer, Notion - whatever folder holds your brand kit, photo library, or full asset stack. Make sure the link is set to &ldquo;anyone with the link can view.&rdquo;
+        </p>
+        <input
+          id="assetsLink"
+          type="url"
+          inputMode="url"
+          value={data.assetsLink}
+          onChange={(e) => update('assetsLink', e.target.value)}
+          placeholder="https://drive.google.com/..."
+          className="input-field"
+        />
+      </div>
+
+      {fileError && (
+        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink_red-300">
+          {fileError}
+        </p>
+      )}
 
       <div>
         <div className="flex items-baseline justify-between">
@@ -829,6 +1089,148 @@ function Step5({
           watch it, request any changes, pay nothing until you sign off.
         </p>
       </div>
+    </div>
+  );
+}
+
+/* ─── Brand color swatch ─────────────────────────────────────────── */
+
+function ColorSwatch({
+  hex,
+  onChange,
+  onRemove,
+}: {
+  hex: string;
+  onChange: (v: string) => void;
+  onRemove: () => void;
+}) {
+  return (
+    <div className="inline-flex items-center gap-2 rounded-pill border border-hairline bg-paper-200/40 py-1 pl-1 pr-2">
+      <label
+        className="relative grid h-8 w-8 cursor-pointer place-items-center overflow-hidden rounded-full border border-hairline"
+        style={{ background: hex }}
+        aria-label="Pick a color"
+      >
+        <input
+          type="color"
+          value={hex}
+          onChange={(e) => onChange(e.target.value)}
+          className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+        />
+      </label>
+      <span className="font-mono text-[11px] uppercase tracking-wider text-ink-400">
+        {hex}
+      </span>
+      <button
+        type="button"
+        onClick={onRemove}
+        aria-label="Remove color"
+        className="grid h-5 w-5 place-items-center rounded-full text-ash-500 transition-colors hover:bg-paper-200/80 hover:text-ink_red-300"
+      >
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+          <path d="M2 2l6 6M8 2l-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      </button>
+    </div>
+  );
+}
+
+/* ─── File drop area (click or drag) ─────────────────────────────── */
+
+function FileDropArea({
+  id,
+  accept,
+  label,
+  multiple = false,
+  onFiles,
+}: {
+  id: string;
+  accept: string;
+  label: string;
+  multiple?: boolean;
+  onFiles: (files: FileList | null) => void;
+}) {
+  const [dragging, setDragging] = useState(false);
+
+  return (
+    <label
+      htmlFor={id}
+      onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+      onDragLeave={() => setDragging(false)}
+      onDrop={(e) => {
+        e.preventDefault();
+        setDragging(false);
+        onFiles(e.dataTransfer.files);
+      }}
+      className={cn(
+        'flex cursor-pointer flex-col items-center justify-center gap-2 rounded-card border border-dashed px-6 py-8 text-center transition-all duration-300 ease-silk',
+        dragging
+          ? 'border-lime-300 bg-lime-300/10 text-ink-700'
+          : 'border-hairline bg-paper-50/40 text-ash-500 hover:border-lime-300/50 hover:bg-paper-200/40 hover:text-ink-700',
+      )}
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="17 8 12 3 7 8" />
+        <line x1="12" y1="3" x2="12" y2="15" />
+      </svg>
+      <span className="text-sm font-medium">{label}</span>
+      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ash-400">
+        or drag &amp; drop here
+      </span>
+      <input
+        id={id}
+        type="file"
+        accept={accept}
+        multiple={multiple}
+        onChange={(e) => onFiles(e.target.files)}
+        className="hidden"
+      />
+    </label>
+  );
+}
+
+/* ─── File preview card ──────────────────────────────────────────── */
+
+function FilePreview({
+  file,
+  onRemove,
+}: {
+  file: UploadedFile;
+  onRemove: () => void;
+}) {
+  const isImage = file.type.startsWith('image/');
+  const dataUrl = isImage ? `data:${file.type};base64,${file.content}` : null;
+
+  return (
+    <div className="flex items-center gap-3 rounded-card border border-hairline bg-paper-50/40 p-3">
+      <div className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-md border border-hairline bg-paper-200/40">
+        {dataUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={dataUrl} alt={file.name} className="h-full w-full object-cover" />
+        ) : (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-ash-500">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
+        )}
+      </div>
+      <div className="min-w-0 flex-1">
+        <p className="truncate text-sm text-ink-700">{file.name}</p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ash-400">
+          {formatBytes(file.size)}
+        </p>
+      </div>
+      <button
+        type="button"
+        onClick={onRemove}
+        aria-label={`Remove ${file.name}`}
+        className="grid h-9 w-9 shrink-0 place-items-center rounded-pill border border-hairline text-ash-500 transition-all duration-300 ease-silk hover:border-ink_red-400 hover:text-ink_red-400"
+      >
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 6h8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        </svg>
+      </button>
     </div>
   );
 }
