@@ -169,10 +169,10 @@ function OverlayHero() {
               className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-[#0A0A0A]/55"
               style={{ fontFamily: 'var(--font-mono)' }}
             >
-              <span>// No credit card</span>
-              <span>// Self-host or cloud</span>
-              <span>// SOC 2 Type II</span>
-              <span>// GDPR + HIPAA</span>
+              <span>{'// No credit card'}</span>
+              <span>{'// Self-host or cloud'}</span>
+              <span>{'// SOC 2 Type II'}</span>
+              <span>{'// GDPR + HIPAA'}</span>
             </div>
           </motion.div>
         </div>
