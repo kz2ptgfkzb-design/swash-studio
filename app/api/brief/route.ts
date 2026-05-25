@@ -23,6 +23,9 @@ type Brief = {
   features?: string[];
   timeline?: string;
   budget?: string;
+  hosting?: string;
+  ongoingUpdates?: string;
+  paymentPreference?: string;
   brandStatus?: string;
   references?: Reference[];
   notes?: string;
@@ -31,6 +34,29 @@ type Brief = {
   phone?: string;
   bestReach?: string;
 };
+
+const HOSTING_LABEL: Record<string, string> = {
+  yes:    'Yes - host it for me',
+  self:   'No - I will host it myself',
+  unsure: 'Not sure yet',
+};
+
+const UPDATES_LABEL: Record<string, string> = {
+  retainer: 'Monthly retainer (48-hour turnaround)',
+  self:     'Self-manage via the CMS',
+  unsure:   'Not sure yet',
+};
+
+const PAYMENT_LABEL: Record<string, string> = {
+  full:   'Pay in full on sign-off',
+  split:  'Split into two payments',
+  unsure: 'Not sure yet',
+};
+
+function label(map: Record<string, string>, key?: string) {
+  if (!key) return '';
+  return map[key] ?? key;
+}
 
 function htmlEscape(s: string) {
   return s.replace(/[&<>"']/g, (c) =>
@@ -87,6 +113,9 @@ function buildEmail(d: Brief) {
         ${row('Features', d.features)}
         ${row('Timeline', d.timeline)}
         ${row('Budget', d.budget)}
+        ${row('Payment', label(PAYMENT_LABEL, d.paymentPreference))}
+        ${row('Hosting', label(HOSTING_LABEL, d.hosting))}
+        ${row('Updates after launch', label(UPDATES_LABEL, d.ongoingUpdates))}
         ${row('Brand status', d.brandStatus)}
         ${row('References', formatRefs(d.references))}
         ${row('Notes', d.notes || '-')}
@@ -113,6 +142,9 @@ function buildEmail(d: Brief) {
     `Features: ${(d.features ?? []).join(', ')}`,
     `Timeline: ${d.timeline ?? ''}`,
     `Budget: ${d.budget ?? ''}`,
+    `Payment: ${label(PAYMENT_LABEL, d.paymentPreference)}`,
+    `Hosting: ${label(HOSTING_LABEL, d.hosting)}`,
+    `Updates after launch: ${label(UPDATES_LABEL, d.ongoingUpdates)}`,
     `Brand status: ${d.brandStatus ?? ''}`,
     `References:\n${formatRefs(d.references) || '-'}`,
     `Notes: ${d.notes ?? '-'}`,

@@ -25,7 +25,7 @@ const TOP_FAQ = [
   },
   {
     q: 'Can I get ongoing updates after launch?',
-    a: '30 days of polish included on every engagement. After that, we offer a monthly retainer covering up to 3 major tweaks per month (new sections, design changes, integrations) plus unlimited minor fixes. Month-to-month, cancel anytime. Or hand off cleanly - your call.',
+    a: 'Two ways. Your team can update content yourselves through the CMS we ship with every site - copy, blog posts, images, services, team listings. Or put us on a monthly retainer - request any change, design or development, and we turn it around in 48 hours. Month-to-month, cancel anytime.',
   },
 ];
 

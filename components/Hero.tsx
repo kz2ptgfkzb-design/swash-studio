@@ -84,9 +84,9 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col gap-6 sm:gap-8 md:flex-row md:items-end md:justify-between"
+            className="flex flex-col gap-6 sm:gap-8"
           >
-            <p className="max-w-md text-balance text-sm leading-relaxed text-ash-500 sm:text-base md:text-lg">
+            <p className="max-w-xl text-balance text-sm leading-relaxed text-ash-500 sm:text-base md:text-lg">
               A boutique studio that builds websites - and the brands and
               motion that go with them. We&rsquo;ve shipped for HVAC
               dispatchers, DTC skincare lines, neighborhood bakeries, and

@@ -31,6 +31,9 @@ type Brief = {
   features: string[];
   timeline: string;
   budget: string;
+  hosting: string;
+  ongoingUpdates: string;
+  paymentPreference: string;
   brandStatus: string;
   references: Reference[];
   notes: string;
@@ -43,6 +46,24 @@ type Brief = {
 const MAX_REFS = 4;
 const EMPTY_REF: Reference = { url: '', note: '' };
 
+const HOSTING_OPTIONS = [
+  { id: 'yes',    label: 'Yes - host it for me',   hint: 'Flat monthly fee, we handle uptime, backups, security.' },
+  { id: 'self',   label: 'No - I will host it',    hint: 'We will set you up on Vercel, Netlify, or your own server.' },
+  { id: 'unsure', label: 'Not sure yet',           hint: 'We will walk through both options with you.' },
+];
+
+const UPDATES_OPTIONS = [
+  { id: 'retainer', label: 'Monthly retainer',     hint: 'Request any change anytime - we turn it around in 48 hours.' },
+  { id: 'self',     label: 'We will handle it',    hint: 'Every site ships with a CMS your team can update directly.' },
+  { id: 'unsure',   label: 'Not sure yet',         hint: 'Decide after launch - no pressure either way.' },
+];
+
+const PAYMENT_OPTIONS = [
+  { id: 'full',   label: 'Pay in full',            hint: 'Single payment after you sign off on the build.' },
+  { id: 'split',  label: 'Split into two',         hint: 'Half on sign-off, half before launch.' },
+  { id: 'unsure', label: 'Not sure yet',           hint: 'We will figure out what works best.' },
+];
+
 const INITIAL: Brief = {
   industry: '',
   projectName: '',
@@ -51,6 +72,9 @@ const INITIAL: Brief = {
   features: [],
   timeline: '',
   budget: '',
+  hosting: '',
+  ongoingUpdates: '',
+  paymentPreference: '',
   brandStatus: '',
   references: [{ ...EMPTY_REF }],
   notes: '',
@@ -119,6 +143,9 @@ export function BriefIntakeForm() {
     if (step === 3) {
       if (!data.timeline) next.timeline = 'Pick one.';
       if (!data.budget) next.budget = 'Pick one - or "not sure".';
+      if (!data.paymentPreference) next.paymentPreference = 'Pick one - or "not sure yet".';
+      if (!data.hosting) next.hosting = 'Pick one - or "not sure yet".';
+      if (!data.ongoingUpdates) next.ongoingUpdates = 'Pick one - or "not sure yet".';
     }
     if (step === 4) {
       if (!data.brandStatus) next.brandStatus = 'Pick one.';
@@ -515,8 +542,8 @@ function Step3({
   return (
     <div className="space-y-10">
       <StepHeading
-        eyebrow="03 - Timeline & budget"
-        title="When and how big?"
+        eyebrow="03 - Timeline & how we work"
+        title="When, how big, and how you want to work with us."
         sub="We size the work to what you've got. No hidden tiers, no upsell."
       />
 
@@ -541,6 +568,39 @@ function Step3({
         <p className="mt-3 text-xs text-ash-400">
           No prices listed. The shape helps us scope honestly.
         </p>
+      </div>
+
+      <div>
+        <label className="label-field">How would you like to pay?</label>
+        <ChipGrid
+          items={PAYMENT_OPTIONS}
+          value={data.paymentPreference}
+          onChange={(v) => update('paymentPreference', v)}
+          errorMsg={errors.paymentPreference}
+        />
+        <p className="mt-3 text-xs text-ash-400">
+          The site only goes fully live once the final payment clears.
+        </p>
+      </div>
+
+      <div>
+        <label className="label-field">Do you want us to host the site?</label>
+        <ChipGrid
+          items={HOSTING_OPTIONS}
+          value={data.hosting}
+          onChange={(v) => update('hosting', v)}
+          errorMsg={errors.hosting}
+        />
+      </div>
+
+      <div>
+        <label className="label-field">After launch, how do you want to handle updates?</label>
+        <ChipGrid
+          items={UPDATES_OPTIONS}
+          value={data.ongoingUpdates}
+          onChange={(v) => update('ongoingUpdates', v)}
+          errorMsg={errors.ongoingUpdates}
+        />
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ export const FAQ: FaqGroup[] = [
       },
       {
         q: 'Do you do payment plans?',
-        a: 'Yes - 40% on signing, 40% at milestone two, 20% at launch is our default. We will work with you on something else if cash flow needs it.',
+        a: 'Yes. Two options - pay in full once you sign off on the build, or split into two equal payments (the first on sign-off, the second before launch). Either way, the site only goes fully live after the final payment is received. No third-party financing, no hidden interest, no surprises.',
       },
       {
         q: 'What if I do not love the demo?',
@@ -34,7 +34,7 @@ export const FAQ: FaqGroup[] = [
     items: [
       {
         q: 'How long until launch?',
-        a: 'A first video demo lands within 48 hours of your brief. From sign-off, count two weeks for a single-page site, four to six weeks for a typical multi-page brand site, eight to twelve for a full ecommerce or flagship rebuild. The engagement letter locks the timeline in writing.',
+        a: 'Launch happens on your timeline, not ours. The first video demo lands within 48 hours of your brief. If you sign off on that first demo, we can launch within days. Most clients want a few rounds of revisions first - a typical build moves from brief to live in two to six weeks depending on scope. The engagement letter locks the timeline in writing once you decide to move forward.',
       },
       {
         q: 'Will I have to write copy?',
@@ -64,7 +64,7 @@ export const FAQ: FaqGroup[] = [
       },
       {
         q: 'Do you do hosting?',
-        a: 'We do not host long-term, but we set up your hosting on launch - Vercel, Netlify, your own server. Hosting fees are yours; we make sure they are reasonable (usually $20 - $200 / month depending on traffic).',
+        a: 'Yes. We offer hosting for a flat monthly fee - the exact number is discussed when we scope the project, so it fits your traffic and your stack. If you would rather host yourself, we will set you up on Vercel, Netlify, or your own server on launch day. Either way is fine; we will make the recommendation.',
       },
       {
         q: 'Can my team update the site?',
@@ -72,11 +72,11 @@ export const FAQ: FaqGroup[] = [
       },
       {
         q: 'What if I want changes later?',
-        a: 'We offer a monthly retainer for ongoing updates after the 30-day post-launch window. It covers up to 3 major tweaks per month - think new sections, design changes, integrations, copy overhauls - plus unlimited minor fixes (typos, image swaps, link updates). Month-to-month, cancel anytime, no minimum term. If you only need work occasionally, we also bill by the hour with a written estimate before anything starts.',
+        a: 'Two paths. (1) Do it yourself - every site ships with a CMS so your team can update copy, blog posts, FAQs, services, team listings, and images without touching us. We train your team on it during the build. (2) Put us on a monthly retainer - request any change anytime, we turn it around in 48 hours. Most clients pick the retainer for design or development changes and DIY the content stuff.',
       },
       {
         q: 'How does the retainer work?',
-        a: 'Flat monthly fee. Each month gives you up to 3 major tweaks (anything that needs design or development time beyond a quick fix) and unlimited minor edits (copy, images, small style changes). Unused major tweaks don\'t roll over. You email or message the request, we ship it within 5 business days for most items. No contracts, pause or cancel any month.',
+        a: 'Flat monthly fee. Request changes anytime - copy edits, image swaps, new sections, design tweaks, small features - and we turn each request around in 48 hours. No tickets, no portal, just email or message us. Month-to-month, no minimum term, pause or cancel any month. The exact fee depends on the scope of your site and how often you expect to request changes; we set it when you launch.',
       },
     ],
   },
