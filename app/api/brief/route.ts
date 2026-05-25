@@ -172,12 +172,23 @@ export async function POST(req: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.BRIEF_TO_EMAIL ?? 'hello@swash.studio';
   const from = process.env.BRIEF_FROM_EMAIL ?? 'Swash <briefs@swash.studio>';
+  const isProd = process.env.NODE_ENV === 'production';
 
   const email = buildEmail(data);
 
-  // Dev fallback: log and succeed so the form is functional without setup.
+  // In production we MUST send the email. If credentials are missing, fail
+  // loudly so the form shows an error instead of silently dropping briefs.
   if (!apiKey) {
-    console.log('[brief] RESEND_API_KEY unset - logging instead of sending');
+    if (isProd) {
+      console.error('[brief] RESEND_API_KEY missing in production - submission dropped');
+      console.error('[brief] data:', JSON.stringify(data, null, 2));
+      return NextResponse.json(
+        { error: 'Email service not configured. Please email us directly while we fix this.' },
+        { status: 503 },
+      );
+    }
+    // Dev fallback: log and succeed so the form is functional without setup.
+    console.log('[brief] RESEND_API_KEY unset - logging instead of sending (dev only)');
     console.log('[brief] to:', to);
     console.log('[brief] subject:', email.subject);
     console.log('[brief] data:', JSON.stringify(data, null, 2));
