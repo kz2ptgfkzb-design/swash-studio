@@ -91,11 +91,11 @@ const config: Config = {
         mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular'],
       },
       fontSize: {
-        'display-2xl': ['clamp(4rem, 13vw, 14rem)',  { lineHeight: '0.85', letterSpacing: '-0.045em', fontWeight: '500' }],
-        'display-xl':  ['clamp(3rem, 9vw, 9.5rem)',  { lineHeight: '0.88', letterSpacing: '-0.04em',  fontWeight: '500' }],
-        'display-lg':  ['clamp(2.5rem, 6vw, 6rem)',  { lineHeight: '0.94', letterSpacing: '-0.035em', fontWeight: '500' }],
-        'display-md':  ['clamp(2rem, 4.2vw, 4rem)',  { lineHeight: '1.0',  letterSpacing: '-0.03em',  fontWeight: '500' }],
-        'display-sm':  ['clamp(1.5rem, 2.6vw, 2.5rem)', { lineHeight: '1.12', letterSpacing: '-0.02em',  fontWeight: '600' }],
+        'display-2xl': ['clamp(2.5rem, 11vw, 14rem)',  { lineHeight: '0.9',  letterSpacing: '-0.045em', fontWeight: '500' }],
+        'display-xl':  ['clamp(2rem, 8vw, 9.5rem)',    { lineHeight: '0.92', letterSpacing: '-0.04em',  fontWeight: '500' }],
+        'display-lg':  ['clamp(1.75rem, 5.5vw, 6rem)', { lineHeight: '0.98', letterSpacing: '-0.035em', fontWeight: '500' }],
+        'display-md':  ['clamp(1.5rem, 4vw, 4rem)',    { lineHeight: '1.05', letterSpacing: '-0.03em',  fontWeight: '500' }],
+        'display-sm':  ['clamp(1.25rem, 2.8vw, 2.5rem)', { lineHeight: '1.18', letterSpacing: '-0.02em', fontWeight: '600' }],
         'eyebrow':     ['0.6875rem', { lineHeight: '1', letterSpacing: '0.24em', fontWeight: '500' }],
       },
       borderRadius: {

@@ -145,15 +145,15 @@ const FEATURES: Feature[] = [
  */
 export function EverySiteShipsWith() {
   return (
-    <section className="relative bg-paper-200/30 py-28 md:py-36">
+    <section className="relative bg-paper-200/30 py-16 sm:py-24 md:py-36">
       <div className="container-wide">
-        <div className="grid items-end gap-10 md:grid-cols-12">
+        <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-7">
             <Reveal>
               <span className="eyebrow">- Every site we ship</span>
             </Reveal>
             <Reveal delay={1}>
-              <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
+              <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700 sm:mt-6">
                 Twelve things,
                 <br />
                 <span className="italic text-ash-500">without asking.</span>
@@ -162,7 +162,7 @@ export function EverySiteShipsWith() {
           </div>
           <div className="md:col-span-4 md:col-start-9">
             <Reveal delay={2}>
-              <p className="text-pretty text-base leading-relaxed text-ash-500">
+              <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 Not add-ons. Not tiered. Not contingent on the contract
                 size. Every Swash site ships with the list below - from the
                 starter to the flagship.
@@ -171,7 +171,7 @@ export function EverySiteShipsWith() {
           </div>
         </div>
 
-        <ul className="mt-14 grid gap-px overflow-hidden rounded-card border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <ul className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-hairline bg-hairline sm:mt-14 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {FEATURES.map((f, i) => (
             <FeatureCell key={f.label} feature={f} index={i} />
           ))}
@@ -189,7 +189,7 @@ function FeatureCell({ feature, index }: { feature: Feature; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.55, delay: (index % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
-      className="group flex h-full flex-col gap-3 bg-paper-100 p-6 transition-colors duration-500 hover:bg-paper-50 md:p-7"
+      className="group flex h-full flex-col gap-3 bg-paper-100 p-5 transition-colors duration-500 hover:bg-paper-50 sm:p-6 md:p-7"
     >
       <div className="flex items-center justify-between">
         <span className="grid h-9 w-9 place-items-center rounded-pill border border-hairline text-ink-400 transition-colors duration-500 group-hover:border-lime-300 group-hover:text-lime-300">

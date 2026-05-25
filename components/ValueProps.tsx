@@ -25,15 +25,15 @@ const PROPS = [
 
 export function ValueProps() {
   return (
-    <section id="why" className="relative py-28 md:py-40">
+    <section id="why" className="relative py-16 sm:py-24 md:py-40">
       <div className="container-page">
-        <div className="grid items-end gap-10 md:grid-cols-12">
+        <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-6">
             <Reveal>
               <span className="eyebrow">Why Swash</span>
             </Reveal>
             <Reveal delay={1}>
-              <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
+              <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700 sm:mt-6">
                 Three things we
                 <br />
                 <span className="italic text-ash-500">do differently.</span>
@@ -42,7 +42,7 @@ export function ValueProps() {
           </div>
           <div className="md:col-span-5 md:col-start-8">
             <Reveal delay={2}>
-              <p className="text-pretty text-base leading-relaxed text-ash-500">
+              <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 Most studios start with a template, then bend the brand to
                 fit. We start with the brief, build the brand, then design
                 a site that could only belong to it.
@@ -51,10 +51,10 @@ export function ValueProps() {
           </div>
         </div>
 
-        <ul className="mt-16 grid gap-px overflow-hidden rounded-card border border-hairline bg-hairline md:grid-cols-3">
+        <ul className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-hairline bg-hairline sm:mt-16 md:grid-cols-3">
           {PROPS.map((p, i) => (
             <Reveal key={p.n} delay={i + 1}>
-              <li className="flex h-full flex-col gap-6 bg-paper-100 p-8 md:p-10">
+              <li className="flex h-full flex-col gap-4 bg-paper-100 p-6 sm:gap-6 sm:p-8 md:p-10">
                 <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink_red-400">
                   {p.n}
                 </span>

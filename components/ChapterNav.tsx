@@ -93,7 +93,7 @@ export function ChapterNav() {
       aria-hidden={!visible}
     >
       <div
-        className="pointer-events-auto mx-4 inline-flex max-w-[calc(100vw-2rem)] items-center overflow-hidden rounded-pill border border-hairline bg-paper-100/85 backdrop-blur-xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.7)]"
+        className="pointer-events-auto mx-2 sm:mx-4 inline-flex max-w-[calc(100vw-1rem)] sm:max-w-[calc(100vw-2rem)] items-center overflow-hidden rounded-pill border border-hairline bg-paper-100/85 backdrop-blur-xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.7)]"
       >
         <div
           ref={railRef}
@@ -108,7 +108,7 @@ export function ChapterNav() {
                 data-chapter={c.id}
                 onClick={() => scrollTo(c.id)}
                 data-cursor="link"
-                className={`relative shrink-0 rounded-pill px-4 py-2 text-[13px] font-semibold tracking-tight transition-colors duration-300 ${
+                className={`relative shrink-0 rounded-pill px-3 py-1.5 text-[11px] sm:px-4 sm:py-2 sm:text-[13px] font-semibold tracking-tight transition-colors duration-300 ${
                   isActive
                     ? 'text-paper-100'
                     : 'text-ink-400 hover:text-ink-700'

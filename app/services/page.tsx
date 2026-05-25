@@ -19,12 +19,12 @@ const CATEGORY_LABEL: Record<string, string> = {
 export default function ServicesPage() {
   return (
     <>
-      <section className="relative pt-40 pb-16">
+      <section className="relative pt-24 pb-10 sm:pt-32 sm:pb-16 md:pt-40">
         <div className="container-page">
-          <div className="grid items-end gap-10 md:grid-cols-12">
+          <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-7">
               <p className="eyebrow">Services</p>
-              <h1 className="mt-6 font-display text-display-xl text-balance text-ink-700">
+              <h1 className="mt-4 font-display text-display-xl text-balance text-ink-700 sm:mt-6">
                 Six things we do.
                 <br />
                 <span className="italic text-ash-500">
@@ -33,7 +33,7 @@ export default function ServicesPage() {
               </h1>
             </div>
             <div className="md:col-span-5">
-              <p className="text-pretty text-base leading-relaxed text-ash-500">
+              <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 Every engagement is scoped to the brief. Most pair a
                 brand with a site; some are pure motion work, some are
                 audits, some are one-week launch pages. Read each spec
@@ -44,25 +44,25 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="container-wide pb-24">
-        <ul className="space-y-6">
+      <section className="container-wide pb-16 sm:pb-24">
+        <ul className="space-y-5 sm:space-y-6">
           {SERVICES.map((s, i) => (
             <li key={s.slug} id={s.slug}>
               <Reveal>
-                <article className="grid gap-10 rounded-card border border-hairline bg-paper-50/40 p-8 md:grid-cols-12 md:p-12">
+                <article className="grid gap-6 rounded-card border border-hairline bg-paper-50/40 p-5 sm:p-8 md:grid-cols-12 md:gap-10 md:p-12">
                   <header className="md:col-span-4">
                     <div className="flex items-center gap-3">
                       <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink_red-400">
                         {String(i + 1).padStart(2, '0')} · {CATEGORY_LABEL[s.category]}
                       </span>
                     </div>
-                    <h2 className="mt-6 font-display text-display-md text-balance text-ink-700">
+                    <h2 className="mt-4 font-display text-display-md text-balance text-ink-700 sm:mt-6">
                       {s.title}
                     </h2>
-                    <p className="mt-4 max-w-md text-pretty font-display italic text-xl leading-snug text-ash-500">
+                    <p className="mt-3 max-w-md text-pretty font-display italic text-lg leading-snug text-ash-500 sm:mt-4 sm:text-xl">
                       {s.tagline}
                     </p>
-                    <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-hairline pt-6">
+                    <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-hairline pt-5 sm:mt-8 sm:pt-6">
                       <div>
                         <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ash-400">
                           Typical start
@@ -79,10 +79,10 @@ export default function ServicesPage() {
                   </header>
 
                   <div className="md:col-span-8">
-                    <p className="text-pretty text-base leading-relaxed text-ink-400">
+                    <p className="text-pretty text-sm leading-relaxed text-ink-400 sm:text-base">
                       {s.body}
                     </p>
-                    <div className="mt-8">
+                    <div className="mt-6 sm:mt-8">
                       <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ash-400">
                         What you get
                       </p>

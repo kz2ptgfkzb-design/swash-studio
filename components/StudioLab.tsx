@@ -127,9 +127,9 @@ export function StudioLab() {
   );
 
   return (
-    <section ref={sectionRef} id="lab" className="relative overflow-hidden bg-paper-50/55 py-28 md:py-40">
+    <section ref={sectionRef} id="lab" className="relative overflow-hidden bg-paper-50/55 py-16 sm:py-24 md:py-40">
       <div className="container-wide">
-        <div className="grid items-center gap-14 lg:grid-cols-12">
+        <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-12 lg:gap-14">
           {/* LEFT - copy + controls */}
           <div className="lg:col-span-5">
             <Reveal>
@@ -143,7 +143,7 @@ export function StudioLab() {
               </h2>
             </Reveal>
             <Reveal delay={2}>
-              <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-ash-500">
+              <p className="mt-5 max-w-md text-pretty text-sm leading-relaxed text-ash-500 sm:mt-6 sm:text-base">
                 Press a chip. Move your mouse over the canvas. The mark
                 rewrites itself. This is what we mean by &ldquo;motion as a
                 language&rdquo; - the brand is alive in every state, not
@@ -151,7 +151,7 @@ export function StudioLab() {
               </p>
             </Reveal>
 
-            <div className="mt-10 space-y-7">
+            <div className="mt-7 space-y-6 sm:mt-10 sm:space-y-7">
               <ControlRow
                 label="Voice"
                 value={weight}

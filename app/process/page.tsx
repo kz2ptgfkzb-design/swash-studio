@@ -103,19 +103,19 @@ const PROMISES = [
 export default function ProcessPage() {
   return (
     <>
-      <section className="relative pt-40 pb-16">
+      <section className="relative pt-24 pb-10 sm:pt-32 sm:pb-16 md:pt-40">
         <div className="container-page">
-          <div className="grid items-end gap-10 md:grid-cols-12">
+          <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-7">
               <p className="eyebrow">Process</p>
-              <h1 className="mt-6 font-display text-display-xl text-balance text-ink-700">
+              <h1 className="mt-4 font-display text-display-xl text-balance text-ink-700 sm:mt-6">
                 Six stages,
                 <br />
                 <span className="italic text-ash-500">written down.</span>
               </h1>
             </div>
             <div className="md:col-span-5">
-              <p className="text-pretty text-base leading-relaxed text-ash-500">
+              <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 The same six stages for a $5k starter site and a $50k
                 flagship build. The only thing that changes is the scope.
                 Read what happens, when, and whose job it is.
@@ -125,12 +125,12 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      <section className="container-page pb-24">
-        <ol className="space-y-6">
+      <section className="container-page pb-16 sm:pb-24">
+        <ol className="space-y-5 sm:space-y-6">
           {STAGES.map((s, i) => (
             <li key={s.n}>
               <Reveal delay={i}>
-                <article className="grid gap-10 rounded-card border border-hairline bg-paper-50/40 p-8 md:grid-cols-12 md:p-12">
+                <article className="grid gap-6 rounded-card border border-hairline bg-paper-50/40 p-5 sm:p-8 md:grid-cols-12 md:gap-10 md:p-12">
                   <header className="md:col-span-3">
                     <p className="font-display text-display-md leading-none tracking-tight text-ink_red-400">
                       {s.n}
@@ -147,10 +147,10 @@ export default function ProcessPage() {
                     <h2 className="font-display text-display-sm text-balance text-ink-700">
                       {s.title}
                     </h2>
-                    <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-ink-400">
+                    <p className="mt-3 max-w-2xl text-pretty text-sm leading-relaxed text-ink-400 sm:mt-4 sm:text-base">
                       {s.body}
                     </p>
-                    <div className="mt-8 grid gap-8 sm:grid-cols-2">
+                    <div className="mt-6 grid grid-cols-1 gap-6 sm:mt-8 sm:grid-cols-2 sm:gap-8">
                       <div>
                         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ash-400">
                           You
@@ -192,22 +192,22 @@ export default function ProcessPage() {
         </ol>
       </section>
 
-      <section className="relative bg-paper-200/30 py-24 md:py-32">
+      <section className="relative bg-paper-200/30 py-16 sm:py-24 md:py-32">
         <div className="container-page">
           <Reveal>
             <p className="eyebrow">Promises we keep in writing</p>
           </Reveal>
           <Reveal delay={1}>
-            <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
+            <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700 sm:mt-6">
               Four things in every engagement.
               <br />
               <span className="italic text-ash-500">Without exception.</span>
             </h2>
           </Reveal>
-          <ul className="mt-14 grid gap-px overflow-hidden rounded-card border border-hairline bg-hairline md:grid-cols-2">
+          <ul className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-hairline bg-hairline sm:mt-14 md:grid-cols-2">
             {PROMISES.map((p, i) => (
               <Reveal key={p.title} delay={i}>
-                <li className="flex h-full flex-col gap-4 bg-paper-100 p-8 md:p-10">
+                <li className="flex h-full flex-col gap-4 bg-paper-100 p-6 sm:p-8 md:p-10">
                   <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink_red-400">
                     {String(i + 1).padStart(2, '0')}
                   </span>
@@ -224,15 +224,15 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      <section className="container-page py-24 pb-32">
+      <section className="container-page py-16 pb-20 sm:py-24 sm:pb-32">
         <Reveal>
-          <div className="rounded-card border border-hairline bg-paper-100/75 p-10 text-ink-700 md:p-16">
-            <div className="grid items-end gap-10 md:grid-cols-12">
+          <div className="rounded-card border border-hairline bg-paper-100/75 p-6 text-ink-700 sm:p-10 md:p-16">
+            <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
               <div className="md:col-span-7">
                 <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime-300">
                   Ready when you are
                 </p>
-                <h2 className="mt-6 font-display text-display-lg text-balance">
+                <h2 className="mt-4 font-display text-display-lg text-balance sm:mt-6">
                   Start where stage one starts.
                   <br />
                   <span className="italic text-ash-500">With the brief.</span>

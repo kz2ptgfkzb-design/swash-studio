@@ -33,22 +33,22 @@ export function FaqTeaser() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative py-28 md:py-40">
+    <section id="faq" className="relative py-16 sm:py-24 md:py-40">
       <div className="container-page">
-        <div className="grid items-start gap-12 md:grid-cols-12">
+        <div className="grid items-start gap-8 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-4">
             <Reveal>
               <span className="eyebrow">Questions, asked</span>
             </Reveal>
             <Reveal delay={1}>
-              <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
+              <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700 sm:mt-6">
                 The five
                 <br />
                 <span className="italic text-ash-500">we hear most.</span>
               </h2>
             </Reveal>
             <Reveal delay={2}>
-              <p className="mt-6 max-w-sm text-pretty text-base leading-relaxed text-ash-500">
+              <p className="mt-5 max-w-sm text-pretty text-sm leading-relaxed text-ash-500 sm:mt-6 sm:text-base">
                 More on the full FAQ - grouped by pricing, process,
                 after-launch, and fit.
               </p>
@@ -73,11 +73,11 @@ export function FaqTeaser() {
                         onClick={() => setOpen(isOpen ? null : i)}
                         data-cursor="link"
                         aria-expanded={isOpen}
-                        className="group flex w-full items-center justify-between gap-6 px-6 py-6 text-left transition-colors hover:bg-paper-50 md:px-9 md:py-7"
+                        className="group flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition-colors hover:bg-paper-50 sm:gap-6 sm:px-6 sm:py-6 md:px-9 md:py-7"
                       >
                         <span
                           className={cn(
-                            'font-display text-xl text-ink-700 transition-colors md:text-2xl',
+                            'font-display text-lg text-ink-700 transition-colors sm:text-xl md:text-2xl',
                             isOpen && 'text-ink_red-400',
                           )}
                         >
@@ -110,7 +110,7 @@ export function FaqTeaser() {
                             }}
                             className="overflow-hidden"
                           >
-                            <p className="px-6 pb-7 pr-16 text-pretty text-base leading-relaxed text-ash-500 md:px-9">
+                            <p className="px-5 pb-6 pr-10 text-pretty text-sm leading-relaxed text-ash-500 sm:px-6 sm:pb-7 sm:pr-16 sm:text-base md:px-9">
                               {it.a}
                             </p>
                           </motion.div>

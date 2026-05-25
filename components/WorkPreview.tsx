@@ -8,15 +8,15 @@ import { Reveal } from './Reveal';
 export function WorkPreview() {
   const featured = WORK.slice(0, 4);
   return (
-    <section id="work" className="relative py-28 md:py-40">
+    <section id="work" className="relative py-16 sm:py-24 md:py-40">
       <div className="container-wide">
-        <div className="grid items-end gap-10 md:grid-cols-12">
+        <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-7">
             <Reveal>
               <span className="eyebrow">Recent work</span>
             </Reveal>
             <Reveal delay={1}>
-              <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
+              <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700 sm:mt-6">
                 A few briefs we&rsquo;ve answered
                 <br />
                 <span className="italic font-light text-ash-500">in the past year.</span>
@@ -25,7 +25,7 @@ export function WorkPreview() {
           </div>
           <div className="md:col-span-4 md:col-start-9">
             <Reveal delay={2}>
-              <p className="text-pretty text-base leading-relaxed text-ash-500">
+              <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 Six different industries. Six different budgets. The same
                 eye for the brand and the same care for the build.
               </p>
@@ -47,7 +47,7 @@ export function WorkPreview() {
           </div>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-14 sm:gap-6 md:grid-cols-2">
           {featured.map((item, i) => (
             <Reveal key={item.slug} delay={i % 2 === 0 ? 0 : 1}>
               <WorkCard item={item} />

@@ -101,10 +101,10 @@ export function ProcessScrubber() {
           transition={{ duration: 0.6 }}
         />
 
-        <div className="container-wide relative grid h-full grid-cols-12 items-center gap-8 py-24">
+        <div className="container-wide relative grid h-full grid-cols-12 items-center gap-6 py-12 sm:py-16 lg:gap-8 lg:py-24">
           {/* LEFT - copy */}
           <div className="col-span-12 lg:col-span-6">
-            <div className="mb-10 flex items-baseline gap-4">
+            <div className="mb-5 flex flex-wrap items-baseline gap-2 sm:mb-8 lg:mb-10">
               <span className="eyebrow">- how we build</span>
               <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ash-400">
                 {String(active + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
@@ -120,19 +120,19 @@ export function ProcessScrubber() {
               <div className="font-mono text-xs uppercase tracking-[0.32em]" style={{ color: stage.accent }}>
                 Stage {stage.n}
               </div>
-              <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700">
+              <h2 className="mt-3 font-display text-display-lg text-balance text-ink-700 sm:mt-4">
                 {stage.title}
                 <span className="block text-display-md italic text-ash-500">
                   - {stage.line}
                 </span>
               </h2>
-              <p className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-ash-500">
+              <p className="mt-4 max-w-lg text-pretty text-sm leading-relaxed text-ash-500 sm:mt-6 sm:text-base">
                 {stage.body}
               </p>
             </motion.div>
 
             {/* Stage chips */}
-            <ul className="mt-12 flex flex-wrap gap-2">
+            <ul className="mt-6 flex flex-wrap gap-2 sm:mt-10 lg:mt-12">
               {STAGES.map((s, i) => (
                 <li key={s.n}>
                   <button
@@ -160,7 +160,7 @@ export function ProcessScrubber() {
 
           {/* RIGHT - visual */}
           <div className="col-span-12 lg:col-span-5 lg:col-start-8">
-            <div className="relative aspect-square w-full max-w-[560px]">
+            <div className="relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[560px]">
               {/* Pulse halo */}
               <motion.div
                 key={`halo-${active}`}
@@ -191,7 +191,7 @@ export function ProcessScrubber() {
                   }}
                 />
 
-                <div className="relative z-10 grid h-full w-full place-items-center p-10 md:p-12">
+                <div className="relative z-10 grid h-full w-full place-items-center p-5 sm:p-8 md:p-12">
                   <StageMockup index={active} accent={stage.accent} />
                 </div>
 

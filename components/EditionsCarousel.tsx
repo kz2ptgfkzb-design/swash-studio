@@ -140,20 +140,20 @@ export function EditionsCarousel() {
   }, [active, scrollToIndex]);
 
   return (
-    <section id="editions" className="relative overflow-hidden py-28 md:py-36">
+    <section id="editions" className="relative overflow-hidden py-16 sm:py-24 md:py-36">
       <div className="container-wide">
         {/* Header row */}
-        <div className="grid items-end gap-10 md:grid-cols-12">
+        <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-7">
             <p className="eyebrow">- Swash Editions · Summer &apos;26</p>
-            <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
+            <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700 sm:mt-6">
               Four brands.
               <br />
               <span className="italic text-ash-500">One studio.</span>
             </h2>
           </div>
           <div className="md:col-span-4 md:col-start-9">
-            <p className="text-pretty text-base leading-relaxed text-ash-500">
+            <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
               A curated set of demo brands shipped this quarter - plumber,
               wood-fired restaurant, SaaS analytics, boutique brokerage.
               Each lives at its own URL. Click in to walk through.
@@ -175,8 +175,8 @@ export function EditionsCarousel() {
         role="region"
         aria-roledescription="carousel"
         aria-label="Swash Editions"
-        className="group/rail mt-14 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto scroll-smooth px-6 pb-8 [scrollbar-width:none] focus:outline-none md:gap-8 md:px-14 lg:px-20 [&::-webkit-scrollbar]:hidden"
-        style={{ scrollPadding: '0 24px' }}
+        className="group/rail mt-8 flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto scroll-smooth px-4 pb-8 [scrollbar-width:none] focus:outline-none sm:mt-14 sm:gap-6 sm:px-6 md:gap-8 md:px-14 lg:px-20 [&::-webkit-scrollbar]:hidden"
+        style={{ scrollPadding: '0 16px' }}
       >
         {EDITIONS.map((e, i) => (
           <EditionCard key={e.slug} edition={e} index={i} total={EDITIONS.length} />
@@ -259,7 +259,7 @@ function EditionCard({
     <article
       ref={ref}
       data-edition-card
-      className="relative w-[80vw] max-w-[820px] shrink-0 snap-center overflow-hidden rounded-[18px] border border-hairline md:w-[68vw] lg:w-[58vw]"
+      className="relative w-[88vw] max-w-[820px] shrink-0 snap-center overflow-hidden rounded-[18px] border border-hairline sm:w-[80vw] md:w-[68vw] lg:w-[58vw]"
       style={{ background: edition.bg, color: edition.fg }}
     >
       <Link
@@ -284,9 +284,9 @@ function EditionCard({
             }}
           />
           {/* Top meta row */}
-          <div className="absolute inset-x-0 top-0 flex items-start justify-between p-6">
+          <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-2 p-4 sm:p-6">
             <span
-              className="rounded-pill px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] backdrop-blur"
+              className="rounded-pill px-2 py-1 font-mono text-[9px] uppercase tracking-[0.18em] backdrop-blur sm:px-3 sm:text-[10px] sm:tracking-[0.22em]"
               style={{
                 background: `${edition.fg}10`,
                 color: edition.fg,
@@ -296,14 +296,14 @@ function EditionCard({
               {edition.industry}
             </span>
             <span
-              className="rounded-pill px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] shadow-sm"
+              className="shrink-0 rounded-pill px-2 py-1 font-mono text-[9px] uppercase tracking-[0.18em] shadow-sm sm:px-3 sm:text-[10px] sm:tracking-[0.22em]"
               style={{ background: edition.accent, color: edition.bg }}
             >
               Live demo →
             </span>
           </div>
           {/* Bottom: brand mark */}
-          <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+          <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 md:p-8">
             <h3
               className="text-balance text-[clamp(2rem,4.2vw,3.6rem)] leading-[0.95] tracking-tight transition-colors duration-500 group-hover:opacity-90"
               style={{ fontFamily }}
@@ -321,7 +321,7 @@ function EditionCard({
 
         {/* Bottom rail - palette + meta + CTA */}
         <div
-          className="flex flex-wrap items-center justify-between gap-5 px-6 py-5 md:px-8"
+          className="flex flex-wrap items-center justify-between gap-3 px-4 py-4 sm:gap-5 sm:px-6 sm:py-5 md:px-8"
           style={{ borderTop: `1px solid ${edition.fg}15` }}
         >
           <div className="flex items-center gap-4">

@@ -23,9 +23,9 @@ const LOGOS = [
 
 export function ProofMetrics() {
   return (
-    <section className="relative py-28 md:py-36">
+    <section className="relative py-16 sm:py-24 md:py-36">
       <div className="container-wide relative">
-        <div className="grid items-end gap-10 md:grid-cols-12">
+        <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-7">
             <Reveal>
               <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-gold-300">
@@ -33,7 +33,7 @@ export function ProofMetrics() {
               </span>
             </Reveal>
             <Reveal delay={1}>
-              <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
+              <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700 sm:mt-6">
                 Two years,
                 <br />
                 <span className="italic text-ash-500">a lot of paper.</span>
@@ -42,7 +42,7 @@ export function ProofMetrics() {
           </div>
           <div className="md:col-span-5">
             <Reveal delay={2}>
-              <p className="text-pretty text-base leading-relaxed text-ash-500">
+              <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 A small studio is only worth what it has shipped. Here is
                 where we sit, this quarter.
               </p>
@@ -50,10 +50,10 @@ export function ProofMetrics() {
           </div>
         </div>
 
-        <ul className="mt-14 grid gap-px overflow-hidden rounded-card border border-hairline bg-hairline md:grid-cols-4">
+        <ul className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-card border border-hairline bg-hairline sm:mt-14 md:grid-cols-4">
           {METRICS.map((m, i) => (
             <Reveal key={m.label} delay={i}>
-              <li className="flex h-full flex-col justify-between gap-8 bg-paper-100/70 p-7 md:p-9">
+              <li className="flex h-full flex-col justify-between gap-6 bg-paper-100/70 p-5 sm:gap-8 sm:p-7 md:p-9">
                 <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-gold-300">
                   {String(i + 1).padStart(2, '0')}
                 </p>
@@ -74,15 +74,15 @@ export function ProofMetrics() {
         </ul>
 
         <Reveal delay={5}>
-          <div className="mt-14 border-t border-hairline pt-10">
-            <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.22em] text-ash-500">
+          <div className="mt-10 border-t border-hairline pt-8 sm:mt-14 sm:pt-10">
+            <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.22em] text-ash-500 sm:mb-6">
               Recent clients
             </p>
-            <ul className="grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-4">
+            <ul className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-4 md:grid-cols-4">
               {LOGOS.map((l) => (
                 <li
                   key={l}
-                  className="font-display italic text-xl text-ink-700 md:text-2xl"
+                  className="font-display italic text-lg text-ink-700 sm:text-xl md:text-2xl"
                 >
                   {l}
                 </li>

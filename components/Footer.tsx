@@ -43,9 +43,9 @@ export function Footer() {
   if (pathname?.startsWith('/preview/')) return null;
 
   return (
-    <footer className="relative mt-24 border-t border-hairline bg-paper-200/40">
-      <div className="container-wide pb-12 pt-20">
-        <div className="grid gap-14 md:grid-cols-[1.4fr_repeat(3,1fr)]">
+    <footer className="relative mt-16 border-t border-hairline bg-paper-200/40 sm:mt-24">
+      <div className="container-wide pb-10 pt-12 sm:pb-12 sm:pt-20">
+        <div className="grid gap-10 sm:gap-14 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div className="space-y-6">
             <Logo size="sm" />
             <p className="max-w-sm text-sm leading-relaxed text-ash-500">
@@ -90,14 +90,14 @@ export function Footer() {
 
         <div
           aria-hidden
-          className="pointer-events-none relative mt-16 select-none overflow-hidden"
+          className="pointer-events-none relative mt-10 select-none overflow-hidden sm:mt-16"
         >
-          <p className="font-display italic text-[24vw] font-light leading-[0.82] tracking-tighter text-ink-700/[0.05]">
+          <p className="font-display italic text-[22vw] font-light leading-[0.82] tracking-tighter text-ink-700/[0.05] sm:text-[24vw]">
             Swash.
           </p>
         </div>
 
-        <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-hairline pt-6 text-xs text-ash-500 md:flex-row md:items-center">
+        <div className="mt-6 flex flex-col items-start justify-between gap-3 border-t border-hairline pt-5 text-xs text-ash-500 sm:mt-8 sm:gap-4 sm:pt-6 md:flex-row md:items-center">
           <p>© 2026 Swash Studio. Add a swash to everything.</p>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             <Link href="#" className="hover:text-ink-700" data-cursor="link">Privacy</Link>

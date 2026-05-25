@@ -30,19 +30,19 @@ const ROLES = [
 export default function AboutPage() {
   return (
     <>
-      <section className="relative pt-40 pb-24">
+      <section className="relative pt-24 pb-12 sm:pt-32 sm:pb-16 md:pt-40 md:pb-24">
         <div className="container-page">
-          <div className="grid items-end gap-10 md:grid-cols-12">
+          <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-7">
               <p className="eyebrow">The studio</p>
-              <h1 className="mt-6 font-display text-display-xl text-balance text-ink-700">
+              <h1 className="mt-4 font-display text-display-xl text-balance text-ink-700 sm:mt-6">
                 A small studio
                 <br />
                 <span className="italic text-ash-500">with a wide reach.</span>
               </h1>
             </div>
             <div className="md:col-span-5">
-              <p className="text-pretty text-base leading-relaxed text-ash-500">
+              <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 Swash is a tight team of web developers and brand designers
                 that builds websites for every kind of business. We started
                 in 2024 with a quiet rule: no two sites we ship should look
@@ -54,19 +54,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="container-page py-16">
+      <section className="container-page py-10 sm:py-16">
         <Reveal>
-          <div className="grid items-center gap-12 md:grid-cols-2">
+          <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
             <div className="order-2 md:order-1">
               <p className="eyebrow">Why we made this</p>
-              <h2 className="mt-6 font-display text-display-md text-balance text-ink-700">
+              <h2 className="mt-4 font-display text-display-md text-balance text-ink-700 sm:mt-6">
                 Most studios are too narrow.
                 <span className="italic text-ash-500">
                   {' '}
                   The rest are too generic.
                 </span>
               </h2>
-              <div className="mt-8 space-y-4 text-pretty text-base leading-relaxed text-ash-500">
+              <div className="mt-6 space-y-4 text-pretty text-sm leading-relaxed text-ash-500 sm:mt-8 sm:text-base">
                 <p>
                   Premium studios price out the small business that needs
                   a brand more than the agency does. Cheap shops can&rsquo;t
@@ -87,12 +87,12 @@ export default function AboutPage() {
         </Reveal>
       </section>
 
-      <section className="container-page py-20">
-        <div className="grid gap-16 md:grid-cols-12">
+      <section className="container-page py-12 sm:py-20">
+        <div className="grid gap-8 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
             <Reveal><p className="eyebrow">The process</p></Reveal>
             <Reveal delay={1}>
-              <h2 className="mt-6 font-display text-display-md text-balance text-ink-700">
+              <h2 className="mt-4 font-display text-display-md text-balance text-ink-700 sm:mt-6">
                 Six stages.
                 <br />
                 <span className="italic text-ash-500">Six to eight weeks.</span>
@@ -103,7 +103,7 @@ export default function AboutPage() {
             <ol className="overflow-hidden rounded-card border border-hairline">
               {PROCESS.map((p, i) => (
                 <Reveal key={p.phase} delay={i}>
-                  <li className="grid grid-cols-[120px_1fr] items-start gap-6 border-b border-hairline bg-paper-100 p-6 last:border-b-0 md:grid-cols-[200px_1fr] md:gap-10 md:p-8">
+                  <li className="grid grid-cols-1 items-start gap-2 border-b border-hairline bg-paper-100 p-5 last:border-b-0 sm:grid-cols-[120px_1fr] sm:gap-6 sm:p-6 md:grid-cols-[200px_1fr] md:gap-10 md:p-8">
                     <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink_red-400">
                       {p.phase}
                     </p>
@@ -118,19 +118,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="container-page py-20">
-        <div className="grid gap-16 md:grid-cols-12">
+      <section className="container-page py-12 sm:py-20">
+        <div className="grid gap-8 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-4">
             <Reveal><p className="eyebrow">Who&rsquo;s on it</p></Reveal>
             <Reveal delay={1}>
-              <h2 className="mt-6 font-display text-display-md text-balance text-ink-700">
+              <h2 className="mt-4 font-display text-display-md text-balance text-ink-700 sm:mt-6">
                 A skilled team
                 <br />
                 <span className="italic text-ash-500">behind every build.</span>
               </h2>
             </Reveal>
             <Reveal delay={2}>
-              <p className="mt-6 max-w-sm text-pretty text-base leading-relaxed text-ash-500">
+              <p className="mt-5 max-w-sm text-pretty text-sm leading-relaxed text-ash-500 sm:mt-6 sm:text-base">
                 Every site we ship covers the six roles below - held by
                 our in-house team of web developers and brand designers.
                 No subcontractors, no offshoring, no junior swap-ins.
@@ -138,7 +138,7 @@ export default function AboutPage() {
             </Reveal>
           </div>
           <div className="md:col-span-8">
-            <dl className="grid gap-x-12 gap-y-6 sm:grid-cols-2">
+            <dl className="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-6">
               {ROLES.map((r, i) => (
                 <Reveal key={r.role} delay={i}>
                   <div className="border-b border-hairline pb-4">
@@ -159,15 +159,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="container-page py-20 pb-32">
+      <section className="container-page py-12 pb-20 sm:py-20 sm:pb-32">
         <Reveal>
-          <div className="rounded-card border border-hairline bg-paper-100/75 p-10 text-ink-700 md:p-16">
-            <div className="grid items-end gap-10 md:grid-cols-12">
+          <div className="rounded-card border border-hairline bg-paper-100/75 p-6 text-ink-700 sm:p-10 md:p-16">
+            <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
               <div className="md:col-span-7">
                 <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime-300">
                   Add a swash
                 </p>
-                <h2 className="mt-6 font-display text-display-lg text-balance">
+                <h2 className="mt-4 font-display text-display-lg text-balance sm:mt-6">
                   Have a brief in mind?
                   <br />
                   <span className="italic text-ash-500">Send it our way.</span>

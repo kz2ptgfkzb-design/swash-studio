@@ -8,9 +8,9 @@ import { Magnetic } from './Magnetic';
 
 export function BriefCtaSection() {
   return (
-    <section id="cta" className="relative py-28 md:py-40">
+    <section id="cta" className="relative py-16 sm:py-24 md:py-40">
       <div className="container-page">
-        <div className="relative overflow-hidden rounded-[28px] border border-hairline bg-paper-100/75 px-8 py-20 text-ink-700 md:px-16 md:py-32">
+        <div className="relative overflow-hidden rounded-[28px] border border-hairline bg-paper-100/75 px-5 py-12 text-ink-700 sm:px-8 sm:py-20 md:px-16 md:py-32">
           <motion.div
             aria-hidden
             initial={{ opacity: 0, rotate: -20 }}
@@ -24,7 +24,7 @@ export function BriefCtaSection() {
 
           <div className="absolute inset-0 bg-noise opacity-[0.04] mix-blend-overlay pointer-events-none" />
 
-          <div className="relative grid items-end gap-12 md:grid-cols-12">
+          <div className="relative grid items-end gap-8 md:grid-cols-12 md:gap-12">
             <div className="md:col-span-7">
               <Reveal>
                 <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime-300">
@@ -32,7 +32,7 @@ export function BriefCtaSection() {
                 </span>
               </Reveal>
               <Reveal delay={1}>
-                <h2 className="mt-6 font-display text-display-xl text-balance text-ink-700">
+                <h2 className="mt-4 font-display text-display-xl text-balance text-ink-700 sm:mt-6">
                   Tell us the brief.
                   <br />
                   <span className="italic text-ash-500">
@@ -41,7 +41,7 @@ export function BriefCtaSection() {
                 </h2>
               </Reveal>
               <Reveal delay={2}>
-                <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-ash-500">
+                <p className="mt-5 max-w-md text-pretty text-sm leading-relaxed text-ash-500 sm:mt-6 sm:text-base">
                   Five minutes of writing on your end. A <span className="text-ink-700">video demo of your site</span>
                   {' '}in your inbox within 48 hours - the actual page,
                   built and hosted. Watch it, request changes. Pay

@@ -27,7 +27,7 @@ export function Hero() {
       className="relative isolate min-h-[100svh] overflow-hidden grain"
     >
 
-      <div className="container-wide relative z-10 flex min-h-[100svh] flex-col justify-between pb-12 pt-32">
+      <div className="container-wide relative z-10 flex min-h-[100svh] flex-col justify-between pb-12 pt-24 sm:pt-28 md:pt-32">
         <div className="flex items-center justify-between">
           <motion.div
             initial={{ opacity: 0, y: -8 }}
@@ -57,8 +57,8 @@ export function Hero() {
           <SwashMark size={560} variant="default" />
         </motion.div>
 
-        <motion.div style={{ y: titleY, opacity: titleOpacity }} className="space-y-10 md:max-w-[72%]">
-          <h1 className="font-display text-ink-700">
+        <motion.div style={{ y: titleY, opacity: titleOpacity }} className="space-y-6 sm:space-y-8 md:space-y-10 md:max-w-[72%]">
+          <h1 className="font-display text-ink-700 break-words">
             <span className="block text-display-2xl">
               <RevealText text="Add a" mode="word" stagger={0.08} delay={0.2} duration={1.0} />
             </span>
@@ -74,9 +74,9 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between"
+            className="flex flex-col gap-6 sm:gap-8 md:flex-row md:items-end md:justify-between"
           >
-            <p className="max-w-md text-balance text-base leading-relaxed text-ash-500 md:text-lg">
+            <p className="max-w-md text-balance text-sm leading-relaxed text-ash-500 sm:text-base md:text-lg">
               A boutique studio that builds websites - and the brands and
               motion that go with them. We&rsquo;ve shipped for HVAC
               dispatchers, DTC skincare lines, neighborhood bakeries, and

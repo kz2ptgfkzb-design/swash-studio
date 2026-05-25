@@ -7,7 +7,6 @@ import { SmoothScroll } from '@/components/SmoothScroll';
 import { CursorTrail } from '@/components/CursorTrail';
 import { CursorLabel } from '@/components/CursorLabel';
 import { Preloader } from '@/components/Preloader';
-import { SoundToggle } from '@/components/SoundToggle';
 import { AmbientFluid } from '@/components/AmbientFluid';
 
 const sans = Inter_Tight({
@@ -69,7 +68,6 @@ export default function RootLayout({
         <NavBar />
         <main className="relative z-10">{children}</main>
         <Footer />
-        <SoundToggle />
       </body>
     </html>
   );

@@ -75,20 +75,20 @@ export function WorkCard({ item }: { item: WorkItem }) {
 
           <div className="absolute inset-0 bg-noise opacity-[0.05] mix-blend-overlay pointer-events-none" />
 
-          <div className="absolute left-6 top-6 flex items-center gap-2">
+          <div className="absolute left-4 top-4 flex items-center gap-2 sm:left-6 sm:top-6">
             <span className="rounded-pill bg-paper-100/15 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] backdrop-blur-sm">
               {item.industry}
             </span>
           </div>
-          <div className="absolute right-6 top-6">
+          <div className="absolute right-4 top-4 sm:right-6 sm:top-6">
             <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-paper-50/75">
               {item.year}
             </span>
           </div>
 
           {item.metric && (
-            <div className="absolute bottom-6 left-6 right-6 flex items-baseline justify-between">
-              <p className="font-display text-4xl leading-none tracking-tight md:text-5xl">
+            <div className="absolute bottom-4 left-4 right-4 flex items-baseline justify-between sm:bottom-6 sm:left-6 sm:right-6">
+              <p className="font-display text-3xl leading-none tracking-tight sm:text-4xl md:text-5xl">
                 {item.metric.value}
               </p>
               <p className="max-w-[50%] text-right font-mono text-[10px] uppercase tracking-[0.16em] text-paper-50/85">
@@ -98,16 +98,16 @@ export function WorkCard({ item }: { item: WorkItem }) {
           )}
         </div>
 
-        <div className="flex flex-col gap-5 p-7">
+        <div className="flex flex-col gap-4 p-5 sm:gap-5 sm:p-7">
           <div className="flex items-center justify-between">
-            <h3 className="font-display text-2xl tracking-tight text-ink-700 transition-colors duration-300 group-hover:text-lime-300 md:text-3xl">
+            <h3 className="font-display text-xl tracking-tight text-ink-700 transition-colors duration-300 group-hover:text-lime-300 sm:text-2xl md:text-3xl">
               {item.client}
             </h3>
           </div>
           <p className="text-pretty text-sm leading-relaxed text-ash-500">
             {item.summary}
           </p>
-          <div className="flex items-center justify-between border-t border-hairline pt-5">
+          <div className="flex items-center justify-between gap-3 border-t border-hairline pt-4 sm:pt-5">
             <ul className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ash-400">
               {item.scope.map((s) => (
                 <li key={s}>{s}</li>

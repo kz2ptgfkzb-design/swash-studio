@@ -60,14 +60,14 @@ export function VelocityMarquee() {
     <div className="relative border-y border-hairline bg-paper-200/30 overflow-hidden mask-fade-edges">
       <motion.div
         style={{ x, skewX: skew }}
-        className="flex w-max items-center gap-12 py-7 will-change-transform"
+        className="flex w-max items-center gap-6 py-5 will-change-transform sm:gap-12 sm:py-7"
       >
         {doubled.map((text, i) => (
           <div
             key={`${text}-${i}`}
-            className="flex items-center gap-12 whitespace-nowrap"
+            className="flex items-center gap-6 whitespace-nowrap sm:gap-12"
           >
-            <span className="text-2xl font-bold tracking-tight text-ink-700 md:text-3xl">
+            <span className="text-lg font-bold tracking-tight text-ink-700 sm:text-2xl md:text-3xl">
               {text}
             </span>
             <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-lime-300/80" />

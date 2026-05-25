@@ -14,15 +14,15 @@ const CATEGORY_LABEL: Record<string, string> = {
 
 export function ServicesOverview() {
   return (
-    <section id="services" className="relative py-28 md:py-40">
+    <section id="services" className="relative py-16 sm:py-24 md:py-40">
       <div className="container-wide">
-        <div className="grid items-end gap-10 md:grid-cols-12">
+        <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-7">
             <Reveal>
               <span className="eyebrow">What we do</span>
             </Reveal>
             <Reveal delay={1}>
-              <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
+              <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700 sm:mt-6">
                 Six services.
                 <br />
                 <span className="italic text-ash-500">One studio.</span>
@@ -31,7 +31,7 @@ export function ServicesOverview() {
           </div>
           <div className="md:col-span-4 md:col-start-9">
             <Reveal delay={2}>
-              <p className="text-pretty text-base leading-relaxed text-ash-500">
+              <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 Bundle them or pick one. Most engagements pair a brand
                 with a site; some are audits, some are launch pages, some
                 are pure motion work. The proposal makes the shape clear.
@@ -46,11 +46,11 @@ export function ServicesOverview() {
           </div>
         </div>
 
-        <ul className="mt-14 grid gap-px overflow-hidden rounded-card border border-hairline bg-hairline md:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-hairline bg-hairline sm:mt-14 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => (
             <Reveal key={s.slug} delay={i % 3}>
               <li
-                className="group relative flex h-full flex-col gap-5 bg-paper-100 p-7 transition-colors duration-500 ease-silk hover:bg-paper-50 md:p-9"
+                className="group relative flex h-full flex-col gap-4 bg-paper-100 p-5 transition-colors duration-500 ease-silk hover:bg-paper-50 sm:gap-5 sm:p-7 md:p-9"
                 data-cursor="link"
               >
                 <Link
@@ -68,7 +68,7 @@ export function ServicesOverview() {
                     {s.duration}
                   </motion.span>
                 </div>
-                <h3 className="font-display text-2xl tracking-tight text-ink-700 md:text-3xl">
+                <h3 className="font-display text-xl tracking-tight text-ink-700 sm:text-2xl md:text-3xl">
                   {s.title}
                 </h3>
                 <p className="text-pretty text-sm leading-relaxed text-ash-500">

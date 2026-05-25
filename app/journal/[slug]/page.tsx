@@ -30,7 +30,7 @@ export default function JournalPostPage({ params }: { params: { slug: string } }
   return (
     <>
       <article>
-        <section className="container-page pt-40 pb-12">
+        <section className="container-page pt-24 pb-8 sm:pt-32 sm:pb-12 md:pt-40">
           <Link href="/journal" className="link-arrow text-xs" data-cursor="link">
             <svg width="12" height="12" viewBox="0 0 14 14" fill="none" style={{ transform: 'rotate(180deg)' }}>
               <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -38,18 +38,18 @@ export default function JournalPostPage({ params }: { params: { slug: string } }
             All journal entries
           </Link>
 
-          <div className="mt-10 max-w-3xl">
+          <div className="mt-8 max-w-3xl sm:mt-10">
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ash-400">
               {post.date} · {post.readingTime} read · {post.category}
             </p>
-            <h1 className="mt-6 font-display text-display-xl text-balance text-ink-700">
+            <h1 className="mt-4 font-display text-display-xl text-balance text-ink-700 sm:mt-6">
               {post.title}
             </h1>
-            <p className="mt-6 max-w-2xl text-pretty font-display italic text-xl leading-snug text-ash-500 md:text-2xl">
+            <p className="mt-5 max-w-2xl text-pretty font-display italic text-lg leading-snug text-ash-500 sm:mt-6 sm:text-xl md:text-2xl">
               {post.dek}
             </p>
 
-            <div className="mt-8 flex items-center gap-3 border-t border-hairline pt-6">
+            <div className="mt-6 flex items-center gap-3 border-t border-hairline pt-5 sm:mt-8 sm:pt-6">
               <span className="grid h-10 w-10 place-items-center rounded-full bg-ink-700 font-mono text-xs text-paper-100">
                 {post.author.split(' ').map((p) => p[0]).join('')}
               </span>
@@ -76,8 +76,8 @@ export default function JournalPostPage({ params }: { params: { slug: string } }
           </Reveal>
         </section>
 
-        <section className="container-page pb-24">
-          <div className="mx-auto max-w-2xl space-y-6">
+        <section className="container-page pb-16 sm:pb-24">
+          <div className="mx-auto max-w-2xl space-y-5 sm:space-y-6">
             {post.body.map((block, i) => (
               <Reveal key={i} delay={i % 3}>
                 <BlockRenderer block={block} />
@@ -87,8 +87,8 @@ export default function JournalPostPage({ params }: { params: { slug: string } }
         </section>
       </article>
 
-      <section className="container-wide pb-24">
-        <div className="mb-8 flex items-end justify-between">
+      <section className="container-wide pb-16 sm:pb-24">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-3 sm:mb-8">
           <h2 className="font-display text-display-md text-ink-700">
             Keep reading.
           </h2>
@@ -99,7 +99,7 @@ export default function JournalPostPage({ params }: { params: { slug: string } }
             </svg>
           </Link>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
           {others.map((o) => (
             <Link
               key={o.slug}
@@ -114,11 +114,11 @@ export default function JournalPostPage({ params }: { params: { slug: string } }
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
                 />
               </div>
-              <div className="p-7">
+              <div className="p-5 sm:p-7">
                 <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ash-400">
                   {o.date} · {o.readingTime}
                 </p>
-                <h3 className="mt-4 font-display text-2xl tracking-tight text-ink-700 transition-colors group-hover:text-lime-300 md:text-3xl">
+                <h3 className="mt-3 font-display text-xl tracking-tight text-ink-700 transition-colors group-hover:text-lime-300 sm:mt-4 sm:text-2xl md:text-3xl">
                   {o.title}
                 </h3>
                 <p className="mt-3 text-pretty text-sm leading-relaxed text-ash-500">
@@ -130,14 +130,14 @@ export default function JournalPostPage({ params }: { params: { slug: string } }
         </div>
       </section>
 
-      <section className="container-page py-12 pb-32">
-        <div className="rounded-card border border-hairline bg-paper-100/75 p-10 text-ink-700 md:p-16">
-          <div className="grid items-end gap-10 md:grid-cols-12">
+      <section className="container-page py-8 pb-20 sm:py-12 sm:pb-32">
+        <div className="rounded-card border border-hairline bg-paper-100/75 p-6 text-ink-700 sm:p-10 md:p-16">
+          <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-7">
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime-300">
                 Read enough?
               </p>
-              <h2 className="mt-6 font-display text-display-lg text-balance">
+              <h2 className="mt-4 font-display text-display-lg text-balance sm:mt-6">
                 Send the brief.
                 <br />
                 <span className="italic text-ash-500">We&rsquo;ll do the rest.</span>
@@ -174,14 +174,14 @@ function BlockRenderer({ block }: { block: JournalBlock }) {
       );
     case 'p':
       return (
-        <p className="text-pretty text-lg leading-relaxed text-ink-400 md:text-[19px]">
+        <p className="text-pretty text-base leading-relaxed text-ink-400 sm:text-lg md:text-[19px]">
           {block.text}
         </p>
       );
     case 'blockquote':
       return (
-        <figure className="my-10 border-l-2 border-lime-300 pl-6 md:pl-8">
-          <blockquote className="font-display text-2xl italic leading-snug text-ink-700 md:text-3xl">
+        <figure className="my-8 border-l-2 border-lime-300 pl-5 sm:my-10 sm:pl-6 md:pl-8">
+          <blockquote className="font-display text-xl italic leading-snug text-ink-700 sm:text-2xl md:text-3xl">
             {block.text}
           </blockquote>
           {block.cite && (
@@ -193,9 +193,9 @@ function BlockRenderer({ block }: { block: JournalBlock }) {
       );
     case 'ul':
       return (
-        <ul className="space-y-3 border-l-2 border-hairline pl-6">
+        <ul className="space-y-3 border-l-2 border-hairline pl-5 sm:pl-6">
           {block.items.map((it, i) => (
-            <li key={i} className="flex items-start gap-3 text-lg leading-relaxed text-ink-400">
+            <li key={i} className="flex items-start gap-3 text-base leading-relaxed text-ink-400 sm:text-lg">
               <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-lime-300" />
               {it}
             </li>

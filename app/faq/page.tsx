@@ -16,19 +16,19 @@ export default function FaqPage() {
 
   return (
     <>
-      <section className="relative pt-40 pb-16">
+      <section className="relative pt-24 pb-10 sm:pt-32 sm:pb-16 md:pt-40">
         <div className="container-page">
-          <div className="grid items-end gap-10 md:grid-cols-12">
+          <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-7">
               <p className="eyebrow">FAQ</p>
-              <h1 className="mt-6 font-display text-display-xl text-balance text-ink-700">
+              <h1 className="mt-4 font-display text-display-xl text-balance text-ink-700 sm:mt-6">
                 Everything you&rsquo;d ask
                 <br />
                 <span className="italic text-ash-500">on the first call.</span>
               </h1>
             </div>
             <div className="md:col-span-5">
-              <p className="text-pretty text-base leading-relaxed text-ash-500">
+              <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 Grouped into pricing, process, after-launch, and fit.
                 Nothing hidden, nothing dressed up. If something is
                 missing, ask us in the brief or by email.
@@ -38,19 +38,19 @@ export default function FaqPage() {
         </div>
       </section>
 
-      <section className="container-page py-16">
-        <div className="grid gap-12 md:grid-cols-12">
+      <section className="container-page py-10 sm:py-16">
+        <div className="grid gap-8 md:grid-cols-12 md:gap-12">
           <aside className="md:col-span-3">
-            <ul className="sticky top-28 space-y-1">
+            <ul className="flex gap-1 overflow-x-auto pb-2 sm:sticky sm:top-28 sm:block sm:space-y-1 sm:overflow-visible sm:pb-0">
               {FAQ.map((g) => {
                 const active = g.id === activeGroup;
                 return (
-                  <li key={g.id}>
+                  <li key={g.id} className="shrink-0 sm:shrink">
                     <button
                       onClick={() => setActiveGroup(g.id)}
                       data-cursor="link"
                       className={cn(
-                        'flex w-full items-center justify-between gap-3 rounded-pill px-4 py-3 text-left text-sm transition-all duration-300',
+                        'flex w-full items-center justify-between gap-3 whitespace-nowrap rounded-pill px-4 py-2 text-left text-sm transition-all duration-300 sm:py-3',
                         active
                           ? 'bg-ink-700 text-paper-50'
                           : 'text-ink-400 hover:bg-paper-200/60 hover:text-ink-700',
@@ -91,11 +91,11 @@ export default function FaqPage() {
                         onClick={() => setOpen(isOpen ? null : id)}
                         data-cursor="link"
                         aria-expanded={isOpen}
-                        className="group flex w-full items-center justify-between gap-6 px-6 py-6 text-left transition-colors hover:bg-paper-50 md:px-9 md:py-7"
+                        className="group flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition-colors hover:bg-paper-50 sm:gap-6 sm:px-6 sm:py-6 md:px-9 md:py-7"
                       >
                         <span
                           className={cn(
-                            'font-display text-xl text-balance text-ink-700 transition-colors md:text-2xl',
+                            'font-display text-lg text-balance text-ink-700 transition-colors sm:text-xl md:text-2xl',
                             isOpen && 'text-ink_red-400',
                           )}
                         >
@@ -127,7 +127,7 @@ export default function FaqPage() {
                             }}
                             className="overflow-hidden"
                           >
-                            <p className="px-6 pb-7 pr-16 text-pretty text-base leading-relaxed text-ash-500 md:px-9">
+                            <p className="px-5 pb-6 pr-10 text-pretty text-sm leading-relaxed text-ash-500 sm:px-6 sm:pb-7 sm:pr-16 sm:text-base md:px-9">
                               {it.a}
                             </p>
                           </motion.div>
@@ -142,20 +142,20 @@ export default function FaqPage() {
         </div>
       </section>
 
-      <section className="container-page py-24 pb-32">
-        <div className="rounded-card border border-hairline bg-paper-200/40 p-10 text-center md:p-16">
+      <section className="container-page py-16 pb-20 sm:py-24 sm:pb-32">
+        <div className="rounded-card border border-hairline bg-paper-200/40 p-6 text-center sm:p-10 md:p-16">
           <Reveal>
             <p className="eyebrow">Question we missed?</p>
           </Reveal>
           <Reveal delay={1}>
-            <h2 className="mx-auto mt-6 max-w-[22ch] font-display text-display-lg text-balance text-ink-700">
+            <h2 className="mx-auto mt-4 max-w-[22ch] font-display text-display-lg text-balance text-ink-700 sm:mt-6">
               Tell us in the brief.
               <br />
               <span className="italic text-ash-500">Or email us, either works.</span>
             </h2>
           </Reveal>
           <Reveal delay={2}>
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <div className="mt-7 flex flex-wrap justify-center gap-3 sm:mt-10">
               <Magnetic strength={0.25}>
                 <Link href="/brief" className="btn-primary" data-cursor="link">
                   Start a brief

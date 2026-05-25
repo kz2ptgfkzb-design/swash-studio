@@ -76,19 +76,19 @@ const DEMOS: Demo[] = [
 export default function PreviewIndex() {
   return (
     <>
-      <section className="relative pt-40 pb-16">
+      <section className="relative pt-24 pb-10 sm:pt-32 sm:pb-16 md:pt-40">
         <div className="container-wide">
-          <div className="grid items-end gap-10 md:grid-cols-12">
+          <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-7">
               <p className="eyebrow">Live previews</p>
-              <h1 className="mt-6 font-display text-display-xl text-balance text-ink-700">
+              <h1 className="mt-4 font-display text-display-xl text-balance text-ink-700 sm:mt-6">
                 Same studio.
                 <br />
                 <span className="italic text-ash-500">Four different brands.</span>
               </h1>
             </div>
             <div className="md:col-span-5">
-              <p className="text-pretty text-base leading-relaxed text-ash-500">
+              <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 Four fictional websites built end-to-end with Swash - a
                 plumber, a wood-fired restaurant, a SaaS analytics tool,
                 and a boutique real-estate brokerage. Each lives at its
@@ -100,8 +100,8 @@ export default function PreviewIndex() {
         </div>
       </section>
 
-      <section className="container-wide pb-24">
-        <ul className="space-y-8">
+      <section className="container-wide pb-16 sm:pb-24">
+        <ul className="space-y-5 sm:space-y-8">
           {DEMOS.map((d, i) => (
             <li key={d.slug}>
               <Reveal delay={i}>
@@ -120,7 +120,7 @@ export default function PreviewIndex() {
                       <PreviewMockup demo={d} />
 
                       <div
-                        className="absolute left-7 top-7 rounded-pill px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] backdrop-blur-sm"
+                        className="absolute left-4 top-4 rounded-pill px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.2em] backdrop-blur-sm sm:left-7 sm:top-7 sm:px-3 sm:text-[10px] sm:tracking-[0.22em]"
                         style={{
                           background: `${d.text}10`,
                           color: d.text,
@@ -130,7 +130,7 @@ export default function PreviewIndex() {
                       </div>
 
                       <div
-                        className="absolute right-7 top-7 rounded-pill px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] backdrop-blur-sm"
+                        className="absolute right-4 top-4 rounded-pill px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.2em] backdrop-blur-sm sm:right-7 sm:top-7 sm:px-3 sm:text-[10px] sm:tracking-[0.22em]"
                         style={{
                           background: d.accent,
                           color: d.bg,
@@ -141,15 +141,15 @@ export default function PreviewIndex() {
                     </div>
 
                     {/* Info side */}
-                    <div className="flex flex-col justify-between gap-10 p-8 md:col-span-5 md:p-12">
+                    <div className="flex flex-col justify-between gap-6 p-6 sm:gap-10 sm:p-8 md:col-span-5 md:p-12">
                       <div>
                         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ash-400">
                           {String(i + 1).padStart(2, '0')} - Preview
                         </p>
-                        <h2 className="mt-4 font-display text-display-md tracking-tight text-ink-700 transition-colors group-hover:text-lime-300">
+                        <h2 className="mt-3 font-display text-display-md tracking-tight text-ink-700 transition-colors group-hover:text-lime-300 sm:mt-4">
                           {d.brand}
                         </h2>
-                        <p className="mt-2 font-display italic text-xl text-ash-500">
+                        <p className="mt-2 font-display italic text-lg text-ash-500 sm:text-xl">
                           {d.tagline}
                         </p>
                         <p className="mt-6 text-pretty text-sm leading-relaxed text-ash-500">

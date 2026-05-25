@@ -17,19 +17,19 @@ const PROMISES = [
 export default function BriefPage() {
   return (
     <>
-      <section className="relative pt-40 pb-12">
+      <section className="relative pt-24 pb-8 sm:pt-32 sm:pb-12 md:pt-40">
         <div className="container-page">
-          <div className="grid items-end gap-10 md:grid-cols-12">
+          <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
             <div className="md:col-span-7">
               <p className="eyebrow">The brief</p>
-              <h1 className="mt-6 font-display text-display-xl text-balance text-ink-700">
+              <h1 className="mt-4 font-display text-display-xl text-balance text-ink-700 sm:mt-6">
                 Tell us what
                 <br />
                 <span className="italic text-ash-500">you&rsquo;re building.</span>
               </h1>
             </div>
             <div className="md:col-span-5">
-              <p className="text-pretty text-base leading-relaxed text-ash-500">
+              <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 Five steps, about five minutes. Within forty-eight hours
                 we send a <span className="text-ink-700">video demo of
                 your site</span> - a real, working preview. Watch it,
@@ -41,7 +41,7 @@ export default function BriefPage() {
       </section>
 
       <section className="container-page py-8">
-        <div className="grid gap-12 md:grid-cols-12">
+        <div className="grid gap-8 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-8 lg:col-span-9">
             <Suspense fallback={<FormFallback />}>
               <BriefIntakeForm />

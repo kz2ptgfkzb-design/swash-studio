@@ -28,15 +28,15 @@ const TIERS = [
 
 export function PricingPhilosophy() {
   return (
-    <section id="pricing" className="relative py-28 md:py-40">
+    <section id="pricing" className="relative py-16 sm:py-24 md:py-40">
       <div className="container-page">
-        <div className="grid items-end gap-10 md:grid-cols-12">
+        <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-7">
             <Reveal>
               <span className="eyebrow">A note on price</span>
             </Reveal>
             <Reveal delay={1}>
-              <h2 className="mt-6 font-display text-display-lg text-balance text-ink-700">
+              <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700 sm:mt-6">
                 We don&rsquo;t publish prices.
                 <br />
                 <span className="italic font-light text-ash-500">Here&rsquo;s why.</span>
@@ -45,12 +45,12 @@ export function PricingPhilosophy() {
           </div>
           <div className="md:col-span-5">
             <Reveal delay={2}>
-              <p className="text-pretty text-base leading-relaxed text-ash-500">
+              <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 A fixed price tag forces every brief into the same box.
                 We&rsquo;d rather hear yours, scope the work honestly, and
                 give you a fee that reflects the project, not a tier sheet.
               </p>
-              <p className="mt-4 text-pretty text-base leading-relaxed text-ash-500">
+              <p className="mt-4 text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 That said - here&rsquo;s a rough map of the shapes a
                 Swash project tends to take.
               </p>
@@ -58,12 +58,12 @@ export function PricingPhilosophy() {
           </div>
         </div>
 
-        <ul className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-8 grid grid-cols-1 gap-4 sm:mt-16 sm:grid-cols-2 lg:grid-cols-4">
           {TIERS.map((t, i) => (
             <Reveal key={t.name} delay={i}>
-              <li className="flex h-full flex-col gap-6 rounded-card border border-hairline bg-paper-200/60 p-7 transition-all duration-500 ease-silk hover:-translate-y-1 hover:border-lime-300/30">
+              <li className="flex h-full flex-col gap-5 rounded-card border border-hairline bg-paper-200/60 p-5 transition-all duration-500 ease-silk hover:-translate-y-1 hover:border-lime-300/30 sm:gap-6 sm:p-7">
                 <div className="flex items-center justify-between">
-                  <p className="font-display text-2xl tracking-tight text-ink-700">
+                  <p className="font-display text-xl tracking-tight text-ink-700 sm:text-2xl">
                     {t.name}
                   </p>
                   <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-saffron-500">
@@ -98,9 +98,9 @@ export function PricingPhilosophy() {
         </ul>
 
         <Reveal delay={5}>
-          <div className="mt-12 flex flex-col items-start justify-between gap-4 rounded-card border border-hairline bg-paper-200/40 p-8 md:flex-row md:items-center md:p-10">
+          <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-card border border-hairline bg-paper-200/40 p-6 sm:mt-12 sm:p-8 md:flex-row md:items-center md:p-10">
             <div>
-              <p className="font-display text-2xl text-ink-700">
+              <p className="font-display text-xl text-ink-700 sm:text-2xl">
                 Tell us your budget. We&rsquo;ll tell you what it builds.
               </p>
               <p className="mt-2 text-pretty text-sm leading-relaxed text-ash-500">

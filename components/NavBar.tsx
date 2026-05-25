@@ -122,7 +122,7 @@ export function NavBar() {
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="block border-b border-hairline py-5 font-display italic text-4xl text-ink-700"
+                    className="block border-b border-hairline py-4 font-display italic text-3xl sm:text-4xl text-ink-700"
                   >
                     {item.label}
                   </Link>
