@@ -49,6 +49,16 @@ export function Hero() {
           </motion.span>
         </div>
 
+        {/* Mobile mark - centered in the open space between the pill and the headline */}
+        <motion.div
+          aria-hidden
+          style={{ y: markY, rotate: markRotate, scale: markScale }}
+          className="pointer-events-none absolute left-1/2 top-[20%] -translate-x-1/2 opacity-95 md:hidden"
+        >
+          <SwashMark size={260} variant="default" />
+        </motion.div>
+
+        {/* Desktop mark - large, right-aligned */}
         <motion.div
           aria-hidden
           style={{ y: markY, rotate: markRotate, scale: markScale }}
@@ -105,7 +115,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.4 }}
-        className="pointer-events-none absolute inset-x-0 bottom-6 z-10 flex justify-center"
+        className="pointer-events-none absolute inset-x-0 bottom-6 z-10 hidden justify-center md:flex"
       >
         <div className="flex flex-col items-center gap-2 text-ash-500">
           <span className="font-mono text-[10px] uppercase tracking-[0.22em]">
