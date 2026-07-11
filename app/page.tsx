@@ -10,7 +10,6 @@ import { EverySiteShipsWith } from '@/components/EverySiteShipsWith';
 import { ProofMetrics } from '@/components/ProofMetrics';
 import { IndustriesGrid } from '@/components/IndustriesGrid';
 import { PricingPhilosophy } from '@/components/PricingPhilosophy';
-import { Testimonials } from '@/components/Testimonials';
 import { FaqTeaser } from '@/components/FaqTeaser';
 import { BriefCtaSection } from '@/components/BriefCtaSection';
 import { ChapterNav } from '@/components/ChapterNav';
@@ -31,7 +30,6 @@ export default function HomePage() {
       <ProofMetrics />
       <IndustriesGrid />
       <PricingPhilosophy />
-      <Testimonials />
       <FaqTeaser />
       <BriefCtaSection />
     </>

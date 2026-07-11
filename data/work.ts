@@ -2,9 +2,7 @@ export type CaseStudy = {
   challenge: string;
   approach: string[];
   outcome: string;
-  testimonial?: { quote: string; name: string; role: string };
   timeline: string;
-  team: string[];
   outcomes: { value: string; label: string }[];
 };
 
@@ -42,14 +40,7 @@ export const WORK: WorkItem[] = [
       ],
       outcome:
         'Within 90 days, monthly quote requests went from 38 to 122. Average response time on a quote dropped from 6 hours to 22 minutes. Apex hired two new techs in the next quarter.',
-      testimonial: {
-        quote:
-          'Renée Ostrowski said: "The brief took ten minutes. The proposal landed the next morning. We launched three weeks later, and the booking rate doubled in the first month."',
-        name: 'Renée Ostrowski',
-        role: 'Founder, Apex Mechanical',
-      },
       timeline: '4 weeks',
-      team: ['Stenseth (lead)', 'Yarrow (brand)', 'Halloran (build)', 'Devaux (copy)'],
       outcomes: [
         { value: '3.2×', label: 'monthly leads' },
         { value: '22 min', label: 'avg quote response (from 6h)' },
@@ -78,14 +69,7 @@ export const WORK: WorkItem[] = [
       ],
       outcome:
         'AOV up 42% within 90 days. Time-on-PDP up 2.6×. Email-driven revenue up 31%. Returns held flat.',
-      testimonial: {
-        quote:
-          '"We sold tees for six years. After this, we sell a way of dressing. The PDP changes alone paid for the project in the first month."',
-        name: 'Jonas Hellberg',
-        role: 'CEO, Saltwater Co.',
-      },
       timeline: '8 weeks',
-      team: ['Yarrow (brand)', 'Halloran (build)', 'Oh (motion)', 'Devaux (copy)'],
       outcomes: [
         { value: '+42%', label: 'AOV, 90-day rolling' },
         { value: '2.6×', label: 'time on PDP' },
@@ -114,14 +98,7 @@ export const WORK: WorkItem[] = [
       ],
       outcome:
         'Featured in four food publications in the first 90 days. Reservations at the new location ran at 94% capacity through opening month.',
-      testimonial: {
-        quote:
-          '"The food editors found us through the press kit page. That alone has changed how we open future locations."',
-        name: 'Inés Marchetti',
-        role: 'Founder, Kilncraft',
-      },
       timeline: '6 weeks',
-      team: ['Stenseth (lead)', 'Yarrow (brand)', 'Devaux (copy)', 'Imani (production)'],
       outcomes: [
         { value: '4', label: 'food-press features, 90d' },
         { value: '94%', label: 'reservation fill, opening month' },
@@ -150,14 +127,7 @@ export const WORK: WorkItem[] = [
       ],
       outcome:
         'Qualified inquiries up 58%. Time-on-listing-page up 3.1×. Brokerage signed two new agents who specifically cited the brand as why they joined.',
-      testimonial: {
-        quote:
-          '"Buyers email us comparing us to firms with twenty agents. Two senior agents joined the firm citing the brand. The site is doing recruiting we do not pay for."',
-        name: 'David Tideway',
-        role: 'Founder, Tidemark Realty',
-      },
       timeline: '5 weeks',
-      team: ['Stenseth (lead)', 'Yarrow (brand)', 'Halloran (build)', 'Imani (CMS)'],
       outcomes: [
         { value: '+58%', label: 'qualified inquiries' },
         { value: '3.1×', label: 'time on listing pages' },
@@ -186,14 +156,7 @@ export const WORK: WorkItem[] = [
       ],
       outcome:
         'Free-trial → paid conversion up 18%. Median time-to-first-action dropped from 14 minutes to 4. Support tickets in the first 30 days down 27%.',
-      testimonial: {
-        quote:
-          '"Most studios sell you a look. Swash sold us a brand we still recognize three years in. The motion system alone has been worth its weight."',
-        name: 'David Anand',
-        role: 'CEO, Overlay Labs',
-      },
       timeline: '10 weeks',
-      team: ['Stenseth (lead)', 'Halloran (build)', 'Oh (motion)', 'Devaux (copy)'],
       outcomes: [
         { value: '+18%', label: 'free-trial conversion' },
         { value: '4 min', label: 'median time-to-first-action (from 14)' },
@@ -222,14 +185,7 @@ export const WORK: WorkItem[] = [
       ],
       outcome:
         '11k pre-launch waitlist. Sephora buyer cited the brand as a key factor in shelf placement. Launch sold through first allocation in 11 days.',
-      testimonial: {
-        quote:
-          '"They priced the work to fit what we had, and the site shipped at the level of brands ten times our size. That is the trick, I think."',
-        name: 'Mira Holloway',
-        role: 'Founder, Mira',
-      },
       timeline: '7 weeks',
-      team: ['Yarrow (brand)', 'Halloran (build)', 'Devaux (copy)', 'Imani (production)'],
       outcomes: [
         { value: '11k', label: 'pre-launch waitlist' },
         { value: '11 days', label: 'time to sell-through, first allocation' },

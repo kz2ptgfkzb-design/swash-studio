@@ -172,43 +172,6 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               </div>
             </Reveal>
 
-            {cs.testimonial && (
-              <Reveal delay={3}>
-                <blockquote className="rounded-card border border-hairline bg-paper-100 p-6 sm:p-10 md:p-14">
-                  <svg width="34" height="26" viewBox="0 0 34 26" fill="none" className="text-ink_red-400">
-                    <path
-                      d="M0 26V14C0 6.3 5.2 0.8 13 0V5.2C8.6 5.7 5.7 8.7 5.7 13H13V26H0ZM21 26V14C21 6.3 26.2 0.8 34 0V5.2C29.6 5.7 26.7 8.7 26.7 13H34V26H21Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <p className="mt-5 text-pretty font-display text-lg leading-snug text-ink-700 sm:mt-6 sm:text-2xl md:text-3xl">
-                    {cs.testimonial.quote}
-                  </p>
-                  <footer className="mt-6 border-t border-hairline pt-5 sm:mt-8">
-                    <p className="font-display text-base text-ink-700">{cs.testimonial.name}</p>
-                    <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-ash-400">
-                      {cs.testimonial.role}
-                    </p>
-                  </footer>
-                </blockquote>
-              </Reveal>
-            )}
-
-            <Reveal delay={4}>
-              <div>
-                <p className="eyebrow">Team</p>
-                <ul className="mt-4 flex flex-wrap gap-3">
-                  {cs.team.map((t) => (
-                    <li
-                      key={t}
-                      className="rounded-pill border border-hairline bg-paper-50/60 px-4 py-2 text-sm text-ink-700"
-                    >
-                      {t}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
