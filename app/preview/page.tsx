@@ -7,11 +7,13 @@ import { PHOTOS } from '@/data/photos';
 export const metadata = {
   title: 'Live previews · Swash',
   description:
-    'Three demo websites - plumber, restaurant, SaaS. Built with Swash, fully clickable. Each one is a different industry, palette, type system.',
+    'Four live builds - a real dealership rebuild plus three fictional demo brands (restaurant, SaaS, real estate). Fully clickable, each with its own brand.',
 };
 
 type Demo = {
   slug: string;
+  /** External URL - when set, the card links here instead of /preview/[slug] */
+  href?: string;
   brand: string;
   kind: string;
   tagline: string;
@@ -24,16 +26,17 @@ type Demo = {
 
 const DEMOS: Demo[] = [
   {
-    slug: 'pipeline',
-    brand: 'Pipeline & Co.',
-    kind: 'Plumber · Home services',
-    tagline: 'Plumbing that shows up.',
+    slug: 'mit-mak',
+    href: 'https://mit-mak-motors.vercel.app',
+    brand: 'Mit-Mak Motors',
+    kind: 'Automotive · Dealership rebuild',
+    tagline: 'Trusted. Awarded. Unmatched.',
     body:
-      "Utilitarian trade brand. Navy + safety yellow + bold display. Big phone CTA, service grid, areas served, reviews, written-quote form. Local-SEO-first, built for trust.",
-    accent: '#FFD93D',
-    bg: '#0E2236',
-    text: '#F4EFE3',
-    swatch: ['#0E2236', '#FFD93D', '#F4EFE3', '#091828'],
+      "Full rebuild of a real Pretoria pre-owned dealership. Black + racing red + graphite. 400+ car live inventory with search and compare, finance and sell-your-car flows, per-vehicle enquiry forms. The most complete build in the set - click anything.",
+    accent: '#E10600',
+    bg: '#0A0A0A',
+    text: '#F5F5F5',
+    swatch: ['#0A0A0A', '#E10600', '#9CA0A6', '#151515'],
   },
   {
     slug: 'ember-table',
@@ -89,8 +92,9 @@ export default function PreviewIndex() {
             </div>
             <div className="md:col-span-5">
               <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
-                Four fictional websites built end-to-end with Swash - a
-                plumber, a wood-fired restaurant, a SaaS analytics tool,
+                Four live builds, end-to-end by Swash - a full rebuild of
+                a real Pretoria car dealership, plus three fictional demo
+                brands: a wood-fired restaurant, a SaaS analytics tool,
                 and a boutique real-estate brokerage. Each lives at its
                 own URL, with its own brand. Click in, scroll around,
                 fill in a form. No two look alike.
@@ -107,8 +111,9 @@ export default function PreviewIndex() {
               <Reveal delay={i}>
                 <TiltCard intensity={4} scale={1.005} glare className="relative">
                   <Link
-                    href={`/preview/${d.slug}`}
+                    href={d.href ?? `/preview/${d.slug}`}
                     target="_blank"
+                    rel={d.href ? 'noopener' : undefined}
                     data-cursor="image"
                     className="group grid overflow-hidden rounded-card border border-hairline bg-paper-200/60 transition-colors duration-500 ease-silk hover:border-ink-700/30 md:grid-cols-12"
                   >
@@ -224,38 +229,34 @@ export default function PreviewIndex() {
 }
 
 function PreviewMockup({ demo }: { demo: Demo }) {
-  if (demo.slug === 'pipeline') {
+  if (demo.slug === 'mit-mak') {
     return (
-      <div className="absolute inset-0 p-10 flex flex-col justify-between">
-        <div className="grid grid-cols-12 gap-2">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <span
-              key={i}
-              className="col-span-2 h-1 rounded-full"
-              style={{ background: i === 0 ? demo.accent : `${demo.text}20` }}
-            />
-          ))}
+      <>
+        <img
+          src={PHOTOS.mitmak.hero}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/95 via-[#0A0A0A]/40 to-[#0A0A0A]/60" />
+        <div className="absolute inset-0 p-10 flex flex-col justify-end">
+          <div>
+            <p
+              style={{ fontFamily: 'var(--font-display)', color: demo.text }}
+              className="text-[clamp(2.5rem,5.5vw,5rem)] font-bold leading-[0.92] tracking-tight"
+            >
+              Trusted. Awarded.
+              <br />
+              <span style={{ color: demo.accent }}>Unmatched.</span>
+            </p>
+            <p
+              style={{ fontFamily: 'var(--font-mono)', color: demo.text }}
+              className="mt-5 text-[11px] uppercase tracking-[0.32em] opacity-80"
+            >
+              400+ cars in stock · Pretoria · delivered nationwide
+            </p>
+          </div>
         </div>
-        <div>
-          <p className="font-mono text-[9px] uppercase tracking-[0.32em]" style={{ color: demo.accent }}>
-            Est. 2008 · 24/7
-          </p>
-          <p
-            style={{ fontFamily: 'var(--font-display)', color: demo.text }}
-            className="mt-3 text-[clamp(2.5rem,5.5vw,5rem)] font-bold leading-[0.92] tracking-tight"
-          >
-            Plumbing that
-            <br />
-            <span style={{ color: demo.accent }}>shows up.</span>
-          </p>
-          <span
-            className="mt-6 inline-flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-bold"
-            style={{ background: demo.accent, color: demo.bg }}
-          >
-            ☎ (555) 010-0142
-          </span>
-        </div>
-      </div>
+      </>
     );
   }
 

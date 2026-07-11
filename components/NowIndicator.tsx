@@ -4,13 +4,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const LINES = [
-  'now: detailing Pipeline phase 2',
-  'now: sketching marks for an LA salon',
-  'now: rebuilding Ember & Table cart',
-  'now: writing copy for a Series-A page',
-  'now: scoring a hero loop in Cavalry',
-  'now: reviewing 31 brief submissions',
-  'now: shipping the Overlay v2 release',
+  'now: taking briefs',
+  'now: polishing the Mit-Mak build',
+  'now: refining the Holm demo',
+  'now: sketching the next demo brand',
+  'now: 48h from brief to video demo',
 ];
 
 const ROTATE_MS = 4400;

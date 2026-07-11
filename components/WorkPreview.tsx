@@ -37,7 +37,7 @@ export function WorkPreview() {
                   </svg>
                 </Link>
                 <Link href="/preview" className="link-arrow text-sm" data-cursor="link">
-                  Or click into 3 live demos
+                  Or click into 4 live builds
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>

@@ -7,6 +7,8 @@ import { PHOTOS } from '@/data/photos';
 
 type Edition = {
   slug: string;
+  /** External URL - when set, the card links here instead of /preview/[slug] */
+  href?: string;
   brand: string;
   industry: string;
   tagline: string;
@@ -21,17 +23,18 @@ type Edition = {
 
 const EDITIONS: Edition[] = [
   {
-    slug: 'pipeline',
-    brand: 'Pipeline & Co.',
-    industry: 'Plumbing · Home services',
-    tagline: 'Plumbing that shows up.',
-    photo: PHOTOS.pipeline.hero,
-    accent: '#FFD93D',
-    bg: '#0E2236',
-    fg: '#F4EFE3',
-    swatch: ['#0E2236', '#FFD93D', '#F4EFE3', '#091828'],
+    slug: 'mit-mak',
+    href: 'https://mit-mak-motors.vercel.app',
+    brand: 'Mit-Mak Motors',
+    industry: 'Automotive · Dealership rebuild',
+    tagline: 'Trusted. Awarded. Unmatched.',
+    photo: PHOTOS.mitmak.hero,
+    accent: '#E10600',
+    bg: '#0A0A0A',
+    fg: '#F5F5F5',
+    swatch: ['#0A0A0A', '#E10600', '#9CA0A6', '#151515'],
     typeStyle: 'display',
-    meta: '11 sections · navy + safety yellow',
+    meta: 'full site rebuild · 400+ car live inventory',
   },
   {
     slug: 'ember-table',
@@ -263,8 +266,9 @@ function EditionCard({
       style={{ background: edition.bg, color: edition.fg }}
     >
       <Link
-        href={`/preview/${edition.slug}`}
+        href={edition.href ?? `/preview/${edition.slug}`}
         target="_blank"
+        rel={edition.href ? 'noopener' : undefined}
         data-cursor="open"
         className="group block"
       >

@@ -13,13 +13,9 @@ function u(id: string, w = 1200, h = 800, q = 80): string {
 }
 
 export const PHOTOS = {
-  // ─── Pipeline & Co. (plumber) ──────────────────────────────────
-  pipeline: {
-    hero:        u('1581094288338-2314dddb7ece', 1600, 1100), // industrial pipes
-    tools:       u('1530124566582-a618bc2615dc', 800, 800),   // tools
-    plumberWork: u('1607400201515-c2c41c07d307', 800, 800),   // plumber at work
-    pipes:       u('1473773508845-188df298d2d1', 800, 800),   // pipe close-up
-    truck:       u('1486006920555-c77dcf18193c', 800, 800),   // service truck
+  // ─── Mit-Mak Motors (real rebuild - dealership) ────────────────
+  mitmak: {
+    hero: u('1503376780353-7e6692767b70', 1600, 1100), // dark sports car at dusk
   },
 
   // ─── Ember & Table (restaurant) ────────────────────────────────
