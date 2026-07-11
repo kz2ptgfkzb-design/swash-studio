@@ -37,19 +37,6 @@ const EDITIONS: Edition[] = [
     meta: 'full site rebuild · 400+ car live inventory',
   },
   {
-    slug: 'ember-table',
-    brand: 'Ember & Table',
-    industry: 'Restaurant · Hospitality',
-    tagline: 'Slow heat. Worth the wait.',
-    photo: PHOTOS.ember.interior,
-    accent: '#C8462C',
-    bg: '#F5ECD7',
-    fg: '#1A0F08',
-    swatch: ['#F5ECD7', '#C8462C', '#1A0F08', '#E8DEC4'],
-    typeStyle: 'editorial',
-    meta: '9 sections · cream + ember orange',
-  },
-  {
     slug: 'overlay',
     brand: 'Overlay',
     industry: 'B2B SaaS · Analytics',
@@ -150,16 +137,17 @@ export function EditionsCarousel() {
           <div className="md:col-span-7">
             <p className="eyebrow">- Swash Editions · Summer &apos;26</p>
             <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700 sm:mt-6">
-              Four brands.
+              Three brands.
               <br />
               <span className="italic text-ash-500">One studio.</span>
             </h2>
           </div>
           <div className="md:col-span-4 md:col-start-9">
             <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
-              A curated set of demo brands shipped this quarter - plumber,
-              wood-fired restaurant, SaaS analytics, boutique brokerage.
-              Each lives at its own URL. Click in to walk through.
+              A full rebuild of a real Pretoria dealership, plus two
+              fictional demo brands - SaaS analytics and a boutique
+              brokerage. Each lives at its own URL. Click in to walk
+              through.
             </p>
             <div className="mt-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ash-500">
               <span className="hidden md:inline">use</span>

@@ -7,7 +7,7 @@ import { PHOTOS } from '@/data/photos';
 export const metadata = {
   title: 'Live previews · Swash',
   description:
-    'Four live builds - a real dealership rebuild plus three fictional demo brands (restaurant, SaaS, real estate). Fully clickable, each with its own brand.',
+    'Three live builds - a real dealership rebuild plus two fictional demo brands (SaaS, real estate). Fully clickable, each with its own brand.',
 };
 
 type Demo = {
@@ -37,18 +37,6 @@ const DEMOS: Demo[] = [
     bg: '#0A0A0A',
     text: '#F5F5F5',
     swatch: ['#0A0A0A', '#E10600', '#9CA0A6', '#151515'],
-  },
-  {
-    slug: 'ember-table',
-    brand: 'Ember & Table',
-    kind: 'Restaurant · Hospitality',
-    tagline: 'Slow heat. Worth the wait.',
-    body:
-      'Editorial neighborhood-restaurant brand. Cream + ember orange. Cormorant Garamond italics, slow scroll. Menu, story, hours, six-seat reservations.',
-    accent: '#C8462C',
-    bg: '#F5ECD7',
-    text: '#1A0F08',
-    swatch: ['#F5ECD7', '#C8462C', '#1A0F08', '#E8DEC4'],
   },
   {
     slug: 'overlay',
@@ -87,17 +75,17 @@ export default function PreviewIndex() {
               <h1 className="mt-4 font-display text-display-xl text-balance text-ink-700 sm:mt-6">
                 Same studio.
                 <br />
-                <span className="italic text-ash-500">Four different brands.</span>
+                <span className="italic text-ash-500">Three different brands.</span>
               </h1>
             </div>
             <div className="md:col-span-5">
               <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
-                Four live builds, end-to-end by Swash - a full rebuild of
-                a real Pretoria car dealership, plus three fictional demo
-                brands: a wood-fired restaurant, a SaaS analytics tool,
-                and a boutique real-estate brokerage. Each lives at its
-                own URL, with its own brand. Click in, scroll around,
-                fill in a form. No two look alike.
+                Three live builds, end-to-end by Swash - a full rebuild
+                of a real Pretoria car dealership, plus two fictional
+                demo brands: a SaaS analytics tool and a boutique
+                real-estate brokerage. Each lives at its own URL, with
+                its own brand. Click in, scroll around, fill in a form.
+                No two look alike.
               </p>
             </div>
           </div>
@@ -257,38 +245,6 @@ function PreviewMockup({ demo }: { demo: Demo }) {
           </div>
         </div>
       </>
-    );
-  }
-
-  if (demo.slug === 'ember-table') {
-    return (
-      <div className="absolute inset-0 p-10 flex flex-col justify-between">
-        <div className="flex items-center gap-3">
-          <span
-            className="h-2 w-2 rounded-full"
-            style={{ background: demo.accent }}
-          />
-          <p className="font-mono text-[9px] uppercase tracking-[0.32em]" style={{ color: demo.accent }}>
-            Wood-fired · Outer Sunset
-          </p>
-        </div>
-        <div>
-          <p
-            style={{ fontFamily: 'var(--font-editorial)', color: demo.text }}
-            className="text-[clamp(2.5rem,5.5vw,5rem)] leading-[0.95] tracking-tight"
-          >
-            Slow heat.
-            <br />
-            <span className="italic" style={{ color: demo.accent }}>Worth the wait.</span>
-          </p>
-          <p
-            style={{ fontFamily: 'var(--font-editorial)' }}
-            className="mt-6 italic text-lg"
-          >
-            - the menu - reservations - find us
-          </p>
-        </div>
-      </div>
     );
   }
 

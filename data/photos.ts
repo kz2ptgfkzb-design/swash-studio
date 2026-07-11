@@ -18,17 +18,6 @@ export const PHOTOS = {
     hero: u('1503376780353-7e6692767b70', 1600, 1100), // dark sports car at dusk
   },
 
-  // ─── Ember & Table (restaurant) ────────────────────────────────
-  ember: {
-    hero:        u('1509440159596-0249088772ff', 1200, 1500), // artisan bread
-    interior:    u('1517248135467-4c7edcad34c4', 1600, 1100), // restaurant interior
-    breadStudio: u('1568254183919-78a4f43a2877', 800, 1000),  // bread close-up
-    pasta:       u('1551183053-bf91a1d81141', 800, 800),      // pasta
-    plate:       u('1551218808-94e220e084d2', 800, 800),      // plated dish
-    fire:        u('1503788311183-fa3bf9c4bc32', 800, 800),   // wood fire
-    chef:        u('1577219491135-ce391730fb2c', 800, 1000),  // chef portrait
-  },
-
   // ─── Overlay (SaaS) ────────────────────────────────────────────
   overlay: {
     team:     u('1551434678-e076c223a692', 800, 600),   // team in meeting
