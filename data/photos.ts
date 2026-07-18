@@ -18,6 +18,11 @@ export const PHOTOS = {
     hero: u('1503376780353-7e6692767b70', 1600, 1100), // dark sports car at dusk
   },
 
+  // ─── Doctors 365 (real rebuild - GP practice) ──────────────────
+  doctors365: {
+    hero: u('1631217868264-e5b90bb7e133', 1600, 1100), // modern clinic
+  },
+
   // ─── Overlay (SaaS) ────────────────────────────────────────────
   overlay: {
     team:     u('1551434678-e076c223a692', 800, 600),   // team in meeting
@@ -44,14 +49,4 @@ export const PHOTOS = {
     agent4:         u('1438761681033-6461ffad8d80', 400, 400),   // agent 4
   },
 
-  // ─── Case studies (Work page) ──────────────────────────────────
-  // Matches WORK[].slug in data/work.ts
-  workCovers: {
-    'apex-mechanical': u('1581094288338-2314dddb7ece', 1100, 880),
-    'saltwater-co':    u('1551232864-3f0890e580d9', 1100, 880), // coastal apparel
-    'kilncraft':       u('1509440159596-0249088772ff', 1100, 880),
-    'tidemark-realty': u('1600585154340-be6161a56a0c', 1100, 880),
-    'overlay-labs':    u('1551434678-e076c223a692', 1100, 880),
-    'mira-skin':       u('1556228852-80b6e5eeff06', 1100, 880), // skincare
-  } as Record<string, string>,
 };

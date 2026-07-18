@@ -10,7 +10,6 @@ const CHAPTERS: Chapter[] = [
   { id: 'lab',      label: 'Studio Lab' },
   { id: 'services', label: 'Services' },
   { id: 'editions', label: 'Editions' },
-  { id: 'work',     label: 'Work' },
   { id: 'process',  label: 'Process' },
   { id: 'pricing',  label: 'Pricing' },
   { id: 'faq',      label: 'Questions' },

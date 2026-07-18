@@ -9,7 +9,7 @@ import { NowIndicator } from './NowIndicator';
 import { cn } from '@/lib/utils';
 
 const NAV_ITEMS = [
-  { label: 'Work', href: '/work' },
+  { label: 'Work', href: '/preview' },
   { label: 'Services', href: '/services' },
   { label: 'Process', href: '/process' },
   { label: 'About', href: '/about' },

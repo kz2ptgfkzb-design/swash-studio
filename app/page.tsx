@@ -4,10 +4,8 @@ import { ValueProps } from '@/components/ValueProps';
 import { StudioLab } from '@/components/StudioLab';
 import { ServicesOverview } from '@/components/ServicesOverview';
 import { EditionsCarousel } from '@/components/EditionsCarousel';
-import { WorkPreview } from '@/components/WorkPreview';
 import { ProcessScrubber } from '@/components/ProcessScrubber';
 import { EverySiteShipsWith } from '@/components/EverySiteShipsWith';
-import { ProofMetrics } from '@/components/ProofMetrics';
 import { IndustriesGrid } from '@/components/IndustriesGrid';
 import { PricingPhilosophy } from '@/components/PricingPhilosophy';
 import { FaqTeaser } from '@/components/FaqTeaser';
@@ -24,10 +22,8 @@ export default function HomePage() {
       <StudioLab />
       <ServicesOverview />
       <EditionsCarousel />
-      <WorkPreview />
       <ProcessScrubber />
       <EverySiteShipsWith />
-      <ProofMetrics />
       <IndustriesGrid />
       <PricingPhilosophy />
       <FaqTeaser />

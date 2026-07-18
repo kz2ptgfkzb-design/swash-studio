@@ -38,6 +38,9 @@ type Brief = {
   features: string[];
   timeline: string;
   budget: string;
+  budgetCurrency: string;
+  budgetMin: string;
+  budgetMax: string;
   hosting: string;
   ongoingUpdates: string;
   paymentPreference: string;
@@ -95,6 +98,13 @@ const UPDATES_OPTIONS = [
   { id: 'unsure',   label: 'Not sure yet',         hint: 'Decide after launch - no pressure either way.' },
 ];
 
+const CURRENCIES = [
+  { id: 'USD', symbol: '$', label: 'USD $' },
+  { id: 'EUR', symbol: '€', label: 'EUR €' },
+  { id: 'GBP', symbol: '£', label: 'GBP £' },
+  { id: 'ZAR', symbol: 'R', label: 'ZAR R' },
+];
+
 const PAYMENT_OPTIONS = [
   { id: 'full',   label: 'Pay in full',            hint: 'Single payment after you sign off on the build.' },
   { id: 'split',  label: 'Split into two',         hint: 'Half on sign-off, half before launch.' },
@@ -109,6 +119,9 @@ const INITIAL: Brief = {
   features: [],
   timeline: '',
   budget: '',
+  budgetCurrency: 'USD',
+  budgetMin: '',
+  budgetMax: '',
   hosting: '',
   ongoingUpdates: '',
   paymentPreference: '',
@@ -575,7 +588,7 @@ function Step1({
             id="projectName"
             value={data.projectName}
             onChange={(e) => update('projectName', e.target.value)}
-            placeholder="e.g. Apex Mechanical"
+            placeholder="e.g. The Corner Bakery"
             className="input-field"
           />
           {errors.projectName && (
@@ -683,6 +696,59 @@ function Step3({
         <p className="mt-3 text-xs text-ash-400">
           No prices listed. The shape helps us scope honestly.
         </p>
+      </div>
+
+      <div>
+        <div className="flex items-baseline justify-between">
+          <label className="label-field">Budget range</label>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ash-400">
+            optional · sharpens the quote
+          </span>
+        </div>
+        <p className="-mt-1 mb-3 text-xs text-ash-400">
+          If you have a number in mind, give us the range. We scope to it - never quietly past it.
+        </p>
+        <div className="grid grid-cols-[auto,1fr,auto,1fr] items-center gap-2 sm:gap-3">
+          <select
+            value={data.budgetCurrency}
+            onChange={(e) => update('budgetCurrency', e.target.value)}
+            aria-label="Currency"
+            className="input-field w-auto cursor-pointer appearance-none py-3 pr-8 text-sm"
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238C8678' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 0.75rem center',
+            }}
+          >
+            {CURRENCIES.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.label}
+              </option>
+            ))}
+          </select>
+          <input
+            type="number"
+            inputMode="numeric"
+            min={0}
+            value={data.budgetMin}
+            onChange={(e) => update('budgetMin', e.target.value)}
+            placeholder="From"
+            aria-label="Budget from"
+            className="input-field py-3 text-sm"
+          />
+          <span className="font-mono text-xs text-ash-400">-</span>
+          <input
+            type="number"
+            inputMode="numeric"
+            min={0}
+            value={data.budgetMax}
+            onChange={(e) => update('budgetMax', e.target.value)}
+            placeholder="To"
+            aria-label="Budget to"
+            className="input-field py-3 text-sm"
+          />
+        </div>
       </div>
 
       <div>

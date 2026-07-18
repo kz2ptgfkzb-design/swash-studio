@@ -37,6 +37,20 @@ const EDITIONS: Edition[] = [
     meta: 'full site rebuild · 400+ car live inventory',
   },
   {
+    slug: 'doctors365',
+    href: 'https://doctors365.vercel.app',
+    brand: 'Doctors 365',
+    industry: 'Healthcare · Practice rebuild',
+    tagline: 'Healthcare that goes beyond the basics.',
+    photo: PHOTOS.doctors365.hero,
+    accent: '#0EA5A4',
+    bg: '#0F1B1E',
+    fg: '#F6F4EF',
+    swatch: ['#0F1B1E', '#0EA5A4', '#F6F4EF', '#086665'],
+    typeStyle: 'sans',
+    meta: 'full site rebuild · GP practice · Randburg',
+  },
+  {
     slug: 'overlay',
     brand: 'Overlay',
     industry: 'B2B SaaS · Analytics',
@@ -137,17 +151,17 @@ export function EditionsCarousel() {
           <div className="md:col-span-7">
             <p className="eyebrow">- Swash Editions · Summer &apos;26</p>
             <h2 className="mt-4 font-display text-display-lg text-balance text-ink-700 sm:mt-6">
-              Three brands.
+              Four brands.
               <br />
               <span className="italic text-ash-500">One studio.</span>
             </h2>
           </div>
           <div className="md:col-span-4 md:col-start-9">
             <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
-              A full rebuild of a real Pretoria dealership, plus two
-              fictional demo brands - SaaS analytics and a boutique
-              brokerage. Each lives at its own URL. Click in to walk
-              through.
+              Two full rebuilds of real South African businesses - a
+              Pretoria dealership and a Randburg GP practice - plus two
+              fictional demo brands. Each lives at its own URL. Click in
+              to walk through.
             </p>
             <div className="mt-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ash-500">
               <span className="hidden md:inline">use</span>

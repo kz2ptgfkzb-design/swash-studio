@@ -30,6 +30,9 @@ type Brief = {
   features?: string[];
   timeline?: string;
   budget?: string;
+  budgetCurrency?: string;
+  budgetMin?: string;
+  budgetMax?: string;
   hosting?: string;
   ongoingUpdates?: string;
   paymentPreference?: string;
@@ -67,6 +70,28 @@ const PAYMENT_LABEL: Record<string, string> = {
 function label(map: Record<string, string>, key?: string) {
   if (!key) return '';
   return map[key] ?? key;
+}
+
+const CURRENCY_SYMBOL: Record<string, string> = {
+  USD: '$',
+  EUR: '€',
+  GBP: '£',
+  ZAR: 'R',
+};
+
+function formatBudgetRange(d: Brief): string {
+  const min = (d.budgetMin ?? '').trim();
+  const max = (d.budgetMax ?? '').trim();
+  if (!min && !max) return '';
+  const cur = d.budgetCurrency ?? 'USD';
+  const sym = CURRENCY_SYMBOL[cur] ?? '';
+  const fmt = (v: string) => {
+    const n = Number(v);
+    return Number.isFinite(n) && v !== '' ? n.toLocaleString('en-US') : v;
+  };
+  if (min && max) return `${sym}${fmt(min)} - ${sym}${fmt(max)} (${cur})`;
+  if (min) return `from ${sym}${fmt(min)} (${cur})`;
+  return `up to ${sym}${fmt(max)} (${cur})`;
 }
 
 function htmlEscape(s: string) {
@@ -182,6 +207,7 @@ function buildEmail(d: Brief) {
         ${row('Features', d.features)}
         ${row('Timeline', d.timeline)}
         ${row('Budget', d.budget)}
+        ${row('Budget range', formatBudgetRange(d))}
         ${row('Payment', label(PAYMENT_LABEL, d.paymentPreference))}
         ${row('Hosting', label(HOSTING_LABEL, d.hosting))}
         ${row('Updates after launch', label(UPDATES_LABEL, d.ongoingUpdates))}
@@ -215,6 +241,7 @@ function buildEmail(d: Brief) {
     `Features: ${(d.features ?? []).join(', ')}`,
     `Timeline: ${d.timeline ?? ''}`,
     `Budget: ${d.budget ?? ''}`,
+    `Budget range: ${formatBudgetRange(d) || '-'}`,
     `Payment: ${label(PAYMENT_LABEL, d.paymentPreference)}`,
     `Hosting: ${label(HOSTING_LABEL, d.hosting)}`,
     `Updates after launch: ${label(UPDATES_LABEL, d.ongoingUpdates)}`,

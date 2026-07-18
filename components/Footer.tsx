@@ -8,7 +8,7 @@ const COLS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: 'Studio',
     links: [
-      { label: 'Work', href: '/work' },
+      { label: 'Work', href: '/preview' },
       { label: 'Services', href: '/services' },
       { label: 'Process', href: '/process' },
       { label: 'Journal', href: '/journal' },

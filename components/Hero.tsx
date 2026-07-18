@@ -45,7 +45,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="hidden font-mono text-[11px] uppercase tracking-[0.18em] text-ash-500 md:block"
           >
-            127 sites shipped · 6 industries · 1 standard
+            Brief to video demo in 48 hours · 1 standard
           </motion.span>
         </div>
 
@@ -88,9 +88,9 @@ export function Hero() {
           >
             <p className="max-w-xl text-balance text-sm leading-relaxed text-ash-500 sm:text-base md:text-lg">
               A boutique studio that builds websites - and the brands and
-              motion that go with them. We&rsquo;ve shipped for HVAC
-              dispatchers, DTC skincare lines, neighborhood bakeries, and
-              Series-A SaaS teams. Tell us the brief; we&rsquo;ll do the rest.
+              motion that go with them. We build for HVAC dispatchers,
+              DTC skincare lines, neighborhood bakeries, and Series-A
+              SaaS teams. Tell us the brief; we&rsquo;ll do the rest.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Magnetic strength={0.3}>
@@ -102,7 +102,7 @@ export function Hero() {
                 </Link>
               </Magnetic>
               <Magnetic strength={0.22}>
-                <Link href="/work" className="btn-ghost" data-cursor="link">
+                <Link href="/preview" className="btn-ghost" data-cursor="link">
                   See the work
                 </Link>
               </Magnetic>

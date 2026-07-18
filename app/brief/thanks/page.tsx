@@ -58,8 +58,8 @@ export default function ThanksPage() {
             transition={{ duration: 0.6, delay: 0.9 }}
             className="mt-7 flex flex-wrap justify-center gap-3 sm:mt-10"
           >
-            <Link href="/work" className="btn-primary" data-cursor="link">
-              See past work
+            <Link href="/preview" className="btn-primary" data-cursor="link">
+              See our live builds
             </Link>
             <Link href="/" className="btn-ghost" data-cursor="link">
               Back to home

@@ -7,7 +7,7 @@ import { PHOTOS } from '@/data/photos';
 export const metadata = {
   title: 'Live previews · Swash',
   description:
-    'Three live builds - a real dealership rebuild plus two fictional demo brands (SaaS, real estate). Fully clickable, each with its own brand.',
+    'Four live builds - two real South African business rebuilds plus two fictional demo brands (SaaS, real estate). Fully clickable, each with its own brand.',
 };
 
 type Demo = {
@@ -37,6 +37,19 @@ const DEMOS: Demo[] = [
     bg: '#0A0A0A',
     text: '#F5F5F5',
     swatch: ['#0A0A0A', '#E10600', '#9CA0A6', '#151515'],
+  },
+  {
+    slug: 'doctors365',
+    href: 'https://doctors365.vercel.app',
+    brand: 'Doctors 365',
+    kind: 'Healthcare · Practice rebuild',
+    tagline: 'Healthcare that goes beyond the basics.',
+    body:
+      'Full rebuild of a real Randburg GP practice - family medicine, mental health, and medical weight loss. Deep teal + warm paper. Service pages, practitioner profiles, booking flows, CMS-driven clinical content.',
+    accent: '#0EA5A4',
+    bg: '#0F1B1E',
+    text: '#F6F4EF',
+    swatch: ['#0F1B1E', '#0EA5A4', '#F6F4EF', '#086665'],
   },
   {
     slug: 'overlay',
@@ -75,17 +88,18 @@ export default function PreviewIndex() {
               <h1 className="mt-4 font-display text-display-xl text-balance text-ink-700 sm:mt-6">
                 Same studio.
                 <br />
-                <span className="italic text-ash-500">Three different brands.</span>
+                <span className="italic text-ash-500">Four different brands.</span>
               </h1>
             </div>
             <div className="md:col-span-5">
               <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
-                Three live builds, end-to-end by Swash - a full rebuild
-                of a real Pretoria car dealership, plus two fictional
-                demo brands: a SaaS analytics tool and a boutique
-                real-estate brokerage. Each lives at its own URL, with
-                its own brand. Click in, scroll around, fill in a form.
-                No two look alike.
+                Four live builds, end-to-end by Swash - full rebuilds of
+                two real South African businesses (a Pretoria car
+                dealership and a Randburg GP practice), plus two
+                fictional demo brands: a SaaS analytics tool and a
+                boutique real-estate brokerage. Each lives at its own
+                URL, with its own brand. Click in, scroll around, fill
+                in a form. No two look alike.
               </p>
             </div>
           </div>
@@ -241,6 +255,37 @@ function PreviewMockup({ demo }: { demo: Demo }) {
               className="mt-5 text-[11px] uppercase tracking-[0.32em] opacity-80"
             >
               400+ cars in stock · Pretoria · delivered nationwide
+            </p>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  if (demo.slug === 'doctors365') {
+    return (
+      <>
+        <img
+          src={PHOTOS.doctors365.hero}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-50"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0F1B1E]/95 via-[#0F1B1E]/50 to-[#0F1B1E]/60" />
+        <div className="absolute inset-0 p-10 flex flex-col justify-end">
+          <div>
+            <p
+              style={{ color: demo.text }}
+              className="text-[clamp(2.25rem,5vw,4.5rem)] font-semibold leading-[0.95] tracking-tight"
+            >
+              Healthcare that goes
+              <br />
+              <span style={{ color: demo.accent }}>beyond the basics.</span>
+            </p>
+            <p
+              style={{ fontFamily: 'var(--font-mono)', color: demo.text }}
+              className="mt-5 text-[11px] uppercase tracking-[0.32em] opacity-80"
+            >
+              Family GP · mental health · Randburg
             </p>
           </div>
         </div>
