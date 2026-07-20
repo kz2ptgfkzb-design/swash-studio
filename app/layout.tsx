@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: '/',
     siteName: 'Swash Studio',
-    locale: 'en_ZA',
+    locale: 'en',
     type: 'website',
   },
   twitter: {
