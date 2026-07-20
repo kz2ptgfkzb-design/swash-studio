@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 const LINES = [
   'now: taking briefs',
   'now: polishing the Mit-Mak build',
-  'now: refining the Holm demo',
+  'now: refining the R.E. Michel build',
   'now: sketching the next demo brand',
   'now: 48h from brief to video demo',
 ];

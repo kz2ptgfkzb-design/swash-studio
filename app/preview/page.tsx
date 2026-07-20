@@ -7,7 +7,7 @@ import { PHOTOS } from '@/data/photos';
 export const metadata = {
   title: 'Live previews',
   description:
-    'Four live builds - two real South African business rebuilds plus two fictional demo brands (SaaS, real estate). Fully clickable, each with its own brand.',
+    'Four live builds - three real business rebuilds (a Pretoria dealership, a Randburg GP practice, and a US HVAC/R distributor) plus a fictional SaaS demo. Fully clickable, each with its own brand.',
 };
 
 type Demo = {
@@ -64,16 +64,17 @@ const DEMOS: Demo[] = [
     swatch: ['#F8F6F2', '#2447FF', '#0A0A0A', '#F0EDE7'],
   },
   {
-    slug: 'holm',
-    brand: 'Holm',
-    kind: 'Real estate · Boutique brokerage',
-    tagline: 'A boutique for the city’s quieter listings.',
+    slug: 'remichel',
+    href: 'https://remichel.vercel.app',
+    brand: 'R.E. Michel',
+    kind: 'HVAC/R distribution · B2B storefront rebuild',
+    tagline: 'Customers first, coast to coast.',
     body:
-      'Editorial brokerage. Cream + deep navy + soft coral. Photographic hero, four-property grid, neighborhoods we know, four-agent lineup, written process, viewing-request form. Real photography throughout.',
-    accent: '#E58669',
-    bg: '#F0EAD9',
-    text: '#0B1830',
-    swatch: ['#F0EAD9', '#E58669', '#0B1830', '#E5DCC2'],
+      "Cinematic rebuild of one of America's largest family-owned HVAC/R wholesale distributors, in business since 1935. Graphite + flame red + cold blue. Their mark is a flame over a snowflake, so the whole build runs as a thermal engine: cold-to-hot gradients, airflow motion, engineered spec labels, a fast storefront over 35,000+ line items.",
+    accent: '#EE2B37',
+    bg: '#14171A',
+    text: '#F5F6F7',
+    swatch: ['#14171A', '#EE2B37', '#0C72BC', '#F6A03A'],
   },
 ];
 
@@ -94,12 +95,12 @@ export default function PreviewIndex() {
             <div className="md:col-span-5">
               <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
                 Four live builds, end-to-end by Swash - full rebuilds of
-                two real South African businesses (a Pretoria car
-                dealership and a Randburg GP practice), plus two
-                fictional demo brands: a SaaS analytics tool and a
-                boutique real-estate brokerage. Each lives at its own
-                URL, with its own brand. Click in, scroll around, fill
-                in a form. No two look alike.
+                three real businesses (a Pretoria car dealership, a
+                Randburg GP practice, and one of America&rsquo;s largest
+                HVAC/R distributors), plus a fictional SaaS analytics
+                brand. Each lives at its own URL, with its own brand.
+                Click in, scroll around, fill in a form. No two look
+                alike.
               </p>
             </div>
           </div>
@@ -332,38 +333,40 @@ function PreviewMockup({ demo }: { demo: Demo }) {
     );
   }
 
-  // holm - uses a real photo as the preview, since the demo is photo-driven
+  // remichel - graphic mockup expressing the cold-to-hot "thermal engine" build
   return (
     <>
-      <img
-        src={PHOTOS.holm.hero}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(120% 90% at 100% 0%, rgba(38,55,107,0.55) 0%, transparent 55%), radial-gradient(130% 100% at 0% 100%, rgba(176,37,44,0.6) 0%, transparent 55%)',
+        }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0B1830]/85 via-[#0B1830]/25 to-[#0B1830]/40" />
-      <div className="absolute inset-0 p-10 flex flex-col justify-between">
-        <div className="flex items-center gap-2">
-          <span
-            className="rounded-none px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.22em]"
-            style={{ background: demo.accent, color: demo.bg }}
-          >
-            New · Open Sunday
-          </span>
-        </div>
+      <div className="absolute inset-0 p-10 flex flex-col justify-end">
         <div>
           <p
-            style={{ fontFamily: 'var(--font-editorial)', color: '#F0EAD9' }}
-            className="text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.96] tracking-tight"
+            style={{ fontFamily: 'var(--font-display)', color: demo.text }}
+            className="text-[clamp(2.5rem,5.5vw,5rem)] font-bold leading-[0.92] tracking-tight"
           >
-            A boutique for the
-            <br />
-            <span className="italic">city&rsquo;s quieter listings.</span>
+            The{' '}
+            <span
+              style={{
+                backgroundImage:
+                  'linear-gradient(90deg,#0C72BC 0%,#F6A03A 55%,#EE2B37 100%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+              }}
+            >
+              Thermal Engine.
+            </span>
           </p>
           <p
-            style={{ fontFamily: 'var(--font-mono)', color: '#F0EAD9' }}
+            style={{ fontFamily: 'var(--font-mono)', color: demo.text }}
             className="mt-5 text-[11px] uppercase tracking-[0.32em] opacity-80"
           >
-            4 listings · 4 neighborhoods · 4 agents
+            HVAC/R distribution · 35,000+ line items · since 1935
           </p>
         </div>
       </div>

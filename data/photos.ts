@@ -31,22 +31,9 @@ export const PHOTOS = {
     headshot: u('1494790108377-be9c29b29330', 400, 400),  // professional headshot
   },
 
-  // ─── Holm (real estate) ────────────────────────────────────────
-  holm: {
-    hero:           u('1600585154340-be6161a56a0c', 1600, 1100), // modern home exterior
-    interiorOpen:   u('1565538810643-b5bdb714032a', 1200, 900),  // open interior
-    kitchen:        u('1556909114-f6e7ad7d3136', 1200, 900),     // modern kitchen
-    bedroom:        u('1567016376408-0226e4d0c1ea', 1200, 900),  // bedroom
-    living:         u('1556228720-195a672e8a03', 1200, 900),     // living room
-    bathroom:       u('1552321554-5fefe8c9ef14', 1200, 900),     // bathroom
-    listingPrimary: u('1564013799919-ab600027ffc6', 1200, 900),  // bright living
-    listingTwo:     u('1568605114967-8130f3a36994', 1200, 900),  // house exterior
-    listingThree:   u('1554995207-c18c203602cb', 1200, 900),     // condo balcony
-    listingFour:    u('1600607687939-ce8a6c25118c', 1200, 900),  // hallway
-    agent1:         u('1573497019940-1c28c88b4f3e', 400, 400),   // agent 1
-    agent2:         u('1494790108377-be9c29b29330', 400, 400),   // agent 2
-    agent3:         u('1507003211169-0a1dd7228f2d', 400, 400),   // agent 3
-    agent4:         u('1438761681033-6461ffad8d80', 400, 400),   // agent 4
+  // ─── R.E. Michel (real rebuild - HVAC/R distributor) ───────────
+  remichel: {
+    hero: u('1615309662243-70f6df917b59', 1600, 1100), // industrial HVAC ductwork
   },
 
 };

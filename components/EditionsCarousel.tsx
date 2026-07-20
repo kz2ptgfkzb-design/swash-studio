@@ -64,17 +64,18 @@ const EDITIONS: Edition[] = [
     meta: '10 sections · paper + cobalt blue',
   },
   {
-    slug: 'holm',
-    brand: 'Holm',
-    industry: 'Real estate · Boutique brokerage',
-    tagline: 'A boutique for the city’s quieter listings.',
-    photo: PHOTOS.holm.hero,
-    accent: '#E58669',
-    bg: '#F0EAD9',
-    fg: '#0B1830',
-    swatch: ['#F0EAD9', '#E58669', '#0B1830', '#E5DCC2'],
-    typeStyle: 'editorial',
-    meta: '9 sections · cream + coral + navy',
+    slug: 'remichel',
+    href: 'https://remichel.vercel.app',
+    brand: 'R.E. Michel',
+    industry: 'HVAC/R distribution · Storefront rebuild',
+    tagline: 'Customers first, coast to coast.',
+    photo: PHOTOS.remichel.hero,
+    accent: '#EE2B37',
+    bg: '#14171A',
+    fg: '#F5F6F7',
+    swatch: ['#14171A', '#EE2B37', '#0C72BC', '#F6A03A'],
+    typeStyle: 'display',
+    meta: 'full storefront rebuild · 35,000+ line items',
   },
 ];
 
@@ -158,10 +159,10 @@ export function EditionsCarousel() {
           </div>
           <div className="md:col-span-4 md:col-start-9">
             <p className="text-pretty text-sm leading-relaxed text-ash-500 sm:text-base">
-              Two full rebuilds of real South African businesses - a
-              Pretoria dealership and a Randburg GP practice - plus two
-              fictional demo brands. Each lives at its own URL. Click in
-              to walk through.
+              Three full rebuilds of real businesses - a Pretoria
+              dealership, a Randburg GP practice, and a US HVAC/R
+              distributor - plus one fictional demo brand. Each lives at
+              its own URL. Click in to walk through.
             </p>
             <div className="mt-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ash-500">
               <span className="hidden md:inline">use</span>

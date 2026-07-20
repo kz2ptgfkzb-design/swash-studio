@@ -117,10 +117,9 @@ app/
   not-found.tsx         404
 
   preview/page.tsx      Index of the 4 demo brands
-  preview/pipeline/page.tsx       Demo 1 — Plumber (navy + safety yellow)
-  preview/ember-table/page.tsx    Demo 2 — Wood-fired restaurant (cream + ember)
-  preview/overlay/page.tsx        Demo 3 — B2B SaaS (paper + cobalt)
-  preview/holm/page.tsx           Demo 4 — Boutique real-estate (cream + coral)
+  preview/overlay/page.tsx        Fictional demo - B2B SaaS (paper + cobalt)
+                                  Mit-Mak Motors, Doctors 365 and R.E. Michel are
+                                  real rebuilds - external links, no local route
 
   api/brief/route.ts        POST handler — receives form payload, emails via Resend
   api/test-email/route.ts   GET — one-shot Resend smoke test. Visit to verify
