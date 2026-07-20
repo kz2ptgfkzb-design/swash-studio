@@ -4,7 +4,7 @@ import { SwashMark } from '@/components/SwashMark';
 import { Magnetic } from '@/components/Magnetic';
 
 export const metadata = {
-  title: 'About · Swash',
+  title: 'About',
   description:
     'Who we are, how we work, and why we built Swash the way we did.',
 };

@@ -3,7 +3,7 @@ import { Reveal } from '@/components/Reveal';
 import { Magnetic } from '@/components/Magnetic';
 
 export const metadata = {
-  title: 'Process · Swash',
+  title: 'Process',
   description:
     'How Swash works - brief, 48-hour video demo, request changes, ship. Six stages, fixed fee, clear ownership.',
 };

@@ -32,9 +32,8 @@ const COLS: { title: string; links: { label: string; href: string }[] }[] = [
     title: 'Reach us',
     links: [
       { label: 'hello@swash.studio', href: 'mailto:hello@swash.studio' },
-      { label: 'Schedule a call', href: '/brief' },
-      { label: 'Press kit', href: '#' },
-      { label: 'For agencies', href: '#' },
+      { label: 'Start a brief', href: '/brief' },
+      { label: 'Leave a review', href: '/reviews' },
     ],
   },
 ];
@@ -54,19 +53,6 @@ export function Footer() {
               motion that ties them together. From one-person shops to
               Series-A teams. We meet your budget. We sharpen the work.
             </p>
-            <div className="flex gap-2">
-              {['IG', 'X', 'IN', 'BE'].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  data-cursor="link"
-                  className="grid h-9 w-9 place-items-center rounded-pill border border-hairline text-[11px] tracking-wider text-ash-500 transition-colors hover:border-ink-700 hover:bg-ink-700 hover:text-paper-50"
-                  aria-label={s}
-                >
-                  {s}
-                </a>
-              ))}
-            </div>
           </div>
 
           {COLS.map((col) => (
@@ -101,10 +87,8 @@ export function Footer() {
         <div className="mt-6 flex flex-col items-start justify-between gap-3 border-t border-hairline pt-5 text-xs text-ash-500 sm:mt-8 sm:gap-4 sm:pt-6 md:flex-row md:items-center">
           <p>© 2026 Swash Studio. Add a swash to everything.</p>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <Link href="#" className="hover:text-ink-700" data-cursor="link">Privacy</Link>
-            <Link href="#" className="hover:text-ink-700" data-cursor="link">Terms</Link>
-            <Link href="#" className="hover:text-ink-700" data-cursor="link">Cookies</Link>
-            <Link href="#" className="hover:text-ink-700" data-cursor="link">Press</Link>
+            <Link href="/privacy" className="hover:text-ink-700" data-cursor="link">Privacy</Link>
+            <Link href="/terms" className="hover:text-ink-700" data-cursor="link">Terms</Link>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { Reveal } from '@/components/Reveal';
 import { TiltCard } from '@/components/TiltCard';
 
 export const metadata = {
-  title: 'Journal · Swash',
+  title: 'Journal',
   description:
     'Notes from inside the studio - how we scope briefs, why we price the way we do, what we learn shipping work.',
 };

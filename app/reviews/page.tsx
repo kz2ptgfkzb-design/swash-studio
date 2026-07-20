@@ -4,7 +4,7 @@ import { ReviewForm } from '@/components/ReviewForm';
 import { Reveal } from '@/components/Reveal';
 
 export const metadata = {
-  title: 'Reviews · Swash',
+  title: 'Reviews',
   description:
     'What clients say about working with Swash - verified reviews, plus a form to leave your own.',
 };

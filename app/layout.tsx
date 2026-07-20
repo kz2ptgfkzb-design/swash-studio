@@ -36,16 +36,30 @@ const editorial = Cormorant_Garamond({
   display: 'swap',
 });
 
+const DESCRIPTION =
+  'A boutique studio that builds websites, brands, and the motion that ties them together. Tell us the brief and get a working video demo of your site within 48 hours.';
+
 export const metadata: Metadata = {
-  title: 'Swash - websites for every business',
-  description:
-    'A boutique studio that builds websites, brands, and the motion that ties them together. HVAC to luxury DTC. Tell us the brief - we deliver.',
   metadataBase: new URL('https://swash.studio'),
+  title: {
+    default: 'Swash - websites, brands, and motion',
+    template: '%s · Swash',
+  },
+  description: DESCRIPTION,
+  applicationName: 'Swash Studio',
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Swash - websites for every business',
-    description:
-      'A boutique studio that builds websites, brands, and the motion that ties them together. HVAC to luxury DTC. Tell us the brief - we deliver.',
+    title: 'Swash - websites, brands, and motion',
+    description: DESCRIPTION,
+    url: '/',
+    siteName: 'Swash Studio',
+    locale: 'en_ZA',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Swash - websites, brands, and motion',
+    description: DESCRIPTION,
   },
 };
 

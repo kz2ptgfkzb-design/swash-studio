@@ -1,0 +1,9 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Swash">
+  <rect width="240" height="240" rx="52" fill="#0A0908"/>
+  <g transform="translate(4,22)" fill="none" stroke="#F4EEDF" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 8 84 C 20 78, 32 76, 44 72" stroke-width="7"/>
+    <path d="M 44 72 C 70 36, 144 30, 176 60 C 200 84, 138 116, 84 124 C 44 130, 92 158, 162 160 C 184 161, 200 168, 196 180" stroke-width="15"/>
+    <path d="M 196 180 C 208 184, 222 184, 230 174 C 234 168, 234 160, 228 154" stroke-width="7"/>
+  </g>
+  <circle cx="222" cy="170" r="11" fill="#C8FE3D"/>
+</svg>

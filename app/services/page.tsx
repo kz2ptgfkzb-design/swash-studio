@@ -4,7 +4,7 @@ import { Reveal } from '@/components/Reveal';
 import { Magnetic } from '@/components/Magnetic';
 
 export const metadata = {
-  title: 'Services · Swash',
+  title: 'Services',
   description:
     'The six services Swash offers - brand identity, website design, ecommerce, motion, campaign pages, and audits. Bundle them, pick one, mix as the brief asks.',
 };

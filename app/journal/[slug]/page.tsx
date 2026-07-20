@@ -10,9 +10,9 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const p = getPostBySlug(params.slug);
-  if (!p) return { title: 'Not found · Swash' };
+  if (!p) return { title: 'Not found' };
   return {
-    title: `${p.title} · Swash Journal`,
+    title: p.title,
     description: p.dek,
     openGraph: {
       title: p.title,

@@ -299,6 +299,7 @@ export function BriefIntakeForm() {
 
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [hp, setHp] = useState(''); // honeypot - real users never fill this
 
   const handleSubmit = async () => {
     if (submitting) return;
@@ -313,7 +314,7 @@ export function BriefIntakeForm() {
       const res = await fetch('/api/brief', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, website: hp }),
       });
       if (!res.ok) {
         const j = await res.json().catch(() => ({}));
@@ -328,6 +329,17 @@ export function BriefIntakeForm() {
 
   return (
     <div className="container-page pb-24">
+      {/* Honeypot - hidden from real users; bots that fill it are silently dropped. */}
+      <input
+        type="text"
+        name="website"
+        value={hp}
+        onChange={(e) => setHp(e.target.value)}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+      />
       <div className="mx-auto max-w-3xl">
         <div className="mb-10">
           <div className="mb-4 flex items-center justify-between text-xs">
@@ -1153,6 +1165,10 @@ function Step5({
           By sending this brief you&rsquo;re not committing to anything.
           Within 48 hours we&rsquo;ll send a video demo of your site -
           watch it, request any changes, pay nothing until you sign off.
+        </p>
+        <p className="mt-3 text-xs leading-relaxed text-ash-400">
+          We only use your details to respond to your brief. See our{' '}
+          <a href="/privacy" className="text-ash-500 underline decoration-hairline underline-offset-4 hover:text-ink-700">privacy policy</a>.
         </p>
       </div>
     </div>

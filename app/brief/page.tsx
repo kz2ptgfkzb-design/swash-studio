@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { BriefIntakeForm } from '@/components/BriefIntakeForm';
 
 export const metadata = {
-  title: 'Start a brief · Swash',
+  title: 'Start a brief',
   description:
     'Five minutes. Tell us about the business, the build, and the budget. Within 48 hours we send a video demo of your site - request changes from there.',
 };

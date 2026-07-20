@@ -1,5 +1,24 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import {
+  getClientIp,
+  rateLimit,
+  sanitizeFilename,
+  extensionAllowed,
+  base64Bytes,
+  isBase64,
+  safeHttpUrl,
+} from '@/lib/api-guard';
+
+// Hard server-side limits (client enforces friendlier ones first).
+const MAX_ASSETS = 4;
+const MAX_FILE_BYTES = 5 * 1024 * 1024; // 5MB per file
+const MAX_TOTAL_BYTES = 18 * 1024 * 1024; // keep under Vercel's ~20MB body cap
+const CAP = { short: 200, notes: 4000, colors: 6, refs: 6 };
+
+function clampStr(v: unknown, max: number): string {
+  return typeof v === 'string' ? v.slice(0, max) : '';
+}
 
 /**
  * POST /api/brief
@@ -168,14 +187,19 @@ function formatBytesServer(bytes: number): string {
 
 function linkRow(label: string, url?: string) {
   if (!url || !url.trim()) return '';
-  const safe = htmlEscape(url.trim());
+  // Only render a clickable anchor for http(s). Anything else (javascript:,
+  // data:, mailto tricks) renders as inert escaped text instead.
+  const httpUrl = safeHttpUrl(url);
+  const cell = httpUrl
+    ? `<a href="${htmlEscape(httpUrl)}" style="color:#2447FF;text-decoration:underline;word-break:break-all;">${htmlEscape(httpUrl)}</a>`
+    : `<span style="word-break:break-all;color:#0A0A0A;">${htmlEscape(url.trim())}</span>`;
   return `
     <tr>
       <td style="padding:10px 14px;border-bottom:1px solid #E1DAC4;font:11px/1 'JetBrains Mono', monospace;text-transform:uppercase;letter-spacing:0.18em;color:#6B6B65;width:160px;vertical-align:top;">
         ${htmlEscape(label)}
       </td>
       <td style="padding:10px 14px;border-bottom:1px solid #E1DAC4;font:14px/1.5 -apple-system, system-ui, sans-serif;">
-        <a href="${safe}" style="color:#2447FF;text-decoration:underline;word-break:break-all;">${safe}</a>
+        ${cell}
       </td>
     </tr>`;
 }
@@ -262,15 +286,90 @@ function buildEmail(d: Brief) {
 }
 
 export async function POST(req: Request) {
-  let data: Brief;
+  // Rate limit: 5 briefs per 10 minutes per IP (best-effort, in-memory).
+  const ip = getClientIp(req);
+  if (!rateLimit(`brief:${ip}`)) {
+    return NextResponse.json(
+      { error: 'Too many submissions. Please wait a few minutes, or email hello@swash.studio.' },
+      { status: 429 },
+    );
+  }
+
+  let raw: (Brief & { website?: string }) | null;
   try {
-    data = await req.json();
+    raw = await req.json();
   } catch {
     return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
   }
+  if (!raw || typeof raw !== 'object') {
+    return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
+  }
+
+  // Honeypot: real users never fill "website". Pretend success, send nothing.
+  if (typeof raw.website === 'string' && raw.website.trim().length > 0) {
+    return NextResponse.json({ ok: true });
+  }
+
+  // Normalize + clamp every field so a hand-crafted payload can't blow past
+  // our limits or inject oversized content into the studio inbox.
+  const files: UploadedFile[] = [];
+  const addFile = (f: UploadedFile | null | undefined): UploadedFile | null => {
+    if (!f || typeof f !== 'object') return null;
+    const content = typeof f.content === 'string' ? f.content : '';
+    const name = sanitizeFilename(typeof f.name === 'string' ? f.name : 'file');
+    if (!content || !isBase64(content)) return null;
+    if (!extensionAllowed(name)) return null;
+    if (base64Bytes(content) > MAX_FILE_BYTES) return null;
+    const clean: UploadedFile = { name, type: clampStr(f.type, 100), size: base64Bytes(content), content };
+    files.push(clean);
+    return clean;
+  };
+
+  const rawAssets = Array.isArray(raw.assets) ? raw.assets.slice(0, MAX_ASSETS) : [];
+  const logo = addFile(raw.logo);
+  const assets = rawAssets.map(addFile).filter((f): f is UploadedFile => f !== null);
+  const totalBytes = files.reduce((n, f) => n + (f.size ?? 0), 0);
+  if (totalBytes > MAX_TOTAL_BYTES) {
+    return NextResponse.json(
+      { error: 'Uploads too large. Remove a file or share a Drive link instead.' },
+      { status: 413 },
+    );
+  }
+
+  const data: Brief = {
+    industry: clampStr(raw.industry, CAP.short),
+    projectName: clampStr(raw.projectName, CAP.short),
+    currentSite: clampStr(raw.currentSite, CAP.short),
+    goal: clampStr(raw.goal, CAP.short),
+    features: Array.isArray(raw.features) ? raw.features.slice(0, 20).map((f) => clampStr(f, CAP.short)) : [],
+    timeline: clampStr(raw.timeline, CAP.short),
+    budget: clampStr(raw.budget, CAP.short),
+    budgetCurrency: clampStr(raw.budgetCurrency, 8),
+    budgetMin: clampStr(raw.budgetMin, 20),
+    budgetMax: clampStr(raw.budgetMax, 20),
+    hosting: clampStr(raw.hosting, CAP.short),
+    ongoingUpdates: clampStr(raw.ongoingUpdates, CAP.short),
+    paymentPreference: clampStr(raw.paymentPreference, CAP.short),
+    brandStatus: clampStr(raw.brandStatus, CAP.short),
+    brandColors: Array.isArray(raw.brandColors) ? raw.brandColors.slice(0, CAP.colors).map((c) => clampStr(c, 32)) : [],
+    logo,
+    assets,
+    assetsLink: clampStr(raw.assetsLink, 500),
+    references: Array.isArray(raw.references)
+      ? raw.references.slice(0, CAP.refs).map((r) => ({ url: clampStr(r?.url, 500), note: clampStr(r?.note, CAP.short) }))
+      : [],
+    notes: clampStr(raw.notes, CAP.notes),
+    name: clampStr(raw.name, CAP.short),
+    email: clampStr(raw.email, CAP.short),
+    phone: clampStr(raw.phone, 60),
+    bestReach: clampStr(raw.bestReach, 20),
+  };
 
   if (!data.email || !data.name) {
     return NextResponse.json({ error: 'Missing name or email' }, { status: 400 });
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
   }
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -284,8 +383,10 @@ export async function POST(req: Request) {
   // loudly so the form shows an error instead of silently dropping briefs.
   if (!apiKey) {
     if (isProd) {
-      console.error('[brief] RESEND_API_KEY missing in production - submission dropped');
-      console.error('[brief] data:', JSON.stringify(data, null, 2));
+      // Redacted: no PII, no base64 attachment content in logs.
+      console.error(
+        `[brief] RESEND_API_KEY missing in production - dropped submission for project "${data.projectName || 'Unnamed'}"`,
+      );
       return NextResponse.json(
         { error: 'Email service not configured. Please email us directly while we fix this.' },
         { status: 503 },
@@ -295,7 +396,6 @@ export async function POST(req: Request) {
     console.log('[brief] RESEND_API_KEY unset - logging instead of sending (dev only)');
     console.log('[brief] to:', to);
     console.log('[brief] subject:', email.subject);
-    console.log('[brief] data:', JSON.stringify(data, null, 2));
     return NextResponse.json({ ok: true, dev: true });
   }
 

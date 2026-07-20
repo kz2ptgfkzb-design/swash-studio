@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { getClientIp, rateLimit } from '@/lib/api-guard';
 
 /**
  * POST /api/review
@@ -30,6 +31,15 @@ function htmlEscape(s: string) {
 const MAX = { name: 120, company: 120, email: 200, text: 2000 };
 
 export async function POST(req: Request) {
+  // Rate limit: 5 reviews per 10 minutes per IP (best-effort, in-memory).
+  const ip = getClientIp(req);
+  if (!rateLimit(`review:${ip}`)) {
+    return NextResponse.json(
+      { error: 'Too many submissions. Please wait a few minutes.' },
+      { status: 429 },
+    );
+  }
+
   let data: ReviewSubmission;
   try {
     data = await req.json();
@@ -109,14 +119,13 @@ export async function POST(req: Request) {
 
   if (!apiKey) {
     if (isProd) {
-      console.error('[review] RESEND_API_KEY missing in production - submission dropped from', email);
+      console.error('[review] RESEND_API_KEY missing in production - review dropped');
       return NextResponse.json(
         { error: 'Review service not configured. Please email us directly.' },
         { status: 503 },
       );
     }
     console.log('[review] RESEND_API_KEY unset - logging instead of sending (dev only)');
-    console.log('[review]', textBody);
     return NextResponse.json({ ok: true, dev: true });
   }
 

@@ -5,7 +5,7 @@ import { Magnetic } from '@/components/Magnetic';
 import { PHOTOS } from '@/data/photos';
 
 export const metadata = {
-  title: 'Live previews · Swash',
+  title: 'Live previews',
   description:
     'Four live builds - two real South African business rebuilds plus two fictional demo brands (SaaS, real estate). Fully clickable, each with its own brand.',
 };
