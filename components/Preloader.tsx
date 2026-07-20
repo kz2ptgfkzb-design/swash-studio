@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { SwashMark } from './SwashMark';
 
 const STORAGE_KEY = 'swash:preloader-v1';
-const TOTAL_DURATION = 2600;
+const TOTAL_DURATION = 3200;
 
 export function Preloader() {
   const pathname = usePathname();
@@ -77,37 +77,36 @@ export function Preloader() {
           {/* Subtle paper grain on curtains */}
           <div className="pointer-events-none absolute inset-0 bg-noise opacity-[0.04] mix-blend-overlay" />
 
-          {/* Centerpiece */}
+          {/* Centerpiece - mark, wordmark and tagline reveal as one lockup, then hold */}
           <div className="absolute inset-0 flex items-center justify-center">
             <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: [0, 1, 1, 0], y: [8, 0, 0, -4] }}
-              transition={{
-                times: [0, 0.2, 0.78, 1],
-                duration: TOTAL_DURATION / 1000 - 0.4,
-                ease: [0.65, 0, 0.35, 1],
-              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-col items-center gap-6"
             >
-              <SwashMark size={140} variant="default" />
+              <motion.div
+                initial={{ opacity: 0, y: 12, scale: 0.94 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <SwashMark size={140} variant="default" />
+              </motion.div>
 
               <motion.span
-                initial={{ opacity: 0, y: 6 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.9,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
+                transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 className="font-display italic text-3xl tracking-tight text-ink-700"
               >
                 Swash
               </motion.span>
 
               <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 1.4 }}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.68, ease: [0.22, 1, 0.36, 1] }}
                 className="font-mono text-[10px] uppercase tracking-[0.32em] text-ash-400"
               >
                 - add a swash to it -

@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { SwashMark } from './SwashMark';
 import { Magnetic } from './Magnetic';
-import { RevealText, RevealBlock } from './RevealText';
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -68,16 +67,31 @@ export function Hero() {
         </motion.div>
 
         <motion.div style={{ y: titleY, opacity: titleOpacity }} className="space-y-6 sm:space-y-8 md:space-y-10 md:max-w-[72%]">
-          <h1 className="font-display text-ink-700 break-words">
-            <span className="block text-display-2xl">
-              <RevealText text="Add a" mode="word" stagger={0.08} delay={0.2} duration={1.0} />
-            </span>
-            <span className="block text-display-2xl italic">
-              <span className="underline-swash">
-                <RevealBlock delay={0.45}>swash</RevealBlock>
-              </span>{' '}
-              <RevealBlock delay={0.55} className="text-ash-500">to it.</RevealBlock>
-            </span>
+          <h1 className="font-display text-ink-700 [text-wrap:balance]">
+            <motion.span
+              className="block text-display-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Add a
+            </motion.span>
+            <motion.span
+              className="block text-display-2xl italic"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <motion.span
+                className="underline-swash"
+                initial={{ backgroundSize: '0% 0.18em' }}
+                animate={{ backgroundSize: '100% 0.18em' }}
+                transition={{ duration: 0.75, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
+              >
+                swash
+              </motion.span>{' '}
+              <span className="text-ash-500">to it.</span>
+            </motion.span>
           </h1>
 
           <motion.div
@@ -87,10 +101,12 @@ export function Hero() {
             className="flex flex-col gap-6 sm:gap-8"
           >
             <p className="max-w-xl text-balance text-sm leading-relaxed text-ash-500 sm:text-base md:text-lg">
-              A boutique studio that builds websites - and the brands and
-              motion that go with them. We build for HVAC dispatchers,
-              DTC skincare lines, neighborhood bakeries, and Series-A
-              SaaS teams. Tell us the brief; we&rsquo;ll do the rest.
+              A boutique studio that builds websites - plus the brands
+              and motion that carry them. Recent builds span a car
+              dealership, a family medical practice, and one of
+              America&rsquo;s largest HVAC/R distributors. Tell us the
+              brief; you&rsquo;ll have a working video demo within 48
+              hours.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Magnetic strength={0.3}>
