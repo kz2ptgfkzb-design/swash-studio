@@ -28,4 +28,4 @@ export const REVIEWS: Review[] = [];
  * g.page/r/... short link). The button on /reviews stays hidden while
  * this is null.
  */
-export const GOOGLE_REVIEW_URL: string | null = null;
+export const GOOGLE_REVIEW_URL: string | null = 'https://g.page/r/Cf7FlU1uSgQoEBM/review';
