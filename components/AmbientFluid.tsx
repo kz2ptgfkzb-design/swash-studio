@@ -43,7 +43,7 @@ export function AmbientFluid() {
     if (!canvas) return;
 
     const gl =
-      (canvas.getContext('webgl', { premultipliedAlpha: true, antialias: false, alpha: true, preserveDrawingBuffer: true }) as WebGLRenderingContext | null) ||
+      (canvas.getContext('webgl', { premultipliedAlpha: true, antialias: false, alpha: true }) as WebGLRenderingContext | null) ||
       (canvas.getContext('experimental-webgl') as WebGLRenderingContext | null);
     if (!gl) {
       setUsable(false);
@@ -248,15 +248,23 @@ export function AmbientFluid() {
 
     let progress = 0;
     let tProgress = 0;
+    // While the user is actively scrolling, hold the last drawn frame so the
+    // fixed fluid canvas is a static backdrop. That lets Safari reuse the
+    // cached blur on any backdrop-filter chrome (nav, pills) instead of
+    // re-rasterizing it every frame against a moving backdrop - the main
+    // cause of scroll jank on this site.
+    let scrollBusyUntil = 0;
     function onScroll() {
       const doc = document.documentElement;
       const max = Math.max(1, doc.scrollHeight - window.innerHeight);
       tProgress = Math.min(1, Math.max(0, window.scrollY / max));
+      scrollBusyUntil = performance.now() + 110;
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
     const start = performance.now();
+    let animTime = 0;
     let raf = 0;
     let running = true;
     let lastFrame = start;
@@ -293,14 +301,19 @@ export function AmbientFluid() {
         return;
       }
       const now = performance.now();
+      // Hold the last frame while the page is actively scrolling.
+      if (now < scrollBusyUntil) {
+        raf = requestAnimationFrame(tick);
+        return;
+      }
       if (now < nextFrameAt) {
         raf = requestAnimationFrame(tick);
         return;
       }
       nextFrameAt = now + FRAME_INTERVAL;
-      const elapsed = (now - start) / 1000;
       const dt = Math.min(0.05, (now - lastFrame) / 1000);
       lastFrame = now;
+      animTime += dt;
 
       // Ease cursor + scroll
       mx += (tmx - mx) * 0.08;
@@ -328,7 +341,7 @@ export function AmbientFluid() {
 
       resize();
       if (canvas) gl.uniform2f(uRes, canvas.width, canvas.height);
-      gl.uniform1f(uTime, elapsed);
+      gl.uniform1f(uTime, animTime);
       gl.uniform2f(uMouse, mx, my);
       gl.uniform1f(uHeat, heat);
       gl.uniform1f(uProgress, progress);
